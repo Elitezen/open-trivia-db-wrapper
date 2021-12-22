@@ -1,6 +1,6 @@
 {
   "name": "easy-trivia",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A wrapper for the Open Trivia Database API with typings",
   "keywords": [
     "trivia",
@@ -17,6 +17,11 @@
   ],
   "main": "src/index.js",
   "types": "typings/index.d.ts",
+  "scripts": {
+    "test": "jest",
+    "prettier": "prettier -w src/",
+    "prepublish": "npm run prettier && jest"
+  },
   "files": [
     "src",
     "typings"
@@ -33,11 +38,16 @@
   "homepage": "https://github.com/Elitezen/easy-trivia#readme",
   "devDependencies": {
     "@types/node": "^16.11.7",
+    "jest": "^27.3.1",
     "nodemon": "^2.0.12",
+    "prettier": "2.4.1",
     "typescript": "^4.4.2"
   },
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=7.0.0"
+  },
+  "dependencies": {
+    "@types/jest": "^27.0.3"
   }
 }

@@ -1,21 +1,14 @@
 // Classes
-const {
-  Base64Decoder
-} = require('./classes/Base64Decoder');
+const { Base64Decoder } = require("./classes/Base64Decoder");
 
-const {
-  Categories
-} = require('./classes/Categories');
+const { Categories } = require("./classes/Categories");
 
 const {
   EasyTriviaError,
-  EasyTriviaResponseError
-} = require('./classes/Errors');
+  EasyTriviaResponseError,
+} = require("./classes/Errors");
 
-const {
-  TriviaSession
-} = require('./classes/TriviaSession');
-
+const { TriviaSession } = require("./classes/TriviaSession");
 
 // Functions
 const {
@@ -28,20 +21,17 @@ const {
   _request,
   _insertRandomly,
   _isCategoryId,
-  _isObject
-} = require('./functions/private');
+  _isObject,
+} = require("./functions/private");
 
-const {
-  getOverallQuestionCount,
-  getQuestions
-} = require('./functions/public');
+const { getOverallQuestionCount, getQuestions } = require("./functions/public");
 
 // Constants
 const Encodings = {
-  NONE: 'none',
-  BASE64: 'base64',
-  URL3986: 'url3986',
-  URL_LEGACY: 'urlLegacy'
+  NONE: "none",
+  BASE64: "base64",
+  URL3986: "url3986",
+  URL_LEGACY: "urlLegacy",
 };
 
 module.exports = {
@@ -62,5 +52,17 @@ module.exports = {
   Encodings,
   getOverallQuestionCount,
   getQuestions,
-  TriviaSession
+  TriviaSession,
 };
+
+// Update Log 1.1.0
+// Implemented Prettier
+// Added constants
+// Categories
+//   .all -> .allNames
+//   .names -> .categoryByName(arg:TriviaCategoryName): number?
+//   .ids -> .categoryById(arg:number | `${number}`): TriviaCategoryName?
+//   Refactored Source For .isCategoryResolvable()
+//
+// Re-worded error messages.
+// fixed typos.

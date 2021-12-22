@@ -1,18 +1,23 @@
-const { _request } = require('../functions/private');
+const { _request } = require("../functions/private");
+const { links } = require('../../constants/api.json');
+const { errors } = require('../../constants/library.json');
 
 class TriviaSession {
   token = null;
 
   async start() {
-    const url = 'https://opentdb.com/api_token.php?command=request';
+    const url = links.full.START_SESSION;
     const oldToken = this.token;
 
     try {
       const data = await _request(url);
-      const { token:newToken } = data;
+      const { token: newToken } = data;
       if (newToken === null || oldToken == newToken) {
-        const { EasyTriviaError } = require('../classes/Errors');
-        throw new EasyTriviaError('Trivia Session Token failed to update', 'failed_request');
+        const { EasyTriviaError } = require("../classes/Errors");
+        throw new EasyTriviaError(
+          "This trivia's session token unexpectedly failed to update",
+          errors.headers.FAILED_REQUEST
+        );
       } else {
         this.token = newToken;
         return this.token;
@@ -23,7 +28,8 @@ class TriviaSession {
   }
 
   async reset() {
-    const url = 'https://opentdb.com/api_token.php?command=reset&token=' + this.token;
+    const url =
+      links.base.RESET_SESSION + this.token;
 
     try {
       const data = await _request(link);
@@ -39,5 +45,5 @@ class TriviaSession {
 }
 
 module.exports = {
-  TriviaSession
-}
+  TriviaSession,
+};

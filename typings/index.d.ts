@@ -312,13 +312,21 @@ declare module 'easy-trivia' {
   /** @class Class for trivia category related data retrieving. */
   class Categories {
     /** @static All category names in a string array. */
-    public static all: TriviaCategoryName[];
+    public static names: TriviaCategoryName[];
 
-    /** @static Category names to their respective ID. */
-    public static names: { [key in TriviaCategoryName]: number };
+    /** 
+     * Returns the resolved value of the given category name if valid.
+     * @param {string} arg The category name.
+     * @returns {number?} The category's id.
+     */
+    public static categoryByName(arg:TriviaCategoryName): number | undefined;
 
-    /** @static Category IDs to their respective name. */
-    public static ids: { [key: number]: TriviaCategoryName };
+    /** 
+     * Returns the resolved value of the given category id if valid.
+     * @param {number | `${number}`} arg The category id.
+     * @returns {number?} The category's name.
+     */
+    public static categoryById(arg:number | `${number}`): TriviaCategoryName | undefined;
 
     /**
      * Fetches a trivia category's data.
