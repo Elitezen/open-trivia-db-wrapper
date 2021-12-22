@@ -1,24 +1,31 @@
-const apiResponses = [
-  { name: 'SUCCESS', message: 'Successful response' },
-  { name: 'NO_RESULTS', message: 'Could not return results. The API does not have enough questions for your query' },
-  { name: 'INVALID_PARAMETER', message: 'An invalid argument was given' },
-  { name: 'TOKEN_NOT_FOUND', message: 'The given API token does not exist' },
-  { name: 'TOKEN_EMPTY', message: 'Session Token has returned all possible questions for the specified query. Resetting the Token is necessary.' }
-];
+const { apiResponses } = require('../../constants/api.json');
+const { errors } = require('../../constants/library.json');
 
 class EasyTriviaError extends Error {
   constructor(message, header) {
-    if (typeof message != 'string') throw new EasyTriviaError(`Expected a string, recieved ${typeof message}`, 'invalid_constructor_argument');
-    if (typeof header != 'string') throw new EasyTriviaError(`Expected a string, recieved ${typeof header}`, 'invalid_constructor_argument');
+    if (typeof message != "string")
+      throw new EasyTriviaError(
+        `Expected a string for 'message', recieved ${typeof message}`,
+        errors.headers.INVALID_CONSTRUCTOR_ARG
+      );
+    if (typeof header != "string")
+      throw new EasyTriviaError(
+        `Expected a string for 'header', recieved ${typeof header}`,
+        errors.headers.INVALID_CONSTRUCTOR_ARG
+      );
 
     super(message);
-    this.name = `EasyTriviaError [${header.toUpperCase()}]`;
+    this.name = `EasyTriviaError [${header}]`;
   }
 }
 
 class EasyTriviaResponseError extends Error {
   constructor(errorCode) {
-    if (errorCode < 0 || errorCode > 4) throw new EasyTriviaError(`Number (${errorCode}) is not a valid ResponseCode (range 0 - 4)`, 'invalid_constructorargument');
+    if (errorCode < 0 || errorCode > 4)
+      throw new EasyTriviaError(
+        `The given number (${errorCode}) for 'errorCode' is not a valid ResponseCode (range 0 - 4)`,
+        errors.headers.INVALID_CONSTRUCTOR_ARG
+      );
     const { name, message } = apiResponses[errorCode];
 
     super(message);
@@ -28,5 +35,5 @@ class EasyTriviaResponseError extends Error {
 
 module.exports = {
   EasyTriviaError,
-  EasyTriviaResponseError
-}
+  EasyTriviaResponseError,
+};
