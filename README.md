@@ -9,6 +9,17 @@ Ensure you are using Node version 16.0.0 or higher.
 npm i easy-trivia
 ```
 
+# 1.0.0 -> 1.1.0
+- Implemented Prettier
+- Added constants
+- Categories
+ - `.all` -> `.allNames`
+ - `.names` -> `.categoryByName(arg:TriviaCategoryName): number?`
+ - `.ids -> .categoryById(arg:number | `${number}`): TriviaCategoryName?`
+ - Refactored Source For `.isCategoryResolvable()`
+- Re-worded error messages.
+- Fixed typos.
+
 # Usage
 
 ## Fetching Questions Example
@@ -93,14 +104,14 @@ async function example() {
 
   const batch1 = await getQuestions({
     amount: 10,
-    category: Categories.names.SCIENCE_COMPUTERS,
+    category: Categories.categoryByName('SCIENCE_COMPUTERS'),
     difficulty: 'hard',
     token: sessionToken
   });
 
   const batch2 = await getQuestions({
     amount: 10,
-    category: Categories.names.SCIENCE_COMPUTERS,
+    category: Categories.categoryByName('SCIENCE_COMPUTERS'),
     difficulty: 'hard',
     token: sessionToken
   });
@@ -142,7 +153,7 @@ example();
 ```js
 import { Categories } from 'easy-trivia';
 
-console.log(Categories.all);
+console.log(Categories.allNames);
 // [
 //   'GENERAL_KNOWLEDGE',
 //   'ENTERTAINMENT_BOOKS',
@@ -153,10 +164,10 @@ console.log(Categories.all);
 //   'ENTERTAINMENT_VIDEO_GAMES',
 //    ...
 
-console.log(Categories.names.GENERAL_KNOWLEDGE);
+console.log(Categories.categoryByName('GENERAL_KNOWLEDGE'));
 // 9 - The category's API id.
 
-console.log(Categories.ids[9]);
+console.log(Categories.categoryById(9));
 // 'GENERAL_KNOWLEDGE'
 ```
 
