@@ -1,6 +1,6 @@
 {
   "name": "easy-trivia",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A wrapper for the Open Trivia Database API with typings",
   "keywords": [
     "trivia",
@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/Elitezen/easy-trivia#readme",
   "devDependencies": {
+    "@types/jest": "^27.0.3",
     "@types/node": "^16.11.7",
     "jest": "^27.3.1",
     "nodemon": "^2.0.12",
@@ -46,8 +47,5 @@
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=7.0.0"
-  },
-  "dependencies": {
-    "@types/jest": "^27.0.3"
   }
 }

@@ -9,16 +9,9 @@ Ensure you are using Node version 16.0.0 or higher.
 npm i easy-trivia
 ```
 
-# 1.0.0 -> 1.1.0
-- Implemented Prettier
-- Added constants
-- Categories
- - `.all` -> `.allNames`
- - `.names` -> `.categoryByName(arg:TriviaCategoryName): number?`
- - `.ids -> .categoryById(arg:number | `${number}`): TriviaCategoryName?`
- - Refactored Source For `.isCategoryResolvable()`
-- Re-worded error messages.
-- Fixed typos.
+# 1.1.0 -> 1.1.1
+- 🐞 Fixed a bug where the use of a category name for `QuestionOptions#category` would throw an error or would return the incorrect category.
+- Changed `@types/jest` as a **dev** dependency (oops)
 
 # Usage
 
@@ -31,33 +24,28 @@ async function example() {
     amount: 50,
     difficulty: 'easy',
     type: 'multiple',
-    category: 'history'
+    category: 'SCIENCE_COMPUTERS'
   });
 
   console.log(questions);
 
-  // [
-  //   {
-  //     value: 'Which German field marshal was known as the `Desert Fox`?',
-  //     category: 'History',
-  //     difficulty: 'easy',
-  //     type: 'multiple',
-  //     correctAnswer: 'Erwin Rommel',
-  //     incorrectAnswers: [
-  //       'Ernst Busch',
-  //       'Wolfram Freiherr von Richthofen',
-  //       'Wilhelm List'
-  //     ],
-  //     allAnswers: [
-  //       'Erwin Rommel',
-  //       'Ernst Busch',
-  //       'Wolfram Freiherr von Richthofen',
-  //       'Wilhelm List'
-  //     ],
-  //     checkAnswer: [Function: checkAnswer]
-  //   }
-  //   ...
-  // ]
+    // [
+    //   {
+    //     value: 'In any programming language, what is the most common way to iterate through an array?',
+    //     category: 'Science: Computers',
+    //     difficulty: 'easy',
+    //     type: 'multiple',
+    //     correctAnswer: "'For' loops",
+    //     incorrectAnswers: [ "'If' Statements", "'Do-while' loops", "'While' loops" ],
+    //     allAnswers: [
+    //       "'For' loops",
+    //       "'If' Statements",
+    //       "'Do-while' loops",
+    //       "'While' loops"
+    //     ],
+    //     checkAnswer: [Function: checkAnswer]
+    //   }
+    // ...
   },
   
 }
@@ -104,14 +92,14 @@ async function example() {
 
   const batch1 = await getQuestions({
     amount: 10,
-    category: Categories.categoryByName('SCIENCE_COMPUTERS'),
+    category: Categories.categoryByName('HISTORY'),
     difficulty: 'hard',
     token: sessionToken
   });
 
   const batch2 = await getQuestions({
     amount: 10,
-    category: Categories.categoryByName('SCIENCE_COMPUTERS'),
+    category: Categories.categoryByName('HISTORY'),
     difficulty: 'hard',
     token: sessionToken
   });
