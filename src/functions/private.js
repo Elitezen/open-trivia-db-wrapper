@@ -51,7 +51,7 @@ const _checkAmount = (arg) => {
 };
 
 const _checkCategory = (arg) => {
-  if (arg === undefined) return null;
+  if (arg === undefined || arg === null) return null;
   if (typeof arg == "number") {
     if (!Categories.ids[arg])
       throw new EasyTriviaError(
@@ -85,7 +85,7 @@ const _checkCategory = (arg) => {
 };
 
 const _checkDifficulty = (arg) => {
-  if (arg === undefined) return null;
+  if (arg === undefined || arg === null) return null;
   if (typeof arg == "string") {
     arg = arg.toLowerCase();
     if (!questionDifficulties.includes(arg))
@@ -102,7 +102,7 @@ const _checkDifficulty = (arg) => {
 };
 
 const _checkEncode = (arg) => {
-  if (arg === undefined) return null;
+  if (arg === undefined || arg === null) return null;
   if (typeof arg == "string") {
     if (!questionEncodings.includes(arg))
       throw new EasyTriviaError(
@@ -118,7 +118,7 @@ const _checkEncode = (arg) => {
 };
 
 const _checkToken = (arg) => {
-  if (arg === undefined) return null;
+  if (arg === undefined || arg === null) return null;
   if (typeof arg != "string")
     throw new EasyTriviaError(
       `'token' option for QuestionOptions must be of type string`,
@@ -133,7 +133,7 @@ const _checkToken = (arg) => {
 };
 
 const _checkType = (arg) => {
-  if (arg === undefined) return null;
+  if (arg === undefined || arg === null) return null;
   if (typeof arg == "string") {
     if (!questionTypes.includes(arg.toLowerCase()))
       throw new EasyTriviaError(
@@ -189,6 +189,7 @@ const _request = (url) => {
 
     req.on("error", reject);
     req.end();
+    
   });
 };
 
