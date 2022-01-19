@@ -60,7 +60,7 @@ const _checkCategory = (arg) => {
       );
     return arg;
   } else if (typeof arg == "string") {
-    const idByName = Categories.names[arg.toUpperCase()];
+    const idByName = Categories.allNames.indexOf(arg.toUpperCase()) + 9;
     if (idByName) return idByName;
     else if (!isNaN(+arg)) {
       const idByNumber = parseInt(arg);
