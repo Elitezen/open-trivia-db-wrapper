@@ -9,16 +9,9 @@ Ensure you are using Node version 16.0.0 or higher.
 npm i easy-trivia
 ```
 
-# 1.0.0 -> 1.1.0
-- Implemented Prettier
-- Added constants
-- Categories
- - `.all` -> `.allNames`
- - `.names` -> `.categoryByName(arg:TriviaCategoryName): number?`
- - `.ids -> .categoryById(arg:number | `${number}`): TriviaCategoryName?`
- - Refactored Source For `.isCategoryResolvable()`
-- Re-worded error messages.
-- Fixed typos.
+# 1.1.0 -> 1.1.1
+- 🐞 Fixed a bug where the use of a category name for `QuestionOptions#category` would throw an error or would return the incorrect category.
+- Changed `@types/jest` as a **dev** dependency (oops)
 
 # Usage
 
