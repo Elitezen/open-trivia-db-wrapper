@@ -9,7 +9,7 @@ Ensure you are using Node version 16.0.0 or higher.
 npm i easy-trivia
 ```
 
-# 1.1.0 -> 1.1.2
+# 1.1.3
 - 🐞 Fixed a bug where the use of a category name for `QuestionOptions#category` would throw an error or would return the incorrect category.
 - Optional Options for `QuestionOptions` Can Now Accept `null`
 - Changed `@types/jest` as a **dev** dependency (oops)
