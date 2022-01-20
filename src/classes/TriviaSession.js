@@ -1,6 +1,6 @@
 const { _request } = require("../functions/private");
-const { links } = require('../../constants/api.json');
-const { errors } = require('../../constants/library.json');
+const { links } = require('../constants/api.json');
+const { errors } = require('../constants/library.json');
 
 class TriviaSession {
   token = null;
