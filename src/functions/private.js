@@ -4,14 +4,14 @@ const {
   EasyTriviaResponseError,
 } = require("../classes/Errors");
 const { get } = require("https");
-const { errors } = require('../../constants/library.json');
+const { errors } = require('../constants/library.json');
 const { 
   categoryIdRange,
   questionCountRange, 
   questionDifficulties, 
   questionEncodings, 
   questionTypes 
-} = require('../../constants/api.json');
+} = require('../constants/api.json');
 
 const _checkAmount = (arg) => {
   if (arg === undefined)

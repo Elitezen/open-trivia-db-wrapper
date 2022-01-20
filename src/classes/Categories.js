@@ -1,6 +1,6 @@
 const { EasyTriviaError } = require("../classes/Errors");
-const { allCategoryNames, categoryIdRange, links } = require('../../constants/api.json');
-const { errors } = require('../../constants/library.json');
+const { allCategoryNames, categoryIdRange, links } = require('../constants/api.json');
+const { errors } = require('../constants/library.json');
 const _inRange = (num) => num >= categoryIdRange.min && num <= categoryIdRange.max;
 
 class Categories {
