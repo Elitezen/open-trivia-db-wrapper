@@ -54,15 +54,3 @@ module.exports = {
   getQuestions,
   TriviaSession,
 };
-
-// Update Log 1.1.0
-// Implemented Prettier
-// Added constants
-// Categories
-//   .all -> .allNames
-//   .names -> .categoryByName(arg:TriviaCategoryName): number?
-//   .ids -> .categoryById(arg:number | `${number}`): TriviaCategoryName?
-//   Refactored Source For .isCategoryResolvable()
-//
-// Re-worded error messages.
-// fixed typos.
