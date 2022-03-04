@@ -3,18 +3,29 @@
 
 Easy Trivia is a small, simple and fast wrapper for [Open Trivia Database](https://opentdb.com/) - A Free to use, user-contributed trivia question database - with type definitions. Works with CommonJS, ESModules and TypeScript.
 
+Website And Documentation: https://easytrivia.js.org/ 
+
+Guide by [Turtlepaw](https://github.com/Turtlepaw): https://easytrivia-guide.js.org/
+
 # Installation
-Ensure you are using Node version 16.0.0 or higher.
+Ensure you are using Node version 14 or higher and that your enviroment contains the `https` module.
 ```sh-session
 npm i easy-trivia
 ```
 
-# 1.1.4
-- 🐞 Fixed a bug where the use of a category name for `QuestionOptions#category` would throw an error or would return the incorrect category.
-- Optional Options for `QuestionOptions` Can Now Accept `null`
-- Changed `@types/jest` as a **dev** dependency (oops)
+# 1.2.0
+- ⭐ Official website with documentation is now up! 🥳🎉 https://easytrivia.js.org/ 
+- ⭐ `Categories#random()` -> `Categories.random(arg?: CategoryResolvableType = 'ID'): CategoryName | number`
+
+  You can now state what kind of resolvable you want to be randomly returned, `'NAME'` or `'ID'`
+- 🛠️ This module now works with NodeJS 14.0 and higher
+- 🐞 Fixed typo in the typings for `Categories.allNames`
+- 🐞 Fixed the issue of trivia sessions not properly resetting
+- 🚨 Attention Discord.JS users! [discord-trivia](https://github.com/Elitezen/discord-trivia) is nearing testing phase
+- Join the Discord server for updates on Easy Trivia and upcoming Discord Trivia [Here!](https://discord.com/invite/wtwM4HhbAr)
 
 # Usage
+The following examples make use of the [Async/Await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await) syntax. Ensure you are inside an async function, otherwise use promise callbacks.
 
 ## Fetching Questions Example
 ```js
@@ -90,6 +101,8 @@ console.log(questions[0]);
 </details>
 
 ## Using Session Tokens to Prevent Duplicate Questions Throughout Multiple Calls
+In respect to the API, it is recommended you generate and save 1 session token for use when testing.
+
 ```js
 import { Categories, TriviaSession, getQuestions } from 'easy-trivia';
 
@@ -224,4 +237,4 @@ console.log(Encodings);
 </details>
 
 # Documentation
-Full Documentation is currently in the works, However this module is small and straight foward. Working with this module in the meantime will still be a breeze!
+Documentation is available at [https://easytrivia.js.org/](Here), this is still a work in progress. 

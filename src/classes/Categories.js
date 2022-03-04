@@ -83,8 +83,11 @@ class Categories {
     return !!(this.categoryById(arg) || this.categoryByName(arg));
   }
 
-  static random() {
-    return this.allNames[(Math.random() * this.allNames.length) << 0];
+  static random(arg = 'ID') {
+    console.log(arg);
+    const resolvable = this.allNames[(Math.random() * this.allNames.length) << 0];
+    console.log(resolvable);
+    return (['NAME', 'ID'].includes(arg) && arg == 'NAME') ? resolvable : this.categoryByName(resolvable);
   }
 }
 

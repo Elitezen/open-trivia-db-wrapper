@@ -1,4 +1,6 @@
 declare module 'easy-trivia' {
+  type CategoryResolvableType = 'NAME' | 'ID';
+
   type TriviaCategoryName = 'GENERAL_KNOWLEDGE'
   | 'ENTERTAINMENT_BOOKS'
   | 'ENTERTAINMENT_FILM'
@@ -312,7 +314,7 @@ declare module 'easy-trivia' {
   /** @class Class for trivia category related data retrieving. */
   class Categories {
     /** @static All category names in a string array. */
-    public static names: TriviaCategoryName[];
+    public static allNames: TriviaCategoryName[];
 
     /** 
      * Returns the resolved value of the given category name if valid.
@@ -345,9 +347,10 @@ declare module 'easy-trivia' {
 
     /**
      * Chooses a random category and returns it's id.
-     * @returns {number} A random category id.
+     * @param {string} arg? What type of resolvable to return
+     * @returns {number | string} A random category id or name.
      */
-    public static random(): number;
+    public static random(arg?: CategoryResolvableType): number;
   }
 
   /** 

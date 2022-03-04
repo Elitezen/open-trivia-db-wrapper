@@ -32,7 +32,7 @@ class TriviaSession {
       links.base.RESET_SESSION + this.token;
 
     try {
-      const data = await _request(link);
+      const data = await _request(url);
       return data.token;
     } catch (err) {
       throw err;
