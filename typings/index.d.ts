@@ -316,6 +316,13 @@ declare module 'easy-trivia' {
     /** @static All category names in a string array. */
     public static allNames: TriviaCategoryName[];
 
+    /**
+     * Resolves given category and returns it's 'pretty' name
+     * @param {string} str A category resolvable
+     * @returns {string} The pretty category name
+     */
+    public static prettyCategoryName(str: TriviaCategoryResolvable): string;
+
     /** 
      * Returns the resolved value of the given category name if valid.
      * @param {string} arg The category name.

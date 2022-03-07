@@ -1,6 +1,6 @@
 {
   "name": "easy-trivia",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "A wrapper for the Open Trivia Database API with typings",
   "keywords": [
     "trivia",
