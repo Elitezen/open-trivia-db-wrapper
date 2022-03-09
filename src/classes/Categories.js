@@ -1,7 +1,12 @@
 const { EasyTriviaError } = require("../classes/Errors");
-const { allCategoryNames, categoryIdRange, links } = require('../constants/api.json');
-const { errors } = require('../constants/library.json');
-const _inRange = (num) => num >= categoryIdRange.min && num <= categoryIdRange.max;
+const {
+  allCategoryNames,
+  categoryIdRange,
+  links,
+} = require("../constants/api.json");
+const { errors } = require("../constants/library.json");
+const _inRange = (num) =>
+  num >= categoryIdRange.min && num <= categoryIdRange.max;
 
 class Categories {
   static allNames = allCategoryNames;
@@ -83,46 +88,55 @@ class Categories {
     return !!(this.categoryById(arg) || this.categoryByName(arg));
   }
 
-  static random(arg = 'ID') {
+  static random(arg = "ID") {
     console.log(arg);
-    const resolvable = this.allNames[(Math.random() * this.allNames.length) << 0];
+    const resolvable =
+      this.allNames[(Math.random() * this.allNames.length) << 0];
     console.log(resolvable);
-    return (['NAME', 'ID'].includes(arg) && arg == 'NAME') ? resolvable : this.categoryByName(resolvable);
+    return ["NAME", "ID"].includes(arg) && arg == "NAME"
+      ? resolvable
+      : this.categoryByName(resolvable);
   }
 
   static prettyCategoryName(str) {
     const mapping = {
-      "GENERAL_KNOWLEDGE": 'General Knowledge',
-      "ENTERTAINMENT_BOOKS": 'Entertainment: Books',
-      "ENTERTAINMENT_FILM": 'Entertainment: Film',
-      "ENTERTAINMENT_MUSIC": 'Entertainment: Music',
-      "ENTERTAINMENT_MUSICALS_AND_THEATRES": 'Entertainment: Musicals and Theatres',
-      "ENTERTAINMENT_TELEVISION": 'Entertainment: Television',
-      "ENTERTAINMENT_VIDEO_GAMES": 'Entertainment: Video Games',
-      "ENTERTAINMENT_BOARD_GAMES": 'Entertainment: Board Games',
-      "SCIENCE_AND_NATURE": 'Science and Nature',
-      "SCIENCE_COMPUTERS": 'Science: Computers',
-      "SCIENCE_MATHEMATICS": 'Science Mathematics',
-      "MYTHOLOGY": 'Mythology',
-      "SPORTS": 'Sports',
-      "GEOGRAPHY": 'Geography',
-      "HISTORY": 'History',
-      "POLITICS": 'Politics',
-      "ART": 'Art',
-      "CELEBRITIES": 'Celebrities',
-      "Animals": 'Animals',
-      "VEHICLES": 'Vehicles',
-      "ENTERTAINMENT_COMICS": 'Entertainment: Comics',
-      "SCIENCE_GADGETS": 'Science: Gadgets',
-      "ENTERTAINMENT_JAPANESE_ANIME_AND_MANGA": 'Entertainment: Japanese Anime and Manga',
-      "ENTERTAINMENT_CARTOON_AND_ANIMATIONS": 'Entertainment: Cartoon and Animations'
-    }
+      GENERAL_KNOWLEDGE: "General Knowledge",
+      ENTERTAINMENT_BOOKS: "Entertainment: Books",
+      ENTERTAINMENT_FILM: "Entertainment: Film",
+      ENTERTAINMENT_MUSIC: "Entertainment: Music",
+      ENTERTAINMENT_MUSICALS_AND_THEATRES:
+        "Entertainment: Musicals and Theatres",
+      ENTERTAINMENT_TELEVISION: "Entertainment: Television",
+      ENTERTAINMENT_VIDEO_GAMES: "Entertainment: Video Games",
+      ENTERTAINMENT_BOARD_GAMES: "Entertainment: Board Games",
+      SCIENCE_AND_NATURE: "Science and Nature",
+      SCIENCE_COMPUTERS: "Science: Computers",
+      SCIENCE_MATHEMATICS: "Science Mathematics",
+      MYTHOLOGY: "Mythology",
+      SPORTS: "Sports",
+      GEOGRAPHY: "Geography",
+      HISTORY: "History",
+      POLITICS: "Politics",
+      ART: "Art",
+      CELEBRITIES: "Celebrities",
+      Animals: "Animals",
+      VEHICLES: "Vehicles",
+      ENTERTAINMENT_COMICS: "Entertainment: Comics",
+      SCIENCE_GADGETS: "Science: Gadgets",
+      ENTERTAINMENT_JAPANESE_ANIME_AND_MANGA:
+        "Entertainment: Japanese Anime and Manga",
+      ENTERTAINMENT_CARTOON_AND_ANIMATIONS:
+        "Entertainment: Cartoon and Animations",
+    };
 
     if (!Categories.isCategoryResolvable(str)) {
-      throw new EasyTriviaError(`Cannot resolve "${str}" into a trivia category`, errors.headers.INVALID_ARG);
+      throw new EasyTriviaError(
+        `Cannot resolve "${str}" into a trivia category`,
+        errors.headers.INVALID_ARG
+      );
     }
 
-    if (typeof str == 'string' && isNaN(str)) {
+    if (typeof str == "string" && isNaN(str)) {
       str = str.toUpperCase();
       return mapping[str];
     } else {

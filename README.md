@@ -13,16 +13,13 @@ Ensure you are using Node version 14 or higher and that your enviroment contains
 npm i easy-trivia
 ```
 
-# 1.2.0
-- ⭐ Official website with documentation is now up! 🥳🎉 https://easytrivia.js.org/ 
-- ⭐ `Categories#random()` -> `Categories.random(arg?: CategoryResolvableType = 'ID'): CategoryName | number`
-
-  You can now state what kind of resolvable you want to be randomly returned, `'NAME'` or `'ID'`
-- 🛠️ This module now works with NodeJS 14.0 and higher
-- 🐞 Fixed typo in the typings for `Categories.allNames`
-- 🐞 Fixed the issue of trivia sessions not properly resetting
-- 🚨 Attention Discord.JS users! [discord-trivia](https://github.com/Elitezen/discord-trivia) is nearing testing phase
-- Join the Discord server for updates on Easy Trivia and upcoming Discord Trivia [Here!](https://discord.com/invite/wtwM4HhbAr)
+# 1.3.0
+- ⭐ `Categories.prettyCategoryName(arg: CategoryResolvable): string`
+  You can now convert uppercase constant category names into their "pretty" syntax
+  example: `'ENTERTAINMENT_MUSICALS_AND_THEATRES'` -> `'Entertainment: Musicals and Theatres'`
+- 🐞 Fixed a bug where numbers could not resolve into categories (big oops...)
+- 🚨 Attention Discord.JS users! [discord-trivia](https://github.com/Elitezen/discord-trivia) is in testing phase
+- Join the Discord server for updates on Easy Trivia and for Discord Trivia testing [Here!](https://discord.com/invite/wtwM4HhbAr)
 
 # Usage
 The following examples make use of the [Async/Await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await) syntax. Ensure you are inside an async function, otherwise use promise callbacks.
@@ -237,4 +234,4 @@ console.log(Encodings);
 </details>
 
 # Documentation
-Documentation is available at [https://easytrivia.js.org/](Here), this is still a work in progress. 
+Documentation is available at https://easytrivia.js.org/, this is still a work in progress. 

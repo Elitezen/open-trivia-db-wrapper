@@ -4,14 +4,14 @@ const {
   EasyTriviaResponseError,
 } = require("../classes/Errors");
 const { get } = require("https");
-const { errors } = require('../constants/library.json');
-const { 
+const { errors } = require("../constants/library.json");
+const {
   categoryIdRange,
-  questionCountRange, 
-  questionDifficulties, 
-  questionEncodings, 
-  questionTypes 
-} = require('../constants/api.json');
+  questionCountRange,
+  questionDifficulties,
+  questionEncodings,
+  questionTypes,
+} = require("../constants/api.json");
 
 const _checkAmount = (arg) => {
   if (arg === undefined)
@@ -53,7 +53,7 @@ const _checkAmount = (arg) => {
 const _checkCategory = (arg) => {
   if (arg === undefined || arg === null) return null;
   if (typeof arg == "number") {
-    if (!Categories.ids[arg])
+    if (!_isCategoryId(arg))
       throw new EasyTriviaError(
         `'category' option (${arg}) for QuestionOptions does not resolve into a trivia category id`,
         errors.headers.INVALID_OPT
@@ -189,7 +189,6 @@ const _request = (url) => {
 
     req.on("error", reject);
     req.end();
-    
   });
 };
 

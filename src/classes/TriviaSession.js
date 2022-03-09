@@ -1,6 +1,6 @@
 const { _request } = require("../functions/private");
-const { links } = require('../constants/api.json');
-const { errors } = require('../constants/library.json');
+const { links } = require("../constants/api.json");
+const { errors } = require("../constants/library.json");
 
 class TriviaSession {
   token = null;
@@ -28,8 +28,7 @@ class TriviaSession {
   }
 
   async reset() {
-    const url =
-      links.base.RESET_SESSION + this.token;
+    const url = links.base.RESET_SESSION + this.token;
 
     try {
       const data = await _request(url);

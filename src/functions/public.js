@@ -9,8 +9,8 @@ const {
   _request,
   _insertRandomly,
 } = require("./private");
-const { links } = require('../constants/api.json');
-const { defaults } = require('../constants/library.json');
+const { links } = require("../constants/api.json");
+const { defaults } = require("../constants/library.json");
 
 const getOverallQuestionCount = async () => {
   const data = await _request(links.full.OVR_QUESTION_CNT);
