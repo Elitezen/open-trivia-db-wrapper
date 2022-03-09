@@ -1,5 +1,5 @@
-const { apiResponses } = require('../constants/api.json');
-const { errors } = require('../constants/library.json');
+const { apiResponses } = require("../constants/api.json");
+const { errors } = require("../constants/library.json");
 
 class EasyTriviaError extends Error {
   constructor(message, header) {

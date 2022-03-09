@@ -1,7 +1,10 @@
 class Base64Decoder {
   static atob = (str) => Buffer.from(str, "base64").toString();
   static decode = (value) => {
-    return value == null || value == undefined || typeof value == 'boolean' || typeof value == 'number'
+    return value == null ||
+      value == undefined ||
+      typeof value == "boolean" ||
+      typeof value == "number"
       ? value
       : typeof value == "string"
       ? this.decodeString(value)

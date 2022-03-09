@@ -22,6 +22,6 @@ test("Categories#getCategoryData() Returns category data", () => {
 test("", () => {
   expect(Categories.isCategoryResolvable(9)).toBe(true);
   expect(Categories.isCategoryResolvable('17')).toBe(true);
-  expect(Categories.isCategoryResolvable('')).toBe(true);
+  expect(Categories.isCategoryResolvable('')).toBe(false);
   expect(Categories.isCategoryResolvable('test')).toBe(false);
 });
