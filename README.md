@@ -234,4 +234,5 @@ console.log(Encodings);
 </details>
 
 # Documentation
-Documentation is available at https://easytrivia.js.org/, this is still a work in progress. 
+Documentation is available at https://easytrivia.js.org/ .this is still a work in progress. 
+
