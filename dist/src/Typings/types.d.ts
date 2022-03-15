@@ -1,0 +1,14 @@
+import { Question, RawQuestion } from "./interfaces";
+export declare type CategoryIdResolvable = NumberResolvable;
+export declare type CategoryNameResolvable = CategoryName<"Pretty" | "Strict">;
+export declare type CategoryName<T extends CategoryNameVersion = "Strict"> = T extends "Pretty" ? CategoryNamePretty : CategoryNameStrict;
+export declare type CategoryNameVersion = keyof typeof CategoryNameVersions;
+export declare type CategoryNamePretty = keyof typeof CategoryNamesPretty;
+export declare type CategoryNameStrict = keyof typeof CategoryNamesStrict;
+export declare type CategoryResolvable = CategoryNameResolvable | CategoryIdResolvable;
+export declare type NumberResolvable = `${number}` | number;
+export declare type Questions<T extends QuestionVersion = "Final"> = T extends "Raw" ? RawQuestion : Question;
+export declare type QuestionDifficulty = keyof typeof QuestionDifficulties;
+export declare type QuestionType = keyof typeof QuestionTypes;
+export declare type QuestionEncoding = keyof typeof QuestionEncodings;
+export declare type QuestionVersion = keyof typeof QuestionVersions;
