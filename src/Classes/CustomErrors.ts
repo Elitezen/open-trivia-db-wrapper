@@ -1,20 +1,20 @@
 const apiResponses = [
-  { "name": "SUCCESS", "message": "Successful response" },
+  { name: "SUCCESS", message: "Successful response" },
   {
-    "name": "NO_RESULTS",
-    "message":
-      "Could not return results. The API does not have enough questions for your query"
+    name: "NO_RESULTS",
+    message:
+      "Could not return results. The API does not have enough questions for your query",
   },
-  { "name": "INVALID_PARAMETER", "message": "An invalid parameter was received" },
+  { name: "INVALID_PARAMETER", message: "An invalid parameter was received" },
   {
-    "name": "TOKEN_NOT_FOUND",
-    "message": "The given API token is invalid or does not exist"
+    name: "TOKEN_NOT_FOUND",
+    message: "The given API token is invalid or does not exist",
   },
   {
-    "name": "TOKEN_EMPTY",
-    "message":
-      "This trivia session has returned all possible questions for the specified query"
-  }
+    name: "TOKEN_EMPTY",
+    message:
+      "This trivia session has returned all possible questions for the specified query",
+  },
 ];
 
 class EasyTriviaError extends Error {
@@ -28,11 +28,11 @@ class EasyTriviaError extends Error {
       INVALID_NAME: "INVALID_CATEGORY_NAME",
       INVALID_OPT: "INVALID_OPTION",
       MISSING_OPT: "MISSING_OPTION",
-      MISSING_ARG: "MISSING_ARGUMENT"
-    }
+      MISSING_ARG: "MISSING_ARGUMENT",
+    },
   };
 
-  constructor(message:string, header:string) {
+  constructor(message: string, header: string) {
     if (typeof message != "string")
       throw new EasyTriviaError(
         `Expected a string for 'message', recieved ${typeof message}`,
@@ -43,14 +43,19 @@ class EasyTriviaError extends Error {
         `Expected a string for 'header', recieved ${typeof header}`,
         EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG
       );
+    if (!message.length || !header.length)
+      throw new EasyTriviaError(
+        `Supplied strings must not be empty`,
+        EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG
+      );
 
     super(message);
     this.name = `EasyTriviaError [${header}]`;
   }
 }
 
-class OpenTriviaDBError extends Error {
-  constructor(errorCode:number) {
+class OpenTDBError extends Error {
+  constructor(errorCode: number) {
     if (errorCode < 0 || errorCode > 4)
       throw new EasyTriviaError(
         `The given number (${errorCode}) for 'errorCode' is not a valid ResponseCode (range 0 - 4)`,
@@ -59,11 +64,8 @@ class OpenTriviaDBError extends Error {
     const { name, message } = apiResponses[errorCode];
 
     super(message);
-    this.name = `OpenTriviaDBError [${name}]`;
+    this.name = `OpenTDBError [${name}]`;
   }
 }
 
-export {
-  EasyTriviaError,
-  OpenTriviaDBError
-}
+export { EasyTriviaError, OpenTDBError };

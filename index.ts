@@ -1,12 +1,12 @@
-import getQuestions from "./src/Functions/Public/getQuestions";
+import getQuestions from "./src/Functions/getQuestions";
 import Category from "./src/Classes/Category";
 import Validator from "./src/Classes/Validator";
-import { EasyTriviaError, OpenTriviaDBError } from "./src/Classes/Errors";
+import { EasyTriviaError, OpenTDBError } from "./src/classes/CustomErrors";
 
 export {
   Category,
   EasyTriviaError,
   getQuestions,
-  OpenTriviaDBError,
+  OpenTDBError,
   Validator
 }

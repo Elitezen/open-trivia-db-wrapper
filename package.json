@@ -19,9 +19,11 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest",
     "prettier": "prettier -w src/",
-    "prepublish": "npm run prettier && jest"
+    "prepublish": "npm run build",
+    "exec": "tsc && node .",
+    "test": "npx jest",
+    "prep": "npm run build && npm run test && npm run prettier"
   },
   "files": [
     "src",
@@ -40,10 +42,10 @@
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.7",
-    "jest": "^27.3.1",
-    "jsdoc": "^3.6.10",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.12",
     "prettier": "2.4.1",
+    "ts-jest": "^27.1.3",
     "typescript": "^4.4.2"
   },
   "engines": {

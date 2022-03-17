@@ -1,5 +1,6 @@
-import Validator from "../../Classes/Validator";
-import { Question, QuestionOptions } from "../../Typings/interfaces";
+import Validator from "../Classes/Validator";
+import { Question, QuestionOptions } from "../Typings/interfaces";
+import { QuestionEncodings } from "../Typings/enums";
 
 /**
  * Fetches an array of questions based on provided options.
@@ -11,10 +12,12 @@ import { Question, QuestionOptions } from "../../Typings/interfaces";
  * @param {?string} options.token The session token.
  * @returns {Promise<Question[]>} An Array of questions.
  */
-export default function getQuestions(options:QuestionOptions)/*:Promise<Question[]>*/ {
-  const defaultOptions:QuestionOptions = {
+export default function getQuestions(
+  options: QuestionOptions
+) /*:Promise<Question[]>*/ {
+  const defaultOptions: QuestionOptions = {
     amount: 10,
-    encode: QuestionEncodings.none
+    encode: QuestionEncodings.none,
   };
 
   options = Object.assign(defaultOptions, options);

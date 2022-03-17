@@ -1,4 +1,11 @@
-import { CategoryName, CategoryResolvable, QuestionDifficulty, QuestionEncoding, QuestionType } from "./types";
+import {
+  CategoryName,
+  CategoryResolvable,
+  NumberResolvable,
+  QuestionDifficulty,
+  QuestionEncoding,
+  QuestionType,
+} from "./types";
 
 export interface QuestionBase {
   category: CategoryName;
@@ -21,7 +28,7 @@ export interface Question extends QuestionBase {
 }
 
 export interface QuestionOptions {
-  amount: number | `${number}` | null;
+  amount?: NumberResolvable | null;
   category?: CategoryResolvable | null;
   difficulty?: QuestionDifficulty | null;
   type?: QuestionType | null;
