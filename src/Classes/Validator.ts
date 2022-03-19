@@ -15,21 +15,21 @@ export default class Validator {
     this.options = options;
   }
 
-  checkOptions() {
-    try {
-      this.checkAmount();
-      this.checkCategory();
-      this.checkDifficulty();
-      this.checkEncode();
-      this.checkOptions();
-      this.checkToken();
-      this.checkType();
+  // checkOptions() {
+  //   try {
+  //     this.checkAmount();
+  //     this.checkCategory();
+  //     this.checkDifficulty();
+  //     this.checkEncode();
+  //     this.checkOptions();
+  //     this.checkToken();
+  //     this.checkType();
 
-      return this.options;
-    } catch (err) {
-      throw err;
-    }
-  }
+  //     return this.options;
+  //   } catch (err) {
+  //     throw err;
+  //   }
+  // }
 
   checkAmount(): number | null {
     const { amount } = this.options;

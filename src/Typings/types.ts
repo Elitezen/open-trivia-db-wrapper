@@ -8,6 +8,8 @@ import {
   QuestionEncodings,
   QuestionVersions,
 } from "./enums";
+import { QuestionOptions } from "easy-trivia";
+
 export type CategoryIdResolvable = NumberResolvable;
 export type CategoryNameResolvable = CategoryName<"Pretty" | "Strict"> | string;
 export type CategoryName<T extends CategoryNameVersion = "Strict"> =
@@ -21,6 +23,7 @@ export type Questions<T extends QuestionVersion = "Final"> = T extends "Raw"
   ? RawQuestion
   : Question;
 export type QuestionDifficulty = keyof typeof QuestionDifficulties;
+export type QuestionOptionsDefaults = Pick<QuestionOptions, "amount" | "encode">;
 export type QuestionType = keyof typeof QuestionTypes;
 export type QuestionEncoding = keyof typeof QuestionEncodings;
 export type QuestionVersion = keyof typeof QuestionVersions;

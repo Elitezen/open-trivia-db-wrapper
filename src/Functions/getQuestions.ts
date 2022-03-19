@@ -1,6 +1,9 @@
-import Validator from "../Classes/Validator";
-import { Question, QuestionOptions } from "../Typings/interfaces";
+import { OpenTDBResponse, Question, QuestionOptions, RawQuestion } from "../Typings/interfaces";
 import { QuestionEncodings } from "../Typings/enums";
+import EasyTriviaUtil from "../classes/EasyTriviaUtil";
+import { QuestionOptionsDefaults } from "../Typings/types";
+
+const { finalizeOptions, generateQueryString, openTDBRequest, parseRawQuestions, base64Decoder } = EasyTriviaUtil;
 
 /**
  * Fetches an array of questions based on provided options.
@@ -12,24 +15,26 @@ import { QuestionEncodings } from "../Typings/enums";
  * @param {?string} options.token The session token.
  * @returns {Promise<Question[]>} An Array of questions.
  */
-export default function getQuestions(
-  options: QuestionOptions
-) /*:Promise<Question[]>*/ {
-  const defaultOptions: QuestionOptions = {
+export default async function getQuestions(
+  options?: QuestionOptions
+):Promise<Question[]> {
+  const link = EasyTriviaUtil.links.base.GET_QUESTIONS;
+  const defaultOptions:QuestionOptionsDefaults = {
     amount: 10,
     encode: QuestionEncodings.none,
   };
 
-  options = Object.assign(defaultOptions, options);
+  const filledOptions = Object.assign(defaultOptions, options)
+  const targetEncode = filledOptions.encode;
+  
+  const finalOptions = finalizeOptions(filledOptions);
+  const finalLink = generateQueryString(link, finalOptions);
+  const data = await openTDBRequest(finalLink) as OpenTDBResponse<RawQuestion>;
 
-  const validator = new Validator(options);
-  const { encode: targetEncode } = options;
-  // const verifiedOptions:QuestionOptions = {
-  //   amount: validator.checkAmount(),
-  //   category: validator.checkCategory(),
-  //   difficulty: validator.checkDifficulty(),
-  //   type: validator.checkType(),
-  //   encode: validator.checkEncode(),
-  //   token: validator.checkToken(),
-  // };
+  let questions: Question[] = parseRawQuestions(data.results);
+  if (targetEncode == "none" && finalOptions.encode == "base64") {
+    questions = questions.map((q) => base64Decoder.decodeObjectValues(q));
+  }
+
+  return questions;
 }

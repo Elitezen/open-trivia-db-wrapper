@@ -7,6 +7,17 @@ import {
   QuestionType,
 } from "./types";
 
+export interface OpenTDBResponse<T> {
+  response_code: number;
+  results: T[];
+}
+
+export interface OpenTDBResponseSession {
+  response_code: number,
+  response_message?: string;
+  token: string;
+}
+
 export interface QuestionBase {
   category: CategoryName;
   type: QuestionType;

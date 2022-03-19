@@ -1,21 +1,4 @@
-const apiResponses = [
-  { name: "SUCCESS", message: "Successful response" },
-  {
-    name: "NO_RESULTS",
-    message:
-      "Could not return results. The API does not have enough questions for your query",
-  },
-  { name: "INVALID_PARAMETER", message: "An invalid parameter was received" },
-  {
-    name: "TOKEN_NOT_FOUND",
-    message: "The given API token is invalid or does not exist",
-  },
-  {
-    name: "TOKEN_EMPTY",
-    message:
-      "This trivia session has returned all possible questions for the specified query",
-  },
-];
+import EasyTriviaUtil from "./EasyTriviaUtil";
 
 class EasyTriviaError extends Error {
   public static readonly errors = {
@@ -61,7 +44,7 @@ class OpenTDBError extends Error {
         `The given number (${errorCode}) for 'errorCode' is not a valid ResponseCode (range 0 - 4)`,
         EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG
       );
-    const { name, message } = apiResponses[errorCode];
+    const { name, message } = EasyTriviaUtil.apiResponses[errorCode];
 
     super(message);
     this.name = `OpenTDBError [${name}]`;
