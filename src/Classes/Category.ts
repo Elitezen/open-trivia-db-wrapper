@@ -6,6 +6,10 @@ import {
 } from "../Typings/types";
 import { EasyTriviaError } from "./CustomErrors";
 import { CategoryNamesStrict, CategoryNamesPretty } from "../Typings/enums";
+import getCategoryData from "../Functions/getCategoryData";
+import { CategoryData } from "../Typings/interfaces";
+import { QuestionOptions } from "easy-trivia";
+import getQuestions from "../Functions/getQuestions";
 
 /**
  * @class For trivia category related data retrieving
@@ -99,7 +103,7 @@ export default class Category {
    * @returns {boolean} Whether or not the given number resembles a category id
    * @static
    */
-  public static isIdResolvable(arg: NumberResolvable): boolean {
+  public static isIdResolvable(arg: NumberResolvable | CategoryResolvable): boolean {
     return !isNaN(+arg) && 9 <= arg && arg <= 32;
   }
 
@@ -109,7 +113,7 @@ export default class Category {
    * @returns {boolean} Whether or not the given string resembles a category name
    * @static
    */
-  public static isNameResolvable(arg: string): boolean {
+  public static isNameResolvable(arg: string | CategoryResolvable): boolean {
     const completeNameList = [
       ...Object.keys(this.allPrettyNames),
       ...Object.keys(this.allStrictNames),
@@ -117,7 +121,7 @@ export default class Category {
       .filter((str) => isNaN(str as unknown as number))
       .map((str) => str.toLowerCase());
 
-    return completeNameList.includes(arg?.toLowerCase?.());
+    return completeNameList.includes((arg as string)?.toLowerCase?.());
   }
 
   /**
@@ -151,5 +155,23 @@ export default class Category {
     const entry = entries.find((e) => e[1] == id);
 
     return entry ? entry[0] : null;
+  }
+
+  public static resolve(arg:CategoryResolvable): Category {
+    if (this.isIdResolvable(arg) || this.isNameResolvable(arg)) return new Category(arg);      
+    
+    throw new EasyTriviaError(
+      `Given argument does not resolve into a trivia category`,
+      EasyTriviaError.errors.headers.INVALID_ARG
+    );
+  }
+
+  async getData():Promise<CategoryData> {
+    return (await getCategoryData(this.id));
+  }
+
+  async getQuestions(options?:Omit<QuestionOptions, "category">) {
+    (options as QuestionOptions).category = this.id
+    return (await getQuestions(options));
   }
 }

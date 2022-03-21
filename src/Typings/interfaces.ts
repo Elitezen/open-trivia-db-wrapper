@@ -7,7 +7,7 @@ import {
   QuestionType,
 } from "./types";
 
-export interface OpenTDBResponse<T> {
+export interface OpenTDBResponseDefault<T> {
   response_code: number;
   results: T[];
 }
@@ -16,6 +16,29 @@ export interface OpenTDBResponseSession {
   response_code: number,
   response_message?: string;
   token: string;
+}
+
+export interface RawCategoryData {
+  total_question_count: number;
+  total_easy_question_count: number;
+  total_medium_question_count: number;
+  total_hard_question_count: number;
+}
+
+export interface CategoryData {
+  id: number;
+  name: CategoryName<'Pretty'>;
+  questionCounts: {
+    total: number;
+    forEasy: number;
+    forMedium: number;
+    forHard: number;
+  }
+}
+
+export interface OpenTDBResponseCategoryData {
+  category_id: number;
+  category_question_count: RawCategoryData;
 }
 
 export interface QuestionBase {

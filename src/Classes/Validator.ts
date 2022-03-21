@@ -206,4 +206,45 @@ export default class Validator {
 
     return type;
   }
+
+  static _checkCategory(category:unknown) {
+    if (category === undefined || category === null) return null;
+    if (typeof category == "string") {
+      if (isNaN(+category)) {
+        const id = Category.nameToId(category as string);
+
+        if (id === null) {
+          throw new EasyTriviaError(
+            `'category' option (${category}) for QuestionOptions does not resolve into a trivia category name`,
+            EasyTriviaError.errors.headers.INVALID_OPT
+          );
+        }
+
+        return id;
+      } else {
+        if (!Category.isIdResolvable(+category)) {
+          throw new EasyTriviaError(
+            `'category' option (${category}) for QuestionOptions does not resolve into a trivia category id`,
+            EasyTriviaError.errors.headers.INVALID_OPT
+          );
+        }
+
+        return parseInt(category);
+      }
+    } else if (typeof category == "number") {
+      if (!Category.isIdResolvable(+category)) {
+        throw new EasyTriviaError(
+          `'category' option (${category}) for QuestionOptions does not resolve into a trivia category id`,
+          EasyTriviaError.errors.headers.INVALID_OPT
+        );
+      }
+
+      return category;
+    } else {
+      throw new EasyTriviaError(
+        `'category' option ("${category}") for QuestionOptions does not resolve into a trivia category name`,
+        EasyTriviaError.errors.headers.INVALID_OPT
+      );
+    }
+  }
 }

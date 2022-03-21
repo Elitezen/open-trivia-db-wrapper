@@ -69,6 +69,4 @@ class Session extends EventEmitter implements Session {
   }
 }
 
-const x = new Session();
-
 export default Session;

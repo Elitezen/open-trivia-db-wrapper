@@ -1,4 +1,4 @@
-import { OpenTDBResponse, Question, QuestionOptions, RawQuestion } from "../Typings/interfaces";
+import { OpenTDBResponseDefault, Question, QuestionOptions, RawQuestion } from "../Typings/interfaces";
 import { QuestionEncodings } from "../Typings/enums";
 import EasyTriviaUtil from "../classes/EasyTriviaUtil";
 import { QuestionOptionsDefaults } from "../Typings/types";
@@ -29,7 +29,7 @@ export default async function getQuestions(
   
   const finalOptions = finalizeOptions(filledOptions);
   const finalLink = generateQueryString(link, finalOptions);
-  const data = await openTDBRequest(finalLink) as OpenTDBResponse<RawQuestion>;
+  const data = await openTDBRequest(finalLink) as OpenTDBResponseDefault<RawQuestion>;
 
   let questions: Question[] = parseRawQuestions(data.results);
   if (targetEncode == "none" && finalOptions.encode == "base64") {
