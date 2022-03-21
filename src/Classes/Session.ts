@@ -1,36 +1,28 @@
-import EventEmitter = require("events");
 import { OpenTDBResponseSession } from "../Typings/interfaces";
 import EasyTriviaUtil from "./EasyTriviaUtil";
 
-declare interface Session {
-  on(event: '...', listener: () => void): this;
-}
-
-/** 
- * @class Class for starting OpenTDB API sessions 
- * @extends EventEmitter
+/**
+ * @class Class for starting OpenTDB API sessions
  * */
-class Session extends EventEmitter implements Session {
+class Session {
   /**
    * The current session token
    */
-  public token:string | null = null;
-
-  constructor() {
-    super();
-  }
+  public token: string | null = null;
 
   /**
    * Starts a new trivia session and assigns the new token to `Session#token`.
    * @async
    * @returns {Promise<string>} The session token.
    */
-  public async start():Promise<string> {
+  public async start(): Promise<string> {
     const url = EasyTriviaUtil.links.full.START_SESSION;
     const oldToken = this.token;
 
     try {
-      const data = await EasyTriviaUtil.openTDBRequest(url) as OpenTDBResponseSession;
+      const data = (await EasyTriviaUtil.openTDBRequest(
+        url
+      )) as OpenTDBResponseSession;
       const { token: newToken } = data;
       if (newToken === null || oldToken == newToken) {
         const { EasyTriviaError } = require("../classes/Errors");
@@ -52,11 +44,13 @@ class Session extends EventEmitter implements Session {
    * @async
    * @returns {Promise<TriviaSessionToken>} The current session token.
    */
-  async reset() {
+  async reset(): Promise<string | void> {
     const url = EasyTriviaUtil.links.base.RESET_SESSION + this.token;
 
     try {
-      const data = await EasyTriviaUtil.openTDBRequest(url) as OpenTDBResponseSession;
+      const data = (await EasyTriviaUtil.openTDBRequest(
+        url
+      )) as OpenTDBResponseSession;
       return data.token;
     } catch (err) {
       throw err;

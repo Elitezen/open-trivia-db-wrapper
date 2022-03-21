@@ -1,9 +1,12 @@
-import { OpenTDBResponseDefault, Question, QuestionOptions, RawQuestion } from "../Typings/interfaces";
+import {
+  OpenTDBResponseDefault,
+  Question,
+  QuestionOptions,
+  RawQuestion,
+} from "../Typings/interfaces";
 import { QuestionEncodings } from "../Typings/enums";
 import EasyTriviaUtil from "../classes/EasyTriviaUtil";
 import { QuestionOptionsDefaults } from "../Typings/types";
-
-const { finalizeOptions, generateQueryString, openTDBRequest, parseRawQuestions, base64Decoder } = EasyTriviaUtil;
 
 /**
  * Fetches an array of questions based on provided options.
@@ -17,23 +20,27 @@ const { finalizeOptions, generateQueryString, openTDBRequest, parseRawQuestions,
  */
 export default async function getQuestions(
   options?: QuestionOptions
-):Promise<Question[]> {
+): Promise<Question[]> {
   const link = EasyTriviaUtil.links.base.GET_QUESTIONS;
-  const defaultOptions:QuestionOptionsDefaults = {
+  const defaultOptions: QuestionOptionsDefaults = {
     amount: 10,
     encode: QuestionEncodings.none,
   };
 
-  const filledOptions = Object.assign(defaultOptions, options)
+  const filledOptions = Object.assign(defaultOptions, options);
   const targetEncode = filledOptions.encode;
-  
-  const finalOptions = finalizeOptions(filledOptions);
-  const finalLink = generateQueryString(link, finalOptions);
-  const data = await openTDBRequest(finalLink) as OpenTDBResponseDefault<RawQuestion>;
 
-  let questions: Question[] = parseRawQuestions(data.results);
+  const finalOptions = EasyTriviaUtil.finalizeOptions(filledOptions);
+  const finalLink = EasyTriviaUtil.generateQueryString(link, finalOptions);
+  const data = (await EasyTriviaUtil.openTDBRequest(
+    finalLink
+  )) as OpenTDBResponseDefault<RawQuestion>;
+
+  let questions: Question[] = EasyTriviaUtil.parseRawQuestions(data.results);
   if (targetEncode == "none" && finalOptions.encode == "base64") {
-    questions = questions.map((q) => base64Decoder.decodeObjectValues(q));
+    questions = questions.map((q) =>
+      EasyTriviaUtil.base64Decoder.decodeObjectValues(q)
+    );
   }
 
   return questions;

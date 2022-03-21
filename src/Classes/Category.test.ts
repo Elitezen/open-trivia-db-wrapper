@@ -2,19 +2,16 @@ import {
   CategoryName,
   CategoryNameResolvable,
   CategoryResolvable,
+  CategoryResolvableType,
   NumberResolvable,
 } from "../Typings/types";
 import Category from "./Category";
 
-const dummyFunction = () => {
-  return void 0;
-};
+function createInstance(arg: unknown) {
+  return new Category(arg as CategoryResolvable);
+}
 
 test("Ensure instance creations of Category throw errors when the argument is not a CategoryResolvable", () => {
-  function createInstance(arg: unknown) {
-    return new Category(arg as CategoryResolvable);
-  }
-
   expect(() => createInstance(8)).toThrow(Error);
   expect(() => createInstance(33)).toThrow(Error);
   expect(() => createInstance("text")).toThrow(Error);
@@ -195,4 +192,59 @@ test("Test outputs of Category.strictToPrettyName()", () => {
   expect(
     Category.strictToPrettyName("ENTERTAINMENT_CARTOON_AND_ANIMATIONS")
   ).toBe("Entertainment: Cartoon and Animations");
+});
+
+test("Tests outputs for Category.random()", () => {
+  expect(
+    Category.random(1 as unknown as CategoryResolvableType)
+  ).toBeGreaterThanOrEqual(9);
+  expect(
+    Category.random(1 as unknown as CategoryResolvableType)
+  ).toBeLessThanOrEqual(32);
+  expect(
+    Category.random({} as unknown as CategoryResolvableType)
+  ).toBeGreaterThanOrEqual(9);
+  expect(
+    Category.random({} as unknown as CategoryResolvableType)
+  ).toBeLessThanOrEqual(32);
+  expect(
+    Category.random(true as unknown as CategoryResolvableType)
+  ).toBeGreaterThanOrEqual(9);
+  expect(
+    Category.random(true as unknown as CategoryResolvableType)
+  ).toBeLessThanOrEqual(32);
+
+  expect(Category.random("ID")).toBeGreaterThanOrEqual(9);
+  expect(Category.random("ID")).toBeLessThanOrEqual(32);
+
+  expect(typeof Category.random("NAME")).toBe("string");
+});
+
+test("Tests outputs for Category.resolve()", () => {
+  expect(Category.resolve(8)).toBe(null);
+  expect(Category.resolve(33)).toBe(null);
+  expect(Category.resolve(true as unknown as CategoryResolvable)).toBe(null);
+  expect(Category.resolve({} as unknown as CategoryResolvable)).toBe(null);
+  expect(Category.resolve("" as unknown as CategoryResolvable)).toBe(null);
+
+  expect(Category.resolve(9)).toBeInstanceOf(Category);
+  expect(Category.resolve(32)).toBeInstanceOf(Category);
+  expect(Category.resolve("SCIENCE_COMPUTERS")).toBeInstanceOf(Category);
+  expect(Category.resolve("Science: Computers")).toBeInstanceOf(Category);
+});
+
+test("Tests outputs for Category.getData()", () => {
+  const myCategory = createInstance(9);
+
+  expect(myCategory.getData().then((res) => typeof res)).resolves.toBe(
+    "object"
+  );
+});
+
+test("Tests outputs for Category.getQuestions()", () => {
+  const myCategory = createInstance(9);
+
+  expect(myCategory.fetchQuestions().then((res) => typeof res)).resolves.toBe(
+    "object"
+  );
 });

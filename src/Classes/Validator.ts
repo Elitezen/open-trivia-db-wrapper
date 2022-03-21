@@ -207,7 +207,7 @@ export default class Validator {
     return type;
   }
 
-  static _checkCategory(category:unknown) {
+  static _checkCategory(category: unknown) {
     if (category === undefined || category === null) return null;
     if (typeof category == "string") {
       if (isNaN(+category)) {

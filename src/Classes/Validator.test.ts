@@ -15,31 +15,31 @@ test("tests output of Validator.checkAmount()", () => {
 
   expect(() => {
     validator.checkAmount();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ amount: true as unknown as number });
 
   expect(() => {
     validator.checkAmount();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ amount: "" as unknown as number });
 
   expect(() => {
     validator.checkAmount();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ amount: 0 });
 
   expect(() => {
     validator.checkAmount();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ amount: 51 });
 
   expect(() => {
     validator.checkAmount();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ amount: 25 });
 
@@ -63,31 +63,31 @@ test("tests output of Validator.checkCategory()", () => {
 
   expect(() => {
     validator.checkCategory();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ category: true as unknown as string });
 
   expect(() => {
     validator.checkCategory();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ category: "..." });
 
   expect(() => {
     validator.checkCategory();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ category: 8 });
 
   expect(() => {
     validator.checkCategory();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ category: 33 });
 
   expect(() => {
     validator.checkCategory();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ category: 25 });
 
@@ -133,7 +133,7 @@ test("tests output of Validator.checkDifficulty()", () => {
 
   expect(() => {
     validator.checkDifficulty();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     difficulty: true as unknown as QuestionDifficulty,
@@ -141,13 +141,13 @@ test("tests output of Validator.checkDifficulty()", () => {
 
   expect(() => {
     validator.checkDifficulty();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ difficulty: "..." as QuestionDifficulty });
 
   expect(() => {
     validator.checkDifficulty();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     difficulty: 1 as unknown as QuestionDifficulty,
@@ -155,7 +155,7 @@ test("tests output of Validator.checkDifficulty()", () => {
 
   expect(() => {
     validator.checkDifficulty();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     difficulty: "1" as unknown as QuestionDifficulty,
@@ -163,7 +163,7 @@ test("tests output of Validator.checkDifficulty()", () => {
 
   expect(() => {
     validator.checkDifficulty();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ difficulty: "easy" });
 
@@ -185,7 +185,7 @@ test("tests output of Validator.checkEncoding()", () => {
 
   expect(() => {
     validator.checkEncode();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     encode: true as unknown as QuestionEncoding,
@@ -193,13 +193,13 @@ test("tests output of Validator.checkEncoding()", () => {
 
   expect(() => {
     validator.checkEncode();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ encode: "..." as QuestionEncoding });
 
   expect(() => {
     validator.checkEncode();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     encode: 1 as unknown as QuestionEncoding,
@@ -207,7 +207,7 @@ test("tests output of Validator.checkEncoding()", () => {
 
   expect(() => {
     validator.checkEncode();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     encode: "1" as unknown as QuestionEncoding,
@@ -215,7 +215,7 @@ test("tests output of Validator.checkEncoding()", () => {
 
   expect(() => {
     validator.checkEncode();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ encode: "base64" });
 
@@ -237,7 +237,7 @@ test("tests output of Validator.checkToken()", () => {
 
   expect(() => {
     validator.checkToken();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     token: true as unknown as string,
@@ -245,13 +245,13 @@ test("tests output of Validator.checkToken()", () => {
 
   expect(() => {
     validator.checkToken();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ token: "" });
 
   expect(() => {
     validator.checkToken();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     token: 1 as unknown as string,
@@ -259,7 +259,7 @@ test("tests output of Validator.checkToken()", () => {
 
   expect(() => {
     validator.checkToken();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ token: "..." });
 
@@ -281,7 +281,7 @@ test("tests output of Validator.checkType()", () => {
 
   expect(() => {
     validator.checkType();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     type: true as unknown as QuestionType,
@@ -289,13 +289,13 @@ test("tests output of Validator.checkType()", () => {
 
   expect(() => {
     validator.checkType();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ type: "..." as QuestionType });
 
   expect(() => {
     validator.checkType();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({
     type: 1 as unknown as QuestionType,
@@ -303,7 +303,7 @@ test("tests output of Validator.checkType()", () => {
 
   expect(() => {
     validator.checkType();
-  }).toThrow(Error);
+  }).toThrow(TypeError);
 
   validator = createInstance({ type: "boolean" });
 

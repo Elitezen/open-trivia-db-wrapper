@@ -2,13 +2,14 @@ import {
   CategoryName,
   CategoryNameResolvable,
   CategoryResolvable,
+  CategoryResolvableType,
   NumberResolvable,
 } from "../Typings/types";
 import { EasyTriviaError } from "./CustomErrors";
 import { CategoryNamesStrict, CategoryNamesPretty } from "../Typings/enums";
 import getCategoryData from "../Functions/getCategoryData";
-import { CategoryData } from "../Typings/interfaces";
-import { QuestionOptions } from "easy-trivia";
+import { CategoryData, Question } from "../Typings/interfaces";
+import { QuestionOptions } from "../Typings/interfaces";
 import getQuestions from "../Functions/getQuestions";
 
 /**
@@ -58,7 +59,7 @@ export default class Category {
 
   /**
    * Takes a category's id and returns it's 'strict' (constant) name
-   * @param {NumberResolvable} arg 
+   * @param {NumberResolvable} arg
    * @returns {CategoryName<"Strict"> | null} The strict name, null if `arg` is unresolvable
    * @static
    */
@@ -71,7 +72,7 @@ export default class Category {
 
   /**
    * Takes a category's id and returns it's 'pretty' (display) name
-   * @param {NumberResolvable} arg 
+   * @param {NumberResolvable} arg
    * @returns {CategoryName<"Pretty"> | null} The pretty name, null if `arg` is unresolvable
    * @static
    */
@@ -99,17 +100,19 @@ export default class Category {
 
   /**
    * Returns whether or not the given number can be resolved into a category id
-   * @param {NumberResolvable} arg The number to resolve 
+   * @param {NumberResolvable} arg The number to resolve
    * @returns {boolean} Whether or not the given number resembles a category id
    * @static
    */
-  public static isIdResolvable(arg: NumberResolvable | CategoryResolvable): boolean {
+  public static isIdResolvable(
+    arg: NumberResolvable | CategoryResolvable
+  ): boolean {
     return !isNaN(+arg) && 9 <= arg && arg <= 32;
   }
 
   /**
    * Returns whether or not the given string can be resolved into a category name
-   * @param {NumberResolvable} arg The name to resolve 
+   * @param {NumberResolvable} arg The name to resolve
    * @returns {boolean} Whether or not the given string resembles a category name
    * @static
    */
@@ -157,21 +160,59 @@ export default class Category {
     return entry ? entry[0] : null;
   }
 
-  public static resolve(arg:CategoryResolvable): Category {
-    if (this.isIdResolvable(arg) || this.isNameResolvable(arg)) return new Category(arg);      
-    
-    throw new EasyTriviaError(
-      `Given argument does not resolve into a trivia category`,
-      EasyTriviaError.errors.headers.INVALID_ARG
-    );
+  /**
+   * Chooses a random category and returns it's id.
+   * @param {CategoryResolvableType} type? What type of resolvable to return
+   * @returns {number | string | null} A random category id or name.
+   * @static
+   */
+  public static random(
+    type: CategoryResolvableType = "ID"
+  ): number | CategoryName<"Pretty"> {
+    const names = Object.keys(this.allPrettyNames).filter((val) =>
+      isNaN(+val)
+    ) as CategoryName<"Pretty">[];
+    const resolvableName = names[(Math.random() * names.length) << 0];
+    if (type == "ID" || !["NAME", "ID"].includes(type))
+      return this.nameToId(resolvableName) as number;
+    return resolvableName;
   }
 
-  async getData():Promise<CategoryData> {
-    return (await getCategoryData(this.id));
+  /**
+   * Resolves a given category resolvable and returns a `Category` class or `null`.
+   * @param {CategoryResolvable} arg The argument to resolve.
+   * @returns {Category | null} A new instance of `Category` if argument is resolvable.
+   * @static
+   */
+  public static resolve(arg: CategoryResolvable): Category | null {
+    try {
+      const resultClass = new Category(arg);
+      return resultClass;
+    } catch (_) {
+      return null;
+    }
   }
 
-  async getQuestions(options?:Omit<QuestionOptions, "category">) {
-    (options as QuestionOptions).category = this.id
-    return (await getQuestions(options));
+  /**
+   * Fetches the data about this category. Wrapper for `getCategoryData`
+   * @returns {Promise<CategoryData>} A new promise of the category data
+   */
+  async getData(): Promise<CategoryData> {
+    return await getCategoryData(this.id);
+  }
+
+  /**
+   * Fetches questions for this category. Wrapper for `getQuestions`
+   * @param {Omit<QuestionOptions, "category">} options `QuestionOptions` with `category` omitted.
+   * @returns {Promise<Question[]>} An array of questions
+   */
+  async fetchQuestions(
+    options?: Omit<QuestionOptions, "category">
+  ): Promise<Question[]> {
+    let finalOptions: Partial<QuestionOptions> = {};
+    if (options) finalOptions = options;
+    finalOptions.category = this.id;
+
+    return await getQuestions(finalOptions);
   }
 }

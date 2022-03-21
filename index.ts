@@ -1,13 +1,18 @@
-import getQuestions from "./src/Functions/getQuestions";
 import Category from "./src/Classes/Category";
-import Validator from "./src/Classes/Validator";
-import { EasyTriviaError, OpenTDBError } from "./src/classes/CustomErrors";
+import { EasyTriviaError, OpenTDBResponse } from "./src/classes/CustomErrors";
+import EasyTriviaUtil from "./src/classes/EasyTriviaUtil";
+import Session from "./src/classes/Session";
+import Validator from "./src/classes/Validator";
 import getCategoryData from "./src/Functions/getCategoryData";
+import getQuestions from "./src/Functions/getQuestions";
 
 export {
   Category,
   EasyTriviaError,
-  getQuestions,
-  OpenTDBError,
-  Validator
+  OpenTDBResponse,
+  EasyTriviaUtil,
+  Session,
+  Validator,
+  getCategoryData,
+  getQuestions
 }

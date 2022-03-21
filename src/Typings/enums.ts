@@ -1,3 +1,7 @@
+/**
+ * All strict category names mapped to their API id
+ * @enum
+ */
 export enum CategoryNamesStrict {
   GENERAL_KNOWLEDGE = 9,
   ENTERTAINMENT_BOOKS,
@@ -25,6 +29,10 @@ export enum CategoryNamesStrict {
   ENTERTAINMENT_CARTOON_AND_ANIMATIONS,
 }
 
+/**
+ * All pretty category names mapped to their API id
+ * @enum
+ */
 export enum CategoryNamesPretty {
   "General Knowledge" = 9,
   "Entertainment: Books",
@@ -52,27 +60,47 @@ export enum CategoryNamesPretty {
   "Entertainment: Cartoon and Animations",
 }
 
+/**
+ * The types of Category names
+ * @enum
+ */
 export enum CategoryNameVersions {
   Strict,
   Pretty,
 }
 
+/**
+ * The range of minimun to maximum questions allowed per API call
+ * @enum
+ */
 export enum QuestionAmountRange {
   Min = 1,
   Max = 50,
 }
 
+/**
+ * The question difficulties mapped to their API value
+ * @enum
+ */
 export enum QuestionDifficulties {
   easy = "easy",
   medium = "medium",
   hard = "hard",
 }
 
+/**
+ * The question types mapped to their API value
+ * @enum
+ */
 export enum QuestionTypes {
   multiple = "multiple",
   boolean = "boolean",
 }
 
+/**
+ * The question encodings mapped to their API value
+ * @enum
+ */
 export enum QuestionEncodings {
   base64 = "base64",
   none = "none",
@@ -80,6 +108,10 @@ export enum QuestionEncodings {
   urlLegacy = "urlLegacy",
 }
 
+/**
+ * The types of Category versions
+ * @enum
+ */
 export enum QuestionVersions {
   Raw,
   Final,

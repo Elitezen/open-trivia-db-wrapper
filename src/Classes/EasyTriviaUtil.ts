@@ -1,7 +1,12 @@
 import { get } from "https";
 import { Question, QuestionOptions, RawQuestion } from "../Typings/interfaces";
-import { QuestionDifficulty, QuestionEncoding, Questions, QuestionType } from "../Typings/types";
-import { EasyTriviaError, OpenTDBError } from "./CustomErrors";
+import {
+  OpenTDBResponseCode,
+  QuestionDifficulty,
+  QuestionEncoding,
+  QuestionType,
+} from "../Typings/types";
+import { EasyTriviaError, OpenTDBResponse } from "./CustomErrors";
 import Validator from "./Validator";
 
 export default class EasyTriviaUtil {
@@ -26,22 +31,30 @@ export default class EasyTriviaUtil {
 
   public static links = {
     base: {
-      "CATEGORY_DATA": "https://opentdb.com/api_count.php?category=",
-      "GET_QUESTIONS": "https://opentdb.com/api.php?",
-      "RESET_SESSION": "https://opentdb.com/api_token.php?command=reset&token="
+      CATEGORY_DATA: "https://opentdb.com/api_count.php?category=",
+      GET_QUESTIONS: "https://opentdb.com/api.php?",
+      RESET_SESSION: "https://opentdb.com/api_token.php?command=reset&token=",
     },
     full: {
-      "START_SESSION": "https://opentdb.com/api_token.php?command=request",
-      "OVR_QUESTION_CNT": "https://opentdb.com/api_count_global.php"
-    }
+      START_SESSION: "https://opentdb.com/api_token.php?command=request",
+      OVR_QUESTION_CNT: "https://opentdb.com/api_count_global.php",
+    },
   };
 
-  public static questionDifficulties:QuestionDifficulty[] = ["easy", "medium", "hard"]
-  public static questionEncodings:QuestionEncoding[] = ["urlLegacy", "url3986", "base64", "none"]
-  public static questionTypes:QuestionType[] = ["multiple", "boolean"]
+  public static questionDifficulties: QuestionDifficulty[] = [
+    "easy",
+    "medium",
+    "hard",
+  ];
+  public static questionEncodings: QuestionEncoding[] = [
+    "urlLegacy",
+    "url3986",
+    "base64",
+    "none",
+  ];
+  public static questionTypes: QuestionType[] = ["multiple", "boolean"];
 
-  public static openTDBRequest(url:string) {
-    console.log(url);
+  public static openTDBRequest(url: string) {
     if (url === undefined)
       throw new EasyTriviaError(
         "'url' argument is required, received undefined",
@@ -52,7 +65,7 @@ export default class EasyTriviaUtil {
         `'url' argument must be of type string, received ${typeof url}`,
         "invalid_argument"
       );
-      
+
     return new Promise((resolve, reject) => {
       let data = "";
       const req = get(url, (res) => {
@@ -62,12 +75,12 @@ export default class EasyTriviaUtil {
           if (data.length > 0) {
             try {
               const body = JSON.parse(data);
-              const resCodeStr = body?.response_code?.toString?.() || null;
-              if (resCodeStr) {
-                const resCode = parseInt(resCodeStr);
-                if (resCode != 0) throw new OpenTDBError(resCode);
+              const responseCode = (body?.response_code?.toString?.() ||
+                null) as OpenTDBResponseCode | null;
+              if (responseCode) {
+                if (responseCode > 0) throw new OpenTDBResponse(responseCode);
               }
-  
+
               resolve(body);
             } catch (err) {
               reject(err);
@@ -80,22 +93,23 @@ export default class EasyTriviaUtil {
           }
         });
       });
-  
+
       req.on("error", reject);
       req.end();
     });
   }
 
-  public static shuffleArray<T>(arg:T[]): T[] {
-    if (!Array.isArray(arg)) throw new TypeError('Argument must be an array');
+  public static shuffleArray<T>(arg: T[]): T[] {
+    if (!Array.isArray(arg)) throw new TypeError("Argument must be an array");
     // Fisher–Yates shuffle: https://bost.ocks.org/mike/shuffle/
     // TypeScript Adjusted
 
-    let m = arg.length, t:T, i:number;
+    let m = arg.length,
+      t: T,
+      i: number;
 
     // While there remain elements to shuffle…
     while (m) {
-
       // Pick a remaining element…
       i = Math.floor(Math.random() * m--);
 
@@ -109,10 +123,10 @@ export default class EasyTriviaUtil {
   }
 
   public static base64Decoder = {
-    atob(str:string)  {
+    atob(str: string) {
       return Buffer.from(str, "base64").toString();
     },
-    decode(value:unknown):unknown {
+    decode(value: unknown): unknown {
       return value == null ||
         value == undefined ||
         typeof value == "boolean" ||
@@ -126,60 +140,64 @@ export default class EasyTriviaUtil {
         ? this.decodeStringArray(value)
         : value;
     },
-    decodeString(str:string) {
+    decodeString(str: string) {
       return this.atob(str);
     },
-    decodeStringArray(arr:string[]) {
+    decodeStringArray(arr: string[]) {
       return arr.map((v) => this.decode(v));
     },
-    decodeObjectValues(obj:object) {
+    decodeObjectValues(obj: object) {
       const o = new Object().constructor();
       Object.entries(obj).forEach(
         ([key, value]) => (o[key] = this.decode(value))
       );
       return o;
-    }
-  }
+    },
+  };
 
-  public static finalizeOptions(options:QuestionOptions):QuestionOptions {
+  public static finalizeOptions(options: QuestionOptions): QuestionOptions {
     const validator = new Validator(options);
     const { encode: targetEncode } = options;
-    const verifiedOptions:QuestionOptions = {
+    const verifiedOptions: QuestionOptions = {
       amount: validator.checkAmount(),
       difficulty: validator.checkDifficulty(),
       type: validator.checkType(),
       category: validator.checkCategory(),
       token: validator.checkToken(),
-      encode: targetEncode == 'none' ? 'base64' : validator.checkEncode()
+      encode: targetEncode == "none" ? "base64" : validator.checkEncode(),
     };
 
     return verifiedOptions;
   }
 
-  public static generateQueryString(baseLink:string, obj:object):string {
-    let queryArgs:string[] = [];
+  public static generateQueryString(baseLink: string, obj: object): string {
+    let queryArgs: string[] = [];
     for (const [key, value] of Object.entries(obj)) {
-      if (value !== null && value !== undefined) queryArgs.push(`${key}=${value}`);
+      if (value !== null && value !== undefined)
+        queryArgs.push(`${key}=${value}`);
     }
 
-    return baseLink + queryArgs.join('&');
+    return baseLink + queryArgs.join("&");
   }
 
-  public static parseRawQuestions(questions:RawQuestion[]):Question[] {
-    const result = questions.map(q => {
-      const parsedQuestion:Readonly<Question> = {
+  public static parseRawQuestions(questions: RawQuestion[]): Question[] {
+    const result = questions.map((q) => {
+      const parsedQuestion: Readonly<Question> = {
         value: q.question,
         category: q.category,
         type: q.type,
         difficulty: q.difficulty,
         correctAnswer: q.correct_answer,
         incorrectAnswers: q.incorrect_answers,
-        allAnswers: EasyTriviaUtil.shuffleArray([q.correct_answer, ...q.incorrect_answers]),
-        checkAnswer: (arg:string) => {
+        allAnswers: EasyTriviaUtil.shuffleArray([
+          q.correct_answer,
+          ...q.incorrect_answers,
+        ]),
+        checkAnswer: (arg: string) => {
           return arg?.toLowerCase?.() == q.correct_answer;
-        }
+        },
       };
-  
+
       return parsedQuestion;
     });
 

@@ -1,6 +1,11 @@
+import { OpenTDBResponseCode } from "../Typings/types";
 import EasyTriviaUtil from "./EasyTriviaUtil";
 
-class EasyTriviaError extends Error {
+/**
+ * @class Error class for library errors.
+ * @extends TypeError
+ */
+class EasyTriviaError extends TypeError {
   public static readonly errors = {
     headers: {
       EMPTY_RESPONSE: "EMPTY_RESPONSE",
@@ -37,18 +42,22 @@ class EasyTriviaError extends Error {
   }
 }
 
-class OpenTDBError extends Error {
-  constructor(errorCode: number) {
+/**
+ * @class Error class for OpenTDB API response errors.
+ * @extends Error
+ */
+class OpenTDBResponse extends Error {
+  constructor(errorCode: OpenTDBResponseCode) {
     if (errorCode < 0 || errorCode > 4)
       throw new EasyTriviaError(
-        `The given number (${errorCode}) for 'errorCode' is not a valid ResponseCode (range 0 - 4)`,
+        `The given number (${errorCode}) for 'errorCode' is not a valid OpenTDBResponseCode (range 0 - 4)`,
         EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG
       );
     const { name, message } = EasyTriviaUtil.apiResponses[errorCode];
 
     super(message);
-    this.name = `OpenTDBError [${name}]`;
+    this.name = `OpenTDBResponse [${name}]`;
   }
 }
 
-export { EasyTriviaError, OpenTDBError };
+export { EasyTriviaError, OpenTDBResponse };

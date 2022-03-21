@@ -1,10 +1,13 @@
 import Category from "../classes/Category";
 import { EasyTriviaError } from "../classes/CustomErrors";
 import EasyTriviaUtil from "../classes/EasyTriviaUtil";
-import { CategoryData, OpenTDBResponseCategoryData } from "../Typings/interfaces";
+import {
+  CategoryData,
+  OpenTDBResponseCategoryData,
+} from "../Typings/interfaces";
 import { CategoryName, CategoryResolvable } from "../Typings/types";
 
-export default async function getCategoryData(arg:CategoryResolvable) {
+export default async function getCategoryData(arg: CategoryResolvable) {
   const categoryId = Category.resolve(arg)?.id;
   if (!categoryId) {
     throw new EasyTriviaError(
@@ -14,7 +17,9 @@ export default async function getCategoryData(arg:CategoryResolvable) {
   }
 
   const baseLink = EasyTriviaUtil.links.base.CATEGORY_DATA;
-  const data = await EasyTriviaUtil.openTDBRequest(baseLink + categoryId) as OpenTDBResponseCategoryData;
+  const data = (await EasyTriviaUtil.openTDBRequest(
+    baseLink + categoryId
+  )) as OpenTDBResponseCategoryData;
   const {
     category_id: id,
     category_question_count: {
@@ -25,9 +30,9 @@ export default async function getCategoryData(arg:CategoryResolvable) {
     },
   } = data;
 
-  const result:CategoryData = {
+  const result: CategoryData = {
     id,
-    name: Category.idToPrettyName(id) as CategoryName<'Pretty'>,
+    name: Category.idToPrettyName(id) as CategoryName<"Pretty">,
     questionCounts: {
       total,
       forEasy,
