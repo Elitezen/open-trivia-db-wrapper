@@ -7,6 +7,7 @@ import {
 import { QuestionEncodings } from "../Typings/enums";
 import EasyTriviaUtil from "../classes/EasyTriviaUtil";
 import { QuestionOptionsDefaults } from "../Typings/types";
+import Category from "../Classes/Category";
 
 /**
  * Fetches an array of questions based on provided options.
@@ -17,6 +18,13 @@ import { QuestionOptionsDefaults } from "../Typings/types";
  * @param {?QuestionEncoding} [options.encode='none'] The encoding of question values.
  * @param {?string} options.token The session token.
  * @returns {Promise<Question[]>} An Array of questions.
+ * @example
+ * const questions = await getQuestions({
+    amount: 50,
+    difficulty: 'easy',
+    type: 'multiple',
+    category: Category.allNames.SCIENCE_COMPUTERS
+  });
  */
 export default async function getQuestions(
   options?: QuestionOptions
@@ -26,6 +34,9 @@ export default async function getQuestions(
     amount: 10,
     encode: QuestionEncodings.none,
   };
+
+  if (options?.category instanceof Category)
+    options.category = options.category.id;
 
   const filledOptions = Object.assign(defaultOptions, options);
   const targetEncode = filledOptions.encode;

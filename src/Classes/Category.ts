@@ -34,7 +34,7 @@ export default class Category {
   /**
    * All OpenTDB category names in 'strict' (constant) form
    */
-  public static readonly allStrictNames = CategoryNamesStrict;
+  public static readonly allNames = CategoryNamesStrict;
 
   /**
    * All OpenTDB category names in 'pretty' (display) form
@@ -67,7 +67,7 @@ export default class Category {
     arg: NumberResolvable
   ): CategoryName<"Strict"> | null {
     if (!this.isIdResolvable(arg)) return null;
-    return this.allStrictNames[+arg] as CategoryName<"Strict">;
+    return this.allNames[+arg] as CategoryName<"Strict">;
   }
 
   /**
@@ -119,7 +119,7 @@ export default class Category {
   public static isNameResolvable(arg: string | CategoryResolvable): boolean {
     const completeNameList = [
       ...Object.keys(this.allPrettyNames),
-      ...Object.keys(this.allStrictNames),
+      ...Object.keys(this.allNames),
     ]
       .filter((str) => isNaN(str as unknown as number))
       .map((str) => str.toLowerCase());

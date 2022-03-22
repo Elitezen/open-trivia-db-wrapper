@@ -7,7 +7,14 @@ import {
 } from "../Typings/interfaces";
 import { CategoryName, CategoryResolvable } from "../Typings/types";
 
-export default async function getCategoryData(arg: CategoryResolvable) {
+/**
+ * Fetches a trivia category's data.
+ * @param {CategoryResolvable} arg An argument resolving to a trivia category.
+ * @returns {Promise<CategoryData>} The data of the category.
+ */
+export default async function getCategoryData(
+  arg: CategoryResolvable
+): Promise<CategoryData> {
   const categoryId = Category.resolve(arg)?.id;
   if (!categoryId) {
     throw new EasyTriviaError(

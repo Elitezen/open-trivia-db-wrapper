@@ -42,7 +42,7 @@ class Session {
   /**
    * Resets the current trivia session.
    * @async
-   * @returns {Promise<TriviaSessionToken>} The current session token.
+   * @returns {Promise<string>} The current session token.
    */
   async reset(): Promise<string | void> {
     const url = EasyTriviaUtil.links.base.RESET_SESSION + this.token;
@@ -57,8 +57,8 @@ class Session {
     }
   }
 
-  /** Sets `TriviaSession#token` to null */
-  end() {
+  /** Sets `Session#token` to null */
+  end(): void {
     this.token = null;
   }
 }

@@ -1,23 +1,167 @@
-# Easy Trivia 2.0.0
+# Easy Trivia
+![OpenTriviaDB](https://i.imgur.com/QBhF5aY.png)
 
-What will change:
-- Entire re-write of the library in TypeScript.
-- Entire refactor of classes, functions, typings and constants
-- Categories() will become Category() which will be able to hold data about an individual category rather than being a class containing category related utility functions. This new class will still hold static members resembling the 1.0.0 functions and will even expand on them.
+Easy Trivia is a small, simple and fast wrapper for [Open Trivia Database](https://opentdb.com/) - A Free to use, user-contributed trivia question database. Built with TypeScript, works with VanillaJS.
 
-Basic Example:
-```js
-- const data = await Categories.getCategoryData(arg);
+Powered By: https://opentdb.com/
 
-+ const myCategory = new Category('GENERAL_KNOWLEDGE');
-+ const data = await myCategory.getData();
+Join the Discord for updates: https://discord.gg/wtwM4HhbAr
 
-// myCategory.name
-// myCategory.id
-// myCategory.someFunction();
+`discord-trivia` is almost ready: https://github.com/Elitezen/discord-trivia
+
+Support me: https://www.paypal.com/paypalme/alejandromuratalla
+
+# 2.0.0 Changelog
+View the list of major changes in Easy Trivia 2.0.0:
+
+https://github.com/Elitezen/easy-trivia/wiki/Changelog
+
+# Documentation
+Documentation has been moved to a GitHub Wiki page:
+
+https://github.com/Elitezen/easy-trivia/wiki/Documentation
+
+# Installation
+Ensure you are using Node version 14 or higher and that your enviroment contains the `https` module.
+```sh-session
+npm i easy-trivia
 ```
-- Constants will be converted to [Enums](https://www.typescriptlang.org/docs/handbook/enums.html).
-- Removed "Trivia" from all typing's names to make type/interface names less verbose.
-- Some types/interfaces which were related to others will be converted to [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html#handbook-content).
-- More Changes will be thought of and written here in the coming days.
-- Discord Trivia will not launch prior to 2.0.0, This Easy Trivia Version will power Discord Trivia.
+
+# Example Usage
+The following examples make use of the [Async/Await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await) syntax. Ensure you are inside an async function, otherwise use promise callbacks.
+
+## Fetching Questions
+You can provide `QuestionOptions` to describe the type of questions you want to recieve.
+```js
+import { Category, getQuestions } from 'easy-trivia';
+
+const questions = await getQuestions({
+   amount: 50, // 1 - 50
+   difficulty: 'easy', // or 'medium' or 'hard'
+   type: 'multiple', // or 'boolean (true/false)
+   category: Category.allNames.SCIENCE_COMPUTERS
+});
+```
+### Output
+<details>
+  <summary>Click to view</summary>
+
+  ```js
+[
+	{
+   	value: 'What is the code name for the mobile operating system Android 7.0?',
+		category: 'Science: Computers',
+		type: 'multiple',
+		difficulty: 'easy',
+		correctAnswer: 'Nougat',
+		incorrectAnswers: [ 'Ice Cream Sandwich', 'Jelly Bean', 'Marshmallow' ],
+		allAnswers: [ 'Nougat', 'Jelly Bean', 'Marshmallow', 'Ice Cream Sandwich' ],
+		checkAnswer: [Function: checkAnswer]
+	}
+
+   ...
+]
+```
+
+</details>
+<hr>
+
+## Working With Categories
+
+### Creating Categories with Resolvables
+
+You can generate a category class by providing a CategoryResolvable which includes a category's name or id. An instance of Category will allow you to fetch category data and questions relating to the provided resolvable.
+```js
+let myCategory = new Category(9);
+
+myCategory = new Category('GENERAL_KNOWLEDGE');
+
+myCategory = new Category(Category.allNames.GENERAL_KNOWLEDGE);
+```
+
+<hr>
+
+### Fetching a Category's API Data
+
+```js
+const data = await myCategory.getData();
+```
+
+### Output
+<details>
+  <summary>Click to view</summary>
+
+  ```js
+	{
+		id: 9,
+		name: 'General Knowledge',
+		questionCounts: { 
+			total: 298, 
+			forEasy: 116, 
+			forMedium: 123, 
+			forHard: 59 
+		}
+	}
+  ```
+
+</details>
+<hr>
+
+### Fetching Questions From a Category
+```js
+const questions = await myCategory.fetchQuestions({
+	amount: 1,
+	difficulty: 'hard'
+});
+
+// Same outputs as getQuestions()
+```
+
+You can always get information relating to a category by simply passing a resolvable into `getQuestions()` and `getCategoryData()`
+
+```js
+getQuestions({
+	category: 9
+});
+
+getCategoryData('GENERAL_KNOWLEDGE');
+
+// Same as myCategory.fetchQuestions() and .getData()
+```
+
+<hr>
+
+## Using Sessions
+A session ensures you do not get duplicate questions.
+
+```js
+import { Categories, Session, getQuestions } from 'easy-trivia';
+
+const session = new Session();
+await session.start();
+
+
+const batch1 = await getQuestions({
+  amount: 10,
+  category: Category.random(),
+  difficulty: 'hard',
+  token: session.token
+});
+
+const batch2 = await getQuestions({
+  amount: 10,
+  category: Category.random(),
+  difficulty: 'hard',
+  token: sessionToken
+});
+
+
+const completeBatch = [...batch1, ...batch2]; // All unique!
+session.end();
+```
+
+**Note:** In respect to the API, it is recommended you generate and save 1 session token for use when testing.
+
+# Support Me
+Any tip is greatly appreciated 😀
+https://www.paypal.com/paypalme/alejandromuratalla
