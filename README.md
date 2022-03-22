@@ -1,11 +1,25 @@
 # Easy Trivia
 ![OpenTriviaDB](https://i.imgur.com/QBhF5aY.png)
 
-Easy Trivia is a small, simple and fast wrapper for [Open Trivia Database](https://opentdb.com/) - A Free to use, user-contributed trivia question database - with type definitions. Works with CommonJS, ESModules and TypeScript.
+Easy Trivia is a small, simple and fast wrapper for [Open Trivia Database](https://opentdb.com/) - A Free to use, user-contributed trivia question database. Built with TypeScript, works with VanillaJS.
 
-Website And Documentation: https://easytrivia.js.org/ 
+Powered By: https://opentdb.com/
 
-Guide by [Turtlepaw](https://github.com/Turtlepaw): https://easytrivia-guide.js.org/
+Join the Discord for updates: https://discord.gg/wtwM4HhbAr
+
+`discord-trivia` is almost ready: https://github.com/Elitezen/discord-trivia
+
+Support me: https://www.paypal.com/paypalme/alejandromuratalla
+
+# 2.0.0 Changelog
+View the list of major changes in Easy Trivia 2.0.0:
+
+https://github.com/Elitezen/easy-trivia/wiki/Changelog
+
+# Documentation
+Documentation has been moved to a GitHub Wiki page:
+
+https://github.com/Elitezen/easy-trivia/wiki/Documentation
 
 # Installation
 Ensure you are using Node version 14 or higher and that your enviroment contains the `https` module.
@@ -13,226 +27,141 @@ Ensure you are using Node version 14 or higher and that your enviroment contains
 npm i easy-trivia
 ```
 
-# 1.3.0
-- ⭐ `Categories.prettyCategoryName(arg: CategoryResolvable): string`
-  You can now convert uppercase constant category names into their "pretty" syntax
-  example: `'ENTERTAINMENT_MUSICALS_AND_THEATRES'` -> `'Entertainment: Musicals and Theatres'`
-- 🐞 Fixed a bug where numbers could not resolve into categories (big oops...)
-- 🚨 Attention Discord.JS users! [discord-trivia](https://github.com/Elitezen/discord-trivia) is in testing phase
-- Join the Discord server for updates on Easy Trivia and for Discord Trivia testing [Here!](https://discord.com/invite/wtwM4HhbAr)
-
-# Usage
+# Example Usage
 The following examples make use of the [Async/Await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Async_await) syntax. Ensure you are inside an async function, otherwise use promise callbacks.
 
-## Fetching Questions Example
+## Fetching Questions
+You can provide `QuestionOptions` to describe the type of questions you want to recieve.
 ```js
-import { getQuestions } from 'easy-trivia';
+import { Category, getQuestions } from 'easy-trivia';
 
 const questions = await getQuestions({
-  amount: 50,
-  difficulty: 'easy',
-  type: 'multiple',
-  category: 'history'
+   amount: 50, // 1 - 50
+   difficulty: 'easy', // or 'medium' or 'hard'
+   type: 'multiple', // or 'boolean (true/false)
+   category: Category.allNames.SCIENCE_COMPUTERS
 });
-
-console.log(questions);
 ```
-### Result
+### Output
 <details>
-  <summary>Click to expand!</summary>
+  <summary>Click to view</summary>
 
   ```js
 [
-   {
-      value: 'In any programming language, what is the most common way to iterate through an array?',
-      category: 'Science: Computers',
-      difficulty: 'easy',
-      type: 'multiple',
-      correctAnswer: "'For' loops",
-      incorrectAnswers: [ "'If' Statements", "'Do-while' loops", "'While' loops" ],
-      allAnswers: [
-         "'For' loops",
-         "'If' Statements",
-         "'Do-while' loops",
-         "'While' loops"
-      ],
-      checkAnswer: [Function: checkAnswer]
-   }
+	{
+   	value: 'What is the code name for the mobile operating system Android 7.0?',
+		category: 'Science: Computers',
+		type: 'multiple',
+		difficulty: 'easy',
+		correctAnswer: 'Nougat',
+		incorrectAnswers: [ 'Ice Cream Sandwich', 'Jelly Bean', 'Marshmallow' ],
+		allAnswers: [ 'Nougat', 'Jelly Bean', 'Marshmallow', 'Ice Cream Sandwich' ],
+		checkAnswer: [Function: checkAnswer]
+	}
+
    ...
 ]
 ```
 
 </details>
+<hr>
 
+## Working With Categories
 
-## Fetching Questions From a Random Category
+### Creating Categories with Resolvables
+
+You can generate a category class by providing a CategoryResolvable which includes a category's name or id. An instance of Category will allow you to fetch category data and questions relating to the provided resolvable.
 ```js
-import { Categories, getQuestions } from 'easy-trivia';
+let myCategory = new Category(9);
 
-const questions = await getQuestions({
-  amount: 1,
-  difficulty: 'easy',
-  category: Categories.random()
-});
+myCategory = new Category('GENERAL_KNOWLEDGE');
 
-console.log(questions[0]);
+myCategory = new Category(Category.allNames.GENERAL_KNOWLEDGE);
 ```
-### Result
+
+<hr>
+
+### Fetching a Category's API Data
+
+```js
+const data = await myCategory.getData();
+```
+
+### Output
 <details>
-  <summary>Click to expand!</summary>
+  <summary>Click to view</summary>
 
-  ### Result
-```js
-{
-  value: 'The Canadian $1 coin is colloquially known as a what?',
-  category: 'General Knowledge',
-  difficulty: 'easy',
-  type: 'multiple',
-  correctAnswer: 'Loonie',
-  incorrectAnswers: [ 'Boolie', 'Foolie', 'Moodie' ],
-  allAnswers: [ 'Boolie', 'Loonie', 'Foolie', 'Moodie' ],
-  checkAnswer: [Function: checkAnswer]
-}
-```
+  ```js
+	{
+		id: 9,
+		name: 'General Knowledge',
+		questionCounts: { 
+			total: 298, 
+			forEasy: 116, 
+			forMedium: 123, 
+			forHard: 59 
+		}
+	}
+  ```
 
 </details>
+<hr>
 
-## Using Session Tokens to Prevent Duplicate Questions Throughout Multiple Calls
-In respect to the API, it is recommended you generate and save 1 session token for use when testing.
+### Fetching Questions From a Category
+```js
+const questions = await myCategory.fetchQuestions({
+	amount: 1,
+	difficulty: 'hard'
+});
+
+// Same outputs as getQuestions()
+```
+
+You can always get information relating to a category by simply passing a resolvable into `getQuestions()` and `getCategoryData()`
 
 ```js
-import { Categories, TriviaSession, getQuestions } from 'easy-trivia';
+getQuestions({
+	category: 9
+});
 
-const session = new TriviaSession();
-const sessionToken = await session.start();
+getCategoryData('GENERAL_KNOWLEDGE');
+
+// Same as myCategory.fetchQuestions() and .getData()
+```
+
+<hr>
+
+## Using Sessions
+A session ensures you do not get duplicate questions.
+
+```js
+import { Categories, Session, getQuestions } from 'easy-trivia';
+
+const session = new Session();
+await session.start();
+
 
 const batch1 = await getQuestions({
   amount: 10,
-  category: Categories.categoryByName('SCIENCE_COMPUTERS'),
+  category: Category.random(),
   difficulty: 'hard',
-  token: sessionToken
+  token: session.token
 });
 
 const batch2 = await getQuestions({
   amount: 10,
-  category: Categories.categoryByName('SCIENCE_COMPUTERS'),
+  category: Category.random(),
   difficulty: 'hard',
   token: sessionToken
 });
 
+
+const completeBatch = [...batch1, ...batch2]; // All unique!
 session.end();
 ```
 
-## Getting Data About a Trivia Category
-```js
-import { Categories } from 'easy-trivia';
+**Note:** In respect to the API, it is recommended you generate and save 1 session token for use when testing.
 
-const categoryData = await Categories.getCategoryDat('GENERAL_KNOWLEDGE');
-
-console.log(categoryData);
-```
-
-### Result
-<details>
-  <summary>Click to expand!</summary>
-  
-  ```js
-  {
-    id: 9,
-    name: 'GENERAL_KNOWLEDGE',
-    questionCounts: { 
-      total: 298, 
-      forEasy: 116, 
-      forMedium: 123, 
-      forHard: 59 
-    }
-  }
-  ```
-</details>
-
-# Choose From 23 Categories
-## Easy Trivia Provides Typings and Constants For OpenTDB's 23 Categories
-```js
-import { Categories } from 'easy-trivia';
-
-console.log(Categories.allNames);
-
-console.log(Categories.categoryByName('GENERAL_KNOWLEDGE'));
-// 9 - The category's API id.
-
-console.log(Categories.categoryById(9));
-// 'GENERAL_KNOWLEDGE'
-```
-
-### Result
-<details>
-  <summary>Click to expand!</summary>
-  
-  ```js
-  [
-    'GENERAL_KNOWLEDGE',
-    'ENTERTAINMENT_BOOKS',
-    'ENTERTAINMENT_FILM',
-    'ENTERTAINMENT_MUSIC',
-    'ENTERTAINMENT_MUSICALS_AND_THEATRES',
-    'ENTERTAINMENT_TELEVISION',
-    'ENTERTAINMENT_VIDEO_GAMES',
-    ...
-  ]
-  ```
-</details>
-
-# Full Categories List
-<details>
-  <summary>Click to expand!</summary>
-
-  1. `GENERAL_KNOWLEDGE`
-2. `ENTERTAINMENT_BOOKS`
-3. `ENTERTAINMENT_FILM`
-4. `ENTERTAINMENT_MUSIC`
-5. `ENTERTAINMENT_MUSICALS_AND_THEATRES`
-6. `ENTERTAINMENT_TELEVISION`
-7. `ENTERTAINMENT_VIDEO_GAMES`
-8. `ENTERTAINMENT_BOARD_GAMES`
-9. `SCIENCE_AND_NATURE`
-10. `SCIENCE_COMPUTERS`
-11. `SCIENCE_MATHEMATICS`
-12. `MYTHOLOGY`
-13. `SPORTS`
-14. `GEOGRAPHY`
-15. `HISTORY`
-16. `POLITICS`
-17. `ART`
-18. `CELEBRITIES`
-19. `ANIMALS`
-20. `VEHICLES`
-21. `ENTERTAINMENT_COMICS`
-22. `SCIENCE_GADGETS`
-23. `ENTERTAINMENT_JAPANESE_ANIME_AND_MANGA`
-24. `ENTERTAINMENT_CARTOON_AND_ANIMATIONS`
-
-</details>
-
-# Utilize 4 Different Encodings
-```js
-import { Encodings } from 'easy-trivia';
-
-console.log(Encodings);
-```
-### Result
-<details>
-  <summary>Click to expand!</summary>
-
-  ```js
-  {
-    NONE: 'none',
-    BASE64: 'base64',
-    URL3986: 'url3986',
-    URL_LEGACY: 'urlLegacy'
-  }
-  ```
-</details>
-
-# Documentation
-Documentation is available at https://easytrivia.js.org/ .this is still a work in progress. 
-
+# Support Me
+Any tip is greatly appreciated 😀
+https://www.paypal.com/paypalme/alejandromuratalla
