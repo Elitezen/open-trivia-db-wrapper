@@ -35,10 +35,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __spreadArray = (this && this.__spreadArray) || function (to, from) {
-    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
-        to[j] = from[i];
-    return to;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var CustomErrors_1 = require("./CustomErrors");
@@ -114,7 +118,7 @@ var Category = /** @class */ (function () {
      */
     Category.isNameResolvable = function (arg) {
         var _a, _b;
-        var completeNameList = __spreadArray(__spreadArray([], Object.keys(this.allPrettyNames)), Object.keys(this.allNames)).filter(function (str) { return isNaN(str); })
+        var completeNameList = __spreadArray(__spreadArray([], Object.keys(this.allPrettyNames), true), Object.keys(this.allNames), true).filter(function (str) { return isNaN(str); })
             .map(function (str) { return str.toLowerCase(); });
         return completeNameList.includes((_b = (_a = arg) === null || _a === void 0 ? void 0 : _a.toLowerCase) === null || _b === void 0 ? void 0 : _b.call(_a));
     };
@@ -178,7 +182,7 @@ var Category = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, getCategoryData_1.default(this.id)];
+                    case 0: return [4 /*yield*/, (0, getCategoryData_1.default)(this.id)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -199,7 +203,7 @@ var Category = /** @class */ (function () {
                         if (options)
                             finalOptions = options;
                         finalOptions.category = this.id;
-                        return [4 /*yield*/, getQuestions_1.default(finalOptions)];
+                        return [4 /*yield*/, (0, getQuestions_1.default)(finalOptions)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

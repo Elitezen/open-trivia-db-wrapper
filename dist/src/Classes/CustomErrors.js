@@ -26,13 +26,13 @@ var EasyTriviaError = /** @class */ (function (_super) {
     function EasyTriviaError(message, header) {
         var _this = this;
         if (typeof message != "string")
-            throw new EasyTriviaError("Expected a string for 'message', recieved " + typeof message, EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
+            throw new EasyTriviaError("Expected a string for 'message', recieved ".concat(typeof message), EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
         if (typeof header != "string")
-            throw new EasyTriviaError("Expected a string for 'header', recieved " + typeof header, EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
+            throw new EasyTriviaError("Expected a string for 'header', recieved ".concat(typeof header), EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
         if (!message.length || !header.length)
             throw new EasyTriviaError("Supplied strings must not be empty", EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
         _this = _super.call(this, message) || this;
-        _this.name = "EasyTriviaError [" + header + "]";
+        _this.name = "EasyTriviaError [".concat(header, "]");
         return _this;
     }
     EasyTriviaError.errors = {
@@ -60,10 +60,10 @@ var OpenTDBResponse = /** @class */ (function (_super) {
     function OpenTDBResponse(errorCode) {
         var _this = this;
         if (errorCode < 0 || errorCode > 4)
-            throw new EasyTriviaError("The given number (" + errorCode + ") for 'errorCode' is not a valid OpenTDBResponseCode (range 0 - 4)", EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
+            throw new EasyTriviaError("The given number (".concat(errorCode, ") for 'errorCode' is not a valid OpenTDBResponseCode (range 0 - 4)"), EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
         var _a = EasyTriviaUtil_1.default.apiResponses[errorCode], name = _a.name, message = _a.message;
         _this = _super.call(this, message) || this;
-        _this.name = "OpenTDBResponse [" + name + "]";
+        _this.name = "OpenTDBResponse [".concat(name, "]");
         return _this;
     }
     return OpenTDBResponse;
