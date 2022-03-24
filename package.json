@@ -51,8 +51,5 @@
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=7.0.0"
-  },
-  "dependencies": {
-    "easy-trivia": "^2.0.0"
   }
 }

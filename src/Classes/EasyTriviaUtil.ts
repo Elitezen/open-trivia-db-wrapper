@@ -135,7 +135,7 @@ export default class EasyTriviaUtil {
         : typeof value == "string"
         ? this.decodeString(value)
         : typeof value == "object" && !Array.isArray(value)
-        ? this.decodeObjectValues(value)
+        ? this.decodeObjectValues(value as object)
         : Array.isArray(value)
         ? this.decodeStringArray(value)
         : value;

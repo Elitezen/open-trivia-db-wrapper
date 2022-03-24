@@ -1,12 +1,8 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var https_1 = require("https");
@@ -19,10 +15,10 @@ var EasyTriviaUtil = /** @class */ (function () {
         if (url === undefined)
             throw new CustomErrors_1.EasyTriviaError("'url' argument is required, received undefined", "missing_argument");
         if (typeof url != "string")
-            throw new CustomErrors_1.EasyTriviaError("'url' argument must be of type string, received ".concat(typeof url), "invalid_argument");
+            throw new CustomErrors_1.EasyTriviaError("'url' argument must be of type string, received " + typeof url, "invalid_argument");
         return new Promise(function (resolve, reject) {
             var data = "";
-            var req = (0, https_1.get)(url, function (res) {
+            var req = https_1.get(url, function (res) {
                 res.on("data", function (chunk) { return (data += chunk); });
                 res.on("error", reject);
                 res.on("end", function () {
@@ -86,7 +82,7 @@ var EasyTriviaUtil = /** @class */ (function () {
         for (var _i = 0, _a = Object.entries(obj); _i < _a.length; _i++) {
             var _b = _a[_i], key = _b[0], value = _b[1];
             if (value !== null && value !== undefined)
-                queryArgs.push("".concat(key, "=").concat(value));
+                queryArgs.push(key + "=" + value);
         }
         return baseLink + queryArgs.join("&");
     };
@@ -101,7 +97,7 @@ var EasyTriviaUtil = /** @class */ (function () {
                 incorrectAnswers: q.incorrect_answers,
                 allAnswers: EasyTriviaUtil.shuffleArray(__spreadArray([
                     q.correct_answer
-                ], q.incorrect_answers, true)),
+                ], q.incorrect_answers)),
                 checkAnswer: function (arg) {
                     var _a;
                     return ((_a = arg === null || arg === void 0 ? void 0 : arg.toLowerCase) === null || _a === void 0 ? void 0 : _a.call(arg)) == q.correct_answer;

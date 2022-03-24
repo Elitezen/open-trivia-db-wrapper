@@ -30,7 +30,7 @@ var Validator = /** @class */ (function () {
                 throw new CustomErrors_1.EasyTriviaError("'amount' option for QuestionOptions must be a whole integer", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
             else if (amount < enums_1.QuestionAmountRange.Min ||
                 amount > enums_1.QuestionAmountRange.Max)
-                throw new CustomErrors_1.EasyTriviaError("'amount' option for QuestionOptions must be from ".concat(enums_1.QuestionAmountRange.Min, " to ").concat(enums_1.QuestionAmountRange.Max), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+                throw new CustomErrors_1.EasyTriviaError("'amount' option for QuestionOptions must be from " + enums_1.QuestionAmountRange.Min + " to " + enums_1.QuestionAmountRange.Max, CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
             else
                 return amount;
         }
@@ -39,12 +39,12 @@ var Validator = /** @class */ (function () {
                 throw new CustomErrors_1.EasyTriviaError("'amount' option for QuestionOptions must be of type number or string number", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
             else if (+amount < enums_1.QuestionAmountRange.Min ||
                 +amount > enums_1.QuestionAmountRange.Max)
-                throw new CustomErrors_1.EasyTriviaError("'amount' option for QuestionOptions must from ".concat(enums_1.QuestionAmountRange.Min, " to ").concat(enums_1.QuestionAmountRange.Max), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+                throw new CustomErrors_1.EasyTriviaError("'amount' option for QuestionOptions must from " + enums_1.QuestionAmountRange.Min + " to " + enums_1.QuestionAmountRange.Max, CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
             else
                 return parseInt(amount);
         }
         else {
-            throw new CustomErrors_1.EasyTriviaError("'amount' option for QuestionOptions must be of type number or string number, received ".concat(typeof amount), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'amount' option for QuestionOptions must be of type number or string number, received " + typeof amount, CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
     };
     Validator.prototype.checkCategory = function () {
@@ -55,25 +55,25 @@ var Validator = /** @class */ (function () {
             if (isNaN(+category)) {
                 var id = Category_1.default.nameToId(category);
                 if (id === null) {
-                    throw new CustomErrors_1.EasyTriviaError("'category' option (".concat(category, ") for QuestionOptions does not resolve into a trivia category name"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+                    throw new CustomErrors_1.EasyTriviaError("'category' option (" + category + ") for QuestionOptions does not resolve into a trivia category name", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
                 }
                 return id;
             }
             else {
                 if (!Category_1.default.isIdResolvable(+category)) {
-                    throw new CustomErrors_1.EasyTriviaError("'category' option (".concat(category, ") for QuestionOptions does not resolve into a trivia category id"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+                    throw new CustomErrors_1.EasyTriviaError("'category' option (" + category + ") for QuestionOptions does not resolve into a trivia category id", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
                 }
                 return parseInt(category);
             }
         }
         else if (typeof category == "number") {
             if (!Category_1.default.isIdResolvable(+category)) {
-                throw new CustomErrors_1.EasyTriviaError("'category' option (".concat(category, ") for QuestionOptions does not resolve into a trivia category id"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+                throw new CustomErrors_1.EasyTriviaError("'category' option (" + category + ") for QuestionOptions does not resolve into a trivia category id", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
             }
             return category;
         }
         else {
-            throw new CustomErrors_1.EasyTriviaError("'category' option (\"".concat(category, "\") for QuestionOptions does not resolve into a trivia category name"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'category' option (\"" + category + "\") for QuestionOptions does not resolve into a trivia category name", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
     };
     Validator.prototype.checkDifficulty = function () {
@@ -81,11 +81,11 @@ var Validator = /** @class */ (function () {
         if (difficulty === undefined || difficulty === null)
             return null;
         if (typeof difficulty != "string") {
-            throw new CustomErrors_1.EasyTriviaError("'difficulty' option for QuestionOptions must be of type string, received ".concat(typeof difficulty), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'difficulty' option for QuestionOptions must be of type string, received " + typeof difficulty, CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
         var values = ["easy", "medium", "hard"];
         if (!values.includes(difficulty)) {
-            throw new CustomErrors_1.EasyTriviaError("'difficulty' option (\"".concat(difficulty, "\") for QuestionOptions does not resolve into a question difficulty"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'difficulty' option (\"" + difficulty + "\") for QuestionOptions does not resolve into a question difficulty", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
         return difficulty;
     };
@@ -94,7 +94,7 @@ var Validator = /** @class */ (function () {
         if (encode === undefined || encode === null)
             return null;
         if (typeof encode != "string") {
-            throw new CustomErrors_1.EasyTriviaError("'encode' option for QuestionOptions must be of type string, received ".concat(typeof encode), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'encode' option for QuestionOptions must be of type string, received " + typeof encode, CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
         var values = [
             "base64",
@@ -103,7 +103,7 @@ var Validator = /** @class */ (function () {
             "urlLegacy",
         ];
         if (!values.includes(encode)) {
-            throw new CustomErrors_1.EasyTriviaError("'encode' option (\"".concat(encode, "\") for QuestionOptions does not resolve into a question encode"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'encode' option (\"" + encode + "\") for QuestionOptions does not resolve into a question encode", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
         return encode;
     };
@@ -124,11 +124,11 @@ var Validator = /** @class */ (function () {
         if (type === undefined || type === null)
             return null;
         if (typeof type != "string") {
-            throw new CustomErrors_1.EasyTriviaError("'type' option for QuestionOptions must be of type string, received ".concat(typeof type), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'type' option for QuestionOptions must be of type string, received " + typeof type, CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
         var values = ["boolean", "multiple"];
         if (!values.includes(type)) {
-            throw new CustomErrors_1.EasyTriviaError("'type' option (\"".concat(type, "\") for QuestionOptions does not resolve into a question type"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'type' option (\"" + type + "\") for QuestionOptions does not resolve into a question type", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
         return type;
     };
@@ -139,25 +139,25 @@ var Validator = /** @class */ (function () {
             if (isNaN(+category)) {
                 var id = Category_1.default.nameToId(category);
                 if (id === null) {
-                    throw new CustomErrors_1.EasyTriviaError("'category' option (".concat(category, ") for QuestionOptions does not resolve into a trivia category name"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+                    throw new CustomErrors_1.EasyTriviaError("'category' option (" + category + ") for QuestionOptions does not resolve into a trivia category name", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
                 }
                 return id;
             }
             else {
                 if (!Category_1.default.isIdResolvable(+category)) {
-                    throw new CustomErrors_1.EasyTriviaError("'category' option (".concat(category, ") for QuestionOptions does not resolve into a trivia category id"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+                    throw new CustomErrors_1.EasyTriviaError("'category' option (" + category + ") for QuestionOptions does not resolve into a trivia category id", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
                 }
                 return parseInt(category);
             }
         }
         else if (typeof category == "number") {
             if (!Category_1.default.isIdResolvable(+category)) {
-                throw new CustomErrors_1.EasyTriviaError("'category' option (".concat(category, ") for QuestionOptions does not resolve into a trivia category id"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+                throw new CustomErrors_1.EasyTriviaError("'category' option (" + category + ") for QuestionOptions does not resolve into a trivia category id", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
             }
             return category;
         }
         else {
-            throw new CustomErrors_1.EasyTriviaError("'category' option (\"".concat(category, "\") for QuestionOptions does not resolve into a trivia category name"), CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'category' option (\"" + category + "\") for QuestionOptions does not resolve into a trivia category name", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
     };
     return Validator;
