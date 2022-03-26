@@ -167,17 +167,17 @@ export default class Validator {
   }
 
   checkToken(): string | null {
-    const { token } = this.options;
+    const { session: token } = this.options;
     if (token === undefined || token === null) return null;
 
     if (typeof token != "string") {
       throw new EasyTriviaError(
-        `'token' option for QuestionOptions must be of type string`,
+        `'session' option for QuestionOptions must be of type string or session`,
         EasyTriviaError.errors.headers.INVALID_OPT
       );
     } else if (!token.length) {
       throw new EasyTriviaError(
-        `'token' option for QuestionOptions must not be empty`,
+        `'session' option for QuestionOptions must not be an empty string`,
         EasyTriviaError.errors.headers.INVALID_OPT
       );
     }

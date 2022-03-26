@@ -1,3 +1,4 @@
+import Session from "../classes/Session";
 import { CategoryName, CategoryResolvable, NumberResolvable, QuestionDifficulty, QuestionEncoding, QuestionType } from "./types";
 /**
  * A basic response from OpenTDB with `results` being an array of T
@@ -87,5 +88,5 @@ export interface QuestionOptions {
     difficulty?: QuestionDifficulty | null;
     type?: QuestionType | null;
     encode?: QuestionEncoding | null;
-    token?: string | null;
+    session?: Session | string | null;
 }

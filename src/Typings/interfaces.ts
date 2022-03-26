@@ -1,3 +1,4 @@
+import Session from "../classes/Session";
 import {
   CategoryName,
   CategoryResolvable,
@@ -103,5 +104,5 @@ export interface QuestionOptions {
   difficulty?: QuestionDifficulty | null;
   type?: QuestionType | null;
   encode?: QuestionEncoding | null;
-  token?: string | null;
+  session?: Session | string | null;
 }

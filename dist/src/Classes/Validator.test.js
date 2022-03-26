@@ -150,32 +150,32 @@ test("tests output of Validator.checkEncoding()", function () {
 });
 test("tests output of Validator.checkToken()", function () {
     var validator = createInstance({
-        token: {},
+        session: {},
     });
     expect(function () {
         validator.checkToken();
     }).toThrow(TypeError);
     validator = createInstance({
-        token: true,
+        session: true,
     });
     expect(function () {
         validator.checkToken();
     }).toThrow(TypeError);
-    validator = createInstance({ token: "" });
+    validator = createInstance({ session: "" });
     expect(function () {
         validator.checkToken();
     }).toThrow(TypeError);
     validator = createInstance({
-        token: 1,
+        session: 1,
     });
     expect(function () {
         validator.checkToken();
     }).toThrow(TypeError);
-    validator = createInstance({ token: "..." });
+    validator = createInstance({ session: "..." });
     expect(validator.checkToken()).toEqual("...");
-    validator = createInstance({ token: undefined });
+    validator = createInstance({ session: undefined });
     expect(validator.checkToken()).toEqual(null);
-    validator = createInstance({ token: null });
+    validator = createInstance({ session: null });
     expect(validator.checkToken()).toEqual(null);
 });
 test("tests output of Validator.checkType()", function () {

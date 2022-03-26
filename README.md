@@ -3,23 +3,16 @@
 
 Easy Trivia is a small, simple and fast wrapper for [Open Trivia Database](https://opentdb.com/) - A Free to use, user-contributed trivia question database. Built with TypeScript, works with VanillaJS.
 
-Powered By: https://opentdb.com/
-
 Join the Discord for updates: https://discord.gg/wtwM4HhbAr
 
 `discord-trivia` is almost ready: https://github.com/Elitezen/discord-trivia
 
 Support me: https://www.paypal.com/paypalme/alejandromuratalla
 
-# 2.0.0 Changelog
-View the list of major changes in Easy Trivia 2.0.0:
+# 2.1.0 Changelog
+View the list of changes in Easy Trivia 2.1.0:
 
 https://github.com/Elitezen/easy-trivia/wiki/Changelog
-
-# Documentation
-Documentation has been moved to a GitHub Wiki page:
-
-https://github.com/Elitezen/easy-trivia/wiki/Documentation
 
 # Installation
 Ensure you are using Node version 14 or higher and that your enviroment contains the `https` module.
@@ -145,14 +138,14 @@ const batch1 = await getQuestions({
   amount: 10,
   category: Category.random(),
   difficulty: 'hard',
-  token: session.token
+  session
 });
 
 const batch2 = await getQuestions({
   amount: 10,
   category: Category.random(),
   difficulty: 'hard',
-  token: sessionToken
+  session
 });
 
 
@@ -161,6 +154,11 @@ session.end();
 ```
 
 **Note:** In respect to the API, it is recommended you generate and save 1 session token for use when testing.
+
+# Documentation
+Documentation has been moved to a GitHub Wiki page:
+
+https://github.com/Elitezen/easy-trivia/wiki/Documentation
 
 # Support Me
 Any tip is greatly appreciated 😀

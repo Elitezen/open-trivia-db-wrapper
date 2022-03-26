@@ -232,7 +232,7 @@ test("tests output of Validator.checkEncoding()", () => {
 
 test("tests output of Validator.checkToken()", () => {
   let validator = createInstance({
-    token: {} as unknown as string,
+    session: {} as unknown as string,
   });
 
   expect(() => {
@@ -240,36 +240,36 @@ test("tests output of Validator.checkToken()", () => {
   }).toThrow(TypeError);
 
   validator = createInstance({
-    token: true as unknown as string,
+    session: true as unknown as string,
   });
 
   expect(() => {
     validator.checkToken();
   }).toThrow(TypeError);
 
-  validator = createInstance({ token: "" });
+  validator = createInstance({ session: "" });
 
   expect(() => {
     validator.checkToken();
   }).toThrow(TypeError);
 
   validator = createInstance({
-    token: 1 as unknown as string,
+    session: 1 as unknown as string,
   });
 
   expect(() => {
     validator.checkToken();
   }).toThrow(TypeError);
 
-  validator = createInstance({ token: "..." });
+  validator = createInstance({ session: "..." });
 
   expect(validator.checkToken()).toEqual("...");
 
-  validator = createInstance({ token: undefined });
+  validator = createInstance({ session: undefined });
 
   expect(validator.checkToken()).toEqual(null);
 
-  validator = createInstance({ token: null });
+  validator = createInstance({ session: null });
 
   expect(validator.checkToken()).toEqual(null);
 });

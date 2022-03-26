@@ -76,7 +76,7 @@ var EasyTriviaUtil = /** @class */ (function () {
             difficulty: validator.checkDifficulty(),
             type: validator.checkType(),
             category: validator.checkCategory(),
-            token: validator.checkToken(),
+            session: validator.checkToken(),
             encode: targetEncode == "none" ? "base64" : validator.checkEncode(),
         };
         return verifiedOptions;

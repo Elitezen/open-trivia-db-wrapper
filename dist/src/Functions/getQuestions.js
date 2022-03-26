@@ -39,6 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var enums_1 = require("../Typings/enums");
 var EasyTriviaUtil_1 = require("../classes/EasyTriviaUtil");
 var Category_1 = require("../Classes/Category");
+var Session_1 = require("../classes/Session");
 /**
  * Fetches an array of questions based on provided options.
  * @param {QuestionOptions} options - The metadeta describing target questions.
@@ -46,7 +47,7 @@ var Category_1 = require("../Classes/Category");
  * @param {?CategoryResolvable} options.category The category of questions.
  * @param {?QuestionDifficulty} options.difficulty The difficulty of questions.
  * @param {?QuestionEncoding} [options.encode='none'] The encoding of question values.
- * @param {?string} options.token The session token.
+ * @param {?string} options.session The Session instance or API session token.
  * @returns {Promise<Question[]>} An Array of questions.
  * @example
  * const questions = await getQuestions({
@@ -69,6 +70,11 @@ function getQuestions(options) {
                     };
                     if ((options === null || options === void 0 ? void 0 : options.category) instanceof Category_1.default)
                         options.category = options.category.id;
+                    if ((options === null || options === void 0 ? void 0 : options.session) instanceof Session_1.default) {
+                        if (options.session.token === null)
+                            process.emitWarning('Provided Session has a null token. Use Session.start() to start an API session');
+                        options.session = options.session.token;
+                    }
                     filledOptions = Object.assign(defaultOptions, options);
                     targetEncode = filledOptions.encode;
                     finalOptions = EasyTriviaUtil_1.default.finalizeOptions(filledOptions);

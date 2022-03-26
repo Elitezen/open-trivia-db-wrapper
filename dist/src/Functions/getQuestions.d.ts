@@ -6,7 +6,7 @@ import { Question, QuestionOptions } from "../Typings/interfaces";
  * @param {?CategoryResolvable} options.category The category of questions.
  * @param {?QuestionDifficulty} options.difficulty The difficulty of questions.
  * @param {?QuestionEncoding} [options.encode='none'] The encoding of question values.
- * @param {?string} options.token The session token.
+ * @param {?string} options.session The Session instance or API session token.
  * @returns {Promise<Question[]>} An Array of questions.
  * @example
  * const questions = await getQuestions({

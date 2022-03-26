@@ -8,6 +8,7 @@ import { QuestionEncodings } from "../Typings/enums";
 import EasyTriviaUtil from "../classes/EasyTriviaUtil";
 import { QuestionOptionsDefaults } from "../Typings/types";
 import Category from "../Classes/Category";
+import Session from "../classes/Session";
 
 /**
  * Fetches an array of questions based on provided options.
@@ -16,7 +17,7 @@ import Category from "../Classes/Category";
  * @param {?CategoryResolvable} options.category The category of questions.
  * @param {?QuestionDifficulty} options.difficulty The difficulty of questions.
  * @param {?QuestionEncoding} [options.encode='none'] The encoding of question values.
- * @param {?string} options.token The session token.
+ * @param {?string} options.session The Session instance or API session token.
  * @returns {Promise<Question[]>} An Array of questions.
  * @example
  * const questions = await getQuestions({
@@ -37,6 +38,13 @@ export default async function getQuestions(
 
   if (options?.category instanceof Category)
     options.category = options.category.id;
+  if (options?.session instanceof Session) {
+    if (options.session.token === null)
+      process.emitWarning(
+        "Provided Session has a null token. Use Session.start() to start an API session"
+      );
+    options.session = options.session.token;
+  }
 
   const filledOptions = Object.assign(defaultOptions, options);
   const targetEncode = filledOptions.encode;

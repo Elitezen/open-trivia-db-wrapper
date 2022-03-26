@@ -108,14 +108,14 @@ var Validator = /** @class */ (function () {
         return encode;
     };
     Validator.prototype.checkToken = function () {
-        var token = this.options.token;
+        var token = this.options.session;
         if (token === undefined || token === null)
             return null;
         if (typeof token != "string") {
-            throw new CustomErrors_1.EasyTriviaError("'token' option for QuestionOptions must be of type string", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'session' option for QuestionOptions must be of type string or session", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
         else if (!token.length) {
-            throw new CustomErrors_1.EasyTriviaError("'token' option for QuestionOptions must not be empty", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
+            throw new CustomErrors_1.EasyTriviaError("'session' option for QuestionOptions must not be an empty string", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_OPT);
         }
         return token;
     };
