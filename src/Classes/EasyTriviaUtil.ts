@@ -194,7 +194,7 @@ export default class EasyTriviaUtil {
           ...q.incorrect_answers,
         ]),
         checkAnswer: (arg: string) => {
-          return arg?.toLowerCase?.() == q.correct_answer;
+          return arg?.toLowerCase?.() == q.correct_answer.toLowerCase();
         },
       };
 
