@@ -25,8 +25,3 @@ Object.defineProperty(exports, "QuestionDifficulties", { enumerable: true, get: 
 Object.defineProperty(exports, "QuestionEncodings", { enumerable: true, get: function () { return enums_1.QuestionEncodings; } });
 Object.defineProperty(exports, "QuestionTypes", { enumerable: true, get: function () { return enums_1.QuestionTypes; } });
 Object.defineProperty(exports, "QuestionVersions", { enumerable: true, get: function () { return enums_1.QuestionVersions; } });
-(0, getQuestions_1.default)()
-    .then(function (questions) {
-    var q = questions[0];
-    console.log(q.checkAnswer(q.correctAnswer));
-});

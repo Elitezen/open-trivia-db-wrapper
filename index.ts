@@ -91,9 +91,3 @@ export {
   QuestionTypes,
   QuestionVersions
 }
-
-getQuestions()
-  .then(questions => {
-    const q = questions[0];
-    console.log(q.checkAnswer(q.correctAnswer));
-  }); 
