@@ -194,8 +194,8 @@ export default class EasyTriviaUtil {
           ...q.incorrect_answers,
         ]),
         checkAnswer: (arg: string) => {
-          
-          return arg?.toLowerCase?.() == q.correct_answer.toLowerCase();
+          return arg?.toLowerCase?.() == this.base64Decoder.atob(q.correct_answer).toLowerCase() 
+          || arg?.toLowerCase?.() == q.correct_answer;
         },
       };
 

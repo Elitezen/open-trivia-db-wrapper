@@ -1,3 +1,6 @@
+# 2.1.1/2.1.2
+- Fixed a bug where `Question#checkAnswer()` did not work as intended.
+
 # 2.1.0
 - Fixed a major issue in which library was untyped for VanillaJS.
 - `QuestionOptions#token` -> `QuestionOptions#session`

@@ -9,8 +9,8 @@ Join the Discord for updates: https://discord.gg/wtwM4HhbAr
 
 Support me: https://www.paypal.com/paypalme/alejandromuratalla
 
-# 2.1.0 Changelog
-View the list of changes in Easy Trivia 2.1.0:
+# 2.1.2 Changelog
+View the list of changes in Easy Trivia 2.1.2:
 
 https://github.com/Elitezen/easy-trivia/wiki/Changelog
 
