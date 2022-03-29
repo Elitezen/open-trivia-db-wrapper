@@ -91,6 +91,7 @@ var EasyTriviaUtil = /** @class */ (function () {
         return baseLink + queryArgs.join("&");
     };
     EasyTriviaUtil.parseRawQuestions = function (questions) {
+        var _this = this;
         var result = questions.map(function (q) {
             var parsedQuestion = {
                 value: q.question,
@@ -103,8 +104,13 @@ var EasyTriviaUtil = /** @class */ (function () {
                     q.correct_answer
                 ], q.incorrect_answers, true)),
                 checkAnswer: function (arg) {
-                    var _a;
-                    return ((_a = arg === null || arg === void 0 ? void 0 : arg.toLowerCase) === null || _a === void 0 ? void 0 : _a.call(arg)) == q.correct_answer;
+                    var _a, _b;
+                    console.log(arg);
+                    console.log(q.correct_answer);
+                    console.log(_this.base64Decoder.atob(q.correct_answer));
+                    return (((_a = arg === null || arg === void 0 ? void 0 : arg.toLowerCase) === null || _a === void 0 ? void 0 : _a.call(arg)) ==
+                        _this.base64Decoder.atob(q.correct_answer).toLowerCase() ||
+                        ((_b = arg === null || arg === void 0 ? void 0 : arg.toLowerCase) === null || _b === void 0 ? void 0 : _b.call(arg)) == q.correct_answer);
                 },
             };
             return parsedQuestion;

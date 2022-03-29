@@ -194,8 +194,14 @@ export default class EasyTriviaUtil {
           ...q.incorrect_answers,
         ]),
         checkAnswer: (arg: string) => {
-          return arg?.toLowerCase?.() == this.base64Decoder.atob(q.correct_answer).toLowerCase() 
-          || arg?.toLowerCase?.() == q.correct_answer;
+          console.log(arg);
+          console.log(q.correct_answer);
+          console.log(this.base64Decoder.atob(q.correct_answer));
+          return (
+            arg?.toLowerCase?.() ==
+              this.base64Decoder.atob(q.correct_answer).toLowerCase() ||
+            arg?.toLowerCase?.() == q.correct_answer
+          );
         },
       };
 

@@ -72,7 +72,7 @@ function getQuestions(options) {
                         options.category = options.category.id;
                     if ((options === null || options === void 0 ? void 0 : options.session) instanceof Session_1.default) {
                         if (options.session.token === null)
-                            process.emitWarning('Provided Session has a null token. Use Session.start() to start an API session');
+                            process.emitWarning("Provided Session has a null token. Use Session.start() to start an API session");
                         options.session = options.session.token;
                     }
                     filledOptions = Object.assign(defaultOptions, options);

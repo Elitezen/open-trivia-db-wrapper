@@ -1,6 +1,6 @@
 {
   "name": "easy-trivia",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "A wrapper for the Open Trivia Database API. Built with TypeScript, works with VanillaJS.",
   "keywords": [
     "trivia",
@@ -43,7 +43,6 @@
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/node": "^16.11.7",
-    "easy-trivia": "^2.0.4",
     "jest": "^27.5.1",
     "nodemon": "^2.0.12",
     "prettier": "2.4.1",
