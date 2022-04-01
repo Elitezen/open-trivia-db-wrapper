@@ -5,10 +5,10 @@ import {
   RawQuestion,
 } from "../Typings/interfaces";
 import { QuestionEncodings } from "../Typings/enums";
-import EasyTriviaUtil from "../classes/EasyTriviaUtil";
+import EasyTriviaUtil from "../Classes/EasyTriviaUtil";
 import { QuestionOptionsDefaults } from "../Typings/types";
 import Category from "../Classes/Category";
-import Session from "../classes/Session";
+import Session from "../Classes/Session";
 
 /**
  * Fetches an array of questions based on provided options.
