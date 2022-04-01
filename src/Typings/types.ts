@@ -9,7 +9,7 @@ import {
   QuestionVersions,
 } from "./enums";
 import { QuestionOptions } from "./interfaces";
-import Category from "../classes/Category";
+import Category from "../Classes/Category";
 
 export type CategoryIdResolvable = NumberResolvable;
 export type CategoryNameResolvable = CategoryName<"Pretty" | "Strict"> | string;
