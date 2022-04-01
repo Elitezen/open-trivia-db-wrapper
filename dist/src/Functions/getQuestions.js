@@ -37,9 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var enums_1 = require("../Typings/enums");
-var EasyTriviaUtil_1 = require("../classes/EasyTriviaUtil");
+var EasyTriviaUtil_1 = require("../Classes/EasyTriviaUtil");
 var Category_1 = require("../Classes/Category");
-var Session_1 = require("../classes/Session");
+var Session_1 = require("../Classes/Session");
 /**
  * Fetches an array of questions based on provided options.
  * @param {QuestionOptions} options - The metadeta describing target questions.

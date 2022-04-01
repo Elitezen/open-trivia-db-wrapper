@@ -1,8 +1,8 @@
 import Category from "./src/Classes/Category";
-import { EasyTriviaError, OpenTDBResponse } from "./src/classes/CustomErrors";
-import EasyTriviaUtil from "./src/classes/EasyTriviaUtil";
-import Session from "./src/classes/Session";
-import Validator from "./src/classes/Validator";
+import { EasyTriviaError, OpenTDBResponse } from "./src/Classes/CustomErrors";
+import EasyTriviaUtil from "./src/Classes/EasyTriviaUtil";
+import Session from "./src/Classes/Session";
+import Validator from "./src/Classes/Validator";
 import getCategoryData from "./src/Functions/getCategoryData";
 import getQuestions from "./src/Functions/getQuestions";
 import { CategoryIdResolvable, CategoryNameResolvable, CategoryName, CategoryNameVersion, CategoryNamePretty, CategoryNameStrict, CategoryResolvable, CategoryResolvableType, NumberResolvable, OpenTDBResponseCode, QuestionDifficulty, QuestionOptionsDefaults, QuestionType, QuestionEncoding, QuestionVersion, Questions } from './src/Typings/types';

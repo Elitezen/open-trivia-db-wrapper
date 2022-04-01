@@ -36,9 +36,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var Category_1 = require("../classes/Category");
-var CustomErrors_1 = require("../classes/CustomErrors");
-var EasyTriviaUtil_1 = require("../classes/EasyTriviaUtil");
+var Category_1 = require("../Classes/Category");
+var CustomErrors_1 = require("../Classes/CustomErrors");
+var EasyTriviaUtil_1 = require("../Classes/EasyTriviaUtil");
 /**
  * Fetches a trivia category's data.
  * @param {CategoryResolvable} arg An argument resolving to a trivia category.

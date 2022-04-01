@@ -1,7 +1,7 @@
 import { Question, RawQuestion } from "./interfaces";
 import { CategoryNamesStrict, CategoryNameVersions, CategoryNamesPretty, QuestionDifficulties, QuestionTypes, QuestionEncodings, QuestionVersions } from "./enums";
 import { QuestionOptions } from "./interfaces";
-import Category from "../classes/Category";
+import Category from "../Classes/Category";
 export declare type CategoryIdResolvable = NumberResolvable;
 export declare type CategoryNameResolvable = CategoryName<"Pretty" | "Strict"> | string;
 export declare type CategoryName<T extends CategoryNameVersion = "Strict"> = T extends "Pretty" ? CategoryNamePretty : CategoryNameStrict;

@@ -1,4 +1,4 @@
-import Session from "../classes/Session";
+import Session from "../Classes/Session";
 import { CategoryName, CategoryResolvable, NumberResolvable, QuestionDifficulty, QuestionEncoding, QuestionType } from "./types";
 /**
  * A basic response from OpenTDB with `results` being an array of T
