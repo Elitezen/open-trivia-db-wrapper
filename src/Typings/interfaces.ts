@@ -1,4 +1,4 @@
-import Session from "../classes/Session";
+import Session from "../Classes/Session";
 import {
   CategoryName,
   CategoryResolvable,

@@ -1,6 +1,6 @@
-import Category from "../classes/Category";
-import { EasyTriviaError } from "../classes/CustomErrors";
-import EasyTriviaUtil from "../classes/EasyTriviaUtil";
+import Category from "../Classes/Category";
+import { EasyTriviaError } from "../Classes/CustomErrors";
+import EasyTriviaUtil from "../Classes/EasyTriviaUtil";
 import {
   CategoryData,
   OpenTDBResponseCategoryData,
