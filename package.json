@@ -1,6 +1,6 @@
 {
   "name": "easy-trivia",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "A wrapper for the Open Trivia Database API. Built with TypeScript, works with VanillaJS.",
   "keywords": [
     "trivia",

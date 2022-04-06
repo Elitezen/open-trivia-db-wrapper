@@ -5,12 +5,12 @@ Easy Trivia is a small, simple and fast wrapper for [Open Trivia Database](https
 
 Join the Discord for updates: https://discord.gg/wtwM4HhbAr
 
-`discord-trivia` is almost ready: https://github.com/Elitezen/discord-trivia
+🎉 `discord-trivia` is now live!: https://www.npmjs.com/package/discord-trivia
 
 Support me: https://www.paypal.com/paypalme/alejandromuratalla
 
-# 2.1.2 Changelog
-View the list of changes in Easy Trivia 2.1.2:
+# Changelog
+View the list of changes in Easy Trivia 2.1.6:
 
 https://github.com/Elitezen/easy-trivia/wiki/Changelog
 
