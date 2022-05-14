@@ -2,6 +2,8 @@
 
 **open-trivia-db** is a small, simple and fast wrapper for [Open Trivia Database](https://opentdb.com/) - A Free to use, user-contributed trivia question database. Built with TypeScript, works with VanillaJS.
 
+Documentation: https://github.com/Elitezen/open-trivia-db-wrapper/wiki/Documentation
+
 Support me: https://www.paypal.com/paypalme/alejandromuratalla
 
 # Installation
@@ -19,10 +21,10 @@ You can provide `QuestionOptions` to describe the type of questions you want to 
 import { Category, getQuestions } from 'open-trivia-db';
 
 const questions = await getQuestions({
-   amount: 50, // 1 - 50
-   difficulty: 'easy', // or 'medium' or 'hard'
-   type: 'multiple', // or 'boolean (true/false)
-   category: Category.allNames.SCIENCE_COMPUTERS
+  amount: 50, // 1 - 50
+  difficulty: 'easy', // or 'medium' or 'hard'
+  type: 'multiple', // or 'boolean (true/false)
+  category: Category.allNames.SCIENCE_COMPUTERS
 });
 ```
 ### Output
@@ -148,7 +150,7 @@ session.end();
 # Documentation
 Documentation has been moved to a GitHub Wiki page:
 
-https://github.com/Elitezen/open-trivia-database/wiki/Documentation
+https://github.com/Elitezen/open-trivia-db-wrapper/wiki/Documentation
 
 # Support Me
 Any tip is greatly appreciated 😀

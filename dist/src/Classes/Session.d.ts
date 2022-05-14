@@ -2,7 +2,7 @@
 import { EventEmitter } from "stream";
 import { OpenTDBResponse } from "./CustomErrors";
 interface Session {
-    on(eventName: 'error', listener: (error: OpenTDBResponse) => unknown): this;
+    on(eventName: "error", listener: (error: OpenTDBResponse) => unknown): this;
 }
 /**
  * @class Class for starting OpenTDB API sessions
