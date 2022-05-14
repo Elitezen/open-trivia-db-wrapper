@@ -1,10 +1,16 @@
+import { EventEmitter } from "stream";
 import { OpenTDBResponseSession } from "../Typings/interfaces";
+import { OpenTDBResponse } from "./CustomErrors";
 import EasyTriviaUtil from "./EasyTriviaUtil";
+
+interface Session {
+  on(eventName: 'error', listener: (error:OpenTDBResponse) => unknown): this;
+}
 
 /**
  * @class Class for starting OpenTDB API sessions
  * */
-class Session {
+class Session extends EventEmitter implements Session {
   /**
    * The current session token
    */
@@ -64,3 +70,5 @@ class Session {
 }
 
 export default Session;
+
+const x = new Session();

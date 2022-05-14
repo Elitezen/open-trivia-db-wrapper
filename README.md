@@ -128,7 +128,7 @@ getCategoryData('GENERAL_KNOWLEDGE');
 A session ensures you do not get duplicate questions.
 
 ```js
-import { Categories, Session, getQuestions } from 'easy-trivia';
+import { Category, Session, getQuestions } from 'easy-trivia';
 
 const session = new Session();
 await session.start();
