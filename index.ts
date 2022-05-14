@@ -1,6 +1,6 @@
 import Category from "./src/Classes/Category";
-import { EasyTriviaError, OpenTDBResponse } from "./src/Classes/CustomErrors";
-import EasyTriviaUtil from "./src/Classes/EasyTriviaUtil";
+import { OpenTDBError, OpenTDBResponse } from "./src/Classes/CustomErrors";
+import OpenTDBUtil from "./src/Classes/OpenTDBUtil";
 import Session from "./src/Classes/Session";
 import Validator from "./src/Classes/Validator";
 import getCategoryData from "./src/Functions/getCategoryData";
@@ -50,9 +50,9 @@ import {
 
 export {
   Category,
-  EasyTriviaError,
+  OpenTDBError,
   OpenTDBResponse,
-  EasyTriviaUtil,
+  OpenTDBUtil,
   Session,
   Validator,
   getCategoryData,

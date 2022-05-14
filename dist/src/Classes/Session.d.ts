@@ -1,7 +1,13 @@
+/// <reference types="node" />
+import { EventEmitter } from "stream";
+import { OpenTDBResponse } from "./CustomErrors";
+interface Session {
+    on(eventName: 'error', listener: (error: OpenTDBResponse) => unknown): this;
+}
 /**
  * @class Class for starting OpenTDB API sessions
  * */
-declare class Session {
+declare class Session extends EventEmitter implements Session {
     /**
      * The current session token
      */

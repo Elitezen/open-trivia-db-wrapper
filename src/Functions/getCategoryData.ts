@@ -1,6 +1,6 @@
 import Category from "../Classes/Category";
-import { EasyTriviaError } from "../Classes/CustomErrors";
-import EasyTriviaUtil from "../Classes/EasyTriviaUtil";
+import { OpenTDBError } from "../Classes/CustomErrors";
+import OpenTDBUtil from "../Classes/OpenTDBUtil";
 import {
   CategoryData,
   OpenTDBResponseCategoryData,
@@ -17,14 +17,14 @@ export default async function getCategoryData(
 ): Promise<CategoryData> {
   const categoryId = Category.resolve(arg)?.id;
   if (!categoryId) {
-    throw new EasyTriviaError(
+    throw new OpenTDBError(
       `Given argument does not resolve into a trivia category`,
-      EasyTriviaError.errors.headers.INVALID_ARG
+      OpenTDBError.errors.headers.INVALID_ARG
     );
   }
 
-  const baseLink = EasyTriviaUtil.links.base.CATEGORY_DATA;
-  const data = (await EasyTriviaUtil.openTDBRequest(
+  const baseLink = OpenTDBUtil.links.base.CATEGORY_DATA;
+  const data = (await OpenTDBUtil.openTDBRequest(
     baseLink + categoryId
   )) as OpenTDBResponseCategoryData;
   const {

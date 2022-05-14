@@ -1,5 +1,5 @@
-import EasyTriviaUtil from "./EasyTriviaUtil";
-const { base64Decoder, openTDBRequest, shuffleArray } = EasyTriviaUtil;
+import OpenTDBUtil from "./OpenTDBUtil";
+const { base64Decoder, openTDBRequest, shuffleArray } = OpenTDBUtil;
 
 const testObj = {
   foo: "YmFy",
@@ -23,7 +23,7 @@ const resultObj = {
   },
 };
 
-test("Tests output of EasyTriviaUtil.base64Decoder functions", () => {
+test("Tests output of OpenTriviaDBUtil.base64Decoder functions", () => {
   expect(base64Decoder.atob("SGVsbG8gV29ybGQh")).toBe("Hello World!");
   expect(base64Decoder.decode(null)).toBe(null);
   expect(base64Decoder.decode(undefined)).toBe(undefined);
@@ -38,7 +38,7 @@ test("Tests output of EasyTriviaUtil.base64Decoder functions", () => {
   expect(base64Decoder.decodeObjectValues(testObj)).toStrictEqual(resultObj);
 });
 
-test("Tests output of EasyTriviaUtil.openTDBRequest()", () => {
+test("Tests output of OpenTriviaDBUtil.openTDBRequest()", () => {
   expect(openTDBRequest("")).rejects.toThrow();
 
   expect(openTDBRequest("...")).rejects.toThrow();
@@ -52,7 +52,7 @@ test("Tests output of EasyTriviaUtil.openTDBRequest()", () => {
   // expect(openTDBRequest('https://opentdb.com/api.php?amount=10').then(res => typeof res)).toBe({});
 });
 
-test("Tests output of EasyTriviaUtil.shuffleArray()", () => {
+test("Tests output of OpenTriviaDBUtil.shuffleArray()", () => {
   expect(() => shuffleArray(0 as unknown as [])).toThrow(TypeError);
   expect(() => shuffleArray("" as unknown as [])).toThrow(TypeError);
   expect(() => shuffleArray("..." as unknown as [])).toThrow(TypeError);

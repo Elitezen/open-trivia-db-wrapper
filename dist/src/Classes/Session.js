@@ -1,4 +1,19 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,16 +51,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var EasyTriviaUtil_1 = require("./EasyTriviaUtil");
+var stream_1 = require("stream");
+var CustomErrors_1 = require("./CustomErrors");
+var OpenTDBUtil_1 = require("./OpenTDBUtil");
 /**
  * @class Class for starting OpenTDB API sessions
  * */
-var Session = /** @class */ (function () {
+var Session = /** @class */ (function (_super) {
+    __extends(Session, _super);
     function Session() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
         /**
          * The current session token
          */
-        this.token = null;
+        _this.token = null;
+        return _this;
     }
     /**
      * Starts a new trivia session and assigns the new token to `Session#token`.
@@ -54,22 +74,21 @@ var Session = /** @class */ (function () {
      */
     Session.prototype.start = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var url, oldToken, data, newToken, EasyTriviaError, err_1;
+            var url, oldToken, data, newToken, err_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        url = EasyTriviaUtil_1.default.links.full.START_SESSION;
+                        url = OpenTDBUtil_1.default.links.full.START_SESSION;
                         oldToken = this.token;
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, EasyTriviaUtil_1.default.openTDBRequest(url)];
+                        return [4 /*yield*/, OpenTDBUtil_1.default.openTDBRequest(url)];
                     case 2:
                         data = (_a.sent());
                         newToken = data.token;
                         if (newToken === null || oldToken == newToken) {
-                            EasyTriviaError = require("../classes/Errors").EasyTriviaError;
-                            throw new EasyTriviaError("This trivia's session token unexpectedly failed to update", EasyTriviaError.errors.headers.FAILED_REQUEST);
+                            throw new CustomErrors_1.OpenTDBError("This trivia's session token unexpectedly failed to update", CustomErrors_1.OpenTDBError.errors.headers.FAILED_REQUEST);
                         }
                         else {
                             this.token = newToken;
@@ -95,11 +114,11 @@ var Session = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        url = EasyTriviaUtil_1.default.links.base.RESET_SESSION + this.token;
+                        url = OpenTDBUtil_1.default.links.base.RESET_SESSION + this.token;
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, EasyTriviaUtil_1.default.openTDBRequest(url)];
+                        return [4 /*yield*/, OpenTDBUtil_1.default.openTDBRequest(url)];
                     case 2:
                         data = (_a.sent());
                         return [2 /*return*/, data.token];
@@ -116,5 +135,6 @@ var Session = /** @class */ (function () {
         this.token = null;
     };
     return Session;
-}());
+}(stream_1.EventEmitter));
 exports.default = Session;
+var x = new Session();

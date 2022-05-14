@@ -1,11 +1,11 @@
 import { OpenTDBResponseCode } from "../Typings/types";
-import EasyTriviaUtil from "./EasyTriviaUtil";
+import OpenTDBUtil from "./OpenTDBUtil";
 
 /**
  * @class Error class for library errors.
  * @extends TypeError
  */
-class EasyTriviaError extends TypeError {
+class OpenTDBError extends TypeError {
   public static readonly errors = {
     headers: {
       EMPTY_RESPONSE: "EMPTY_RESPONSE",
@@ -22,23 +22,23 @@ class EasyTriviaError extends TypeError {
 
   constructor(message: string, header: string) {
     if (typeof message != "string")
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `Expected a string for 'message', recieved ${typeof message}`,
-        EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG
+        OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG
       );
     if (typeof header != "string")
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `Expected a string for 'header', recieved ${typeof header}`,
-        EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG
+        OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG
       );
     if (!message.length || !header.length)
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `Supplied strings must not be empty`,
-        EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG
+        OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG
       );
 
     super(message);
-    this.name = `EasyTriviaError [${header}]`;
+    this.name = `OpenTDBError [${header}]`;
   }
 }
 
@@ -49,15 +49,15 @@ class EasyTriviaError extends TypeError {
 class OpenTDBResponse extends Error {
   constructor(errorCode: OpenTDBResponseCode) {
     if (errorCode < 0 || errorCode > 4)
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `The given number (${errorCode}) for 'errorCode' is not a valid OpenTDBResponseCode (range 0 - 4)`,
-        EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG
+        OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG
       );
-    const { name, message } = EasyTriviaUtil.apiResponses[errorCode];
+    const { name, message } = OpenTDBUtil.apiResponses[errorCode];
 
     super(message);
     this.name = `OpenTDBResponse [${name}]`;
   }
 }
 
-export { EasyTriviaError, OpenTDBResponse };
+export { OpenTDBError, OpenTDBResponse };

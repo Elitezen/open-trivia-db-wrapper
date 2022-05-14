@@ -15,27 +15,27 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OpenTDBResponse = exports.EasyTriviaError = void 0;
-var EasyTriviaUtil_1 = require("./EasyTriviaUtil");
+exports.OpenTDBResponse = exports.OpenTDBError = void 0;
+var OpenTDBUtil_1 = require("./OpenTDBUtil");
 /**
  * @class Error class for library errors.
  * @extends TypeError
  */
-var EasyTriviaError = /** @class */ (function (_super) {
-    __extends(EasyTriviaError, _super);
-    function EasyTriviaError(message, header) {
+var OpenTDBError = /** @class */ (function (_super) {
+    __extends(OpenTDBError, _super);
+    function OpenTDBError(message, header) {
         var _this = this;
         if (typeof message != "string")
-            throw new EasyTriviaError("Expected a string for 'message', recieved ".concat(typeof message), EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
+            throw new OpenTDBError("Expected a string for 'message', recieved ".concat(typeof message), OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG);
         if (typeof header != "string")
-            throw new EasyTriviaError("Expected a string for 'header', recieved ".concat(typeof header), EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
+            throw new OpenTDBError("Expected a string for 'header', recieved ".concat(typeof header), OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG);
         if (!message.length || !header.length)
-            throw new EasyTriviaError("Supplied strings must not be empty", EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
+            throw new OpenTDBError("Supplied strings must not be empty", OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG);
         _this = _super.call(this, message) || this;
-        _this.name = "EasyTriviaError [".concat(header, "]");
+        _this.name = "OpenTDBError [".concat(header, "]");
         return _this;
     }
-    EasyTriviaError.errors = {
+    OpenTDBError.errors = {
         headers: {
             EMPTY_RESPONSE: "EMPTY_RESPONSE",
             FAILED_REQUEST: "FAILED_REQUEST",
@@ -48,9 +48,9 @@ var EasyTriviaError = /** @class */ (function (_super) {
             MISSING_ARG: "MISSING_ARGUMENT",
         },
     };
-    return EasyTriviaError;
+    return OpenTDBError;
 }(TypeError));
-exports.EasyTriviaError = EasyTriviaError;
+exports.OpenTDBError = OpenTDBError;
 /**
  * @class Error class for OpenTDB API response errors.
  * @extends Error
@@ -60,8 +60,8 @@ var OpenTDBResponse = /** @class */ (function (_super) {
     function OpenTDBResponse(errorCode) {
         var _this = this;
         if (errorCode < 0 || errorCode > 4)
-            throw new EasyTriviaError("The given number (".concat(errorCode, ") for 'errorCode' is not a valid OpenTDBResponseCode (range 0 - 4)"), EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
-        var _a = EasyTriviaUtil_1.default.apiResponses[errorCode], name = _a.name, message = _a.message;
+            throw new OpenTDBError("The given number (".concat(errorCode, ") for 'errorCode' is not a valid OpenTDBResponseCode (range 0 - 4)"), OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG);
+        var _a = OpenTDBUtil_1.default.apiResponses[errorCode], name = _a.name, message = _a.message;
         _this = _super.call(this, message) || this;
         _this.name = "OpenTDBResponse [".concat(name, "]");
         return _this;

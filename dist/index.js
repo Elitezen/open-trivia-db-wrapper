@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QuestionVersions = exports.QuestionTypes = exports.QuestionEncodings = exports.QuestionDifficulties = exports.QuestionAmountRange = exports.CategoryNamesPretty = exports.CategoryNameVersions = exports.CategoryNamesStrict = exports.getQuestions = exports.getCategoryData = exports.Validator = exports.Session = exports.EasyTriviaUtil = exports.OpenTDBResponse = exports.EasyTriviaError = exports.Category = void 0;
+exports.QuestionVersions = exports.QuestionTypes = exports.QuestionEncodings = exports.QuestionDifficulties = exports.QuestionAmountRange = exports.CategoryNamesPretty = exports.CategoryNameVersions = exports.CategoryNamesStrict = exports.getQuestions = exports.getCategoryData = exports.Validator = exports.Session = exports.OpenTDBUtil = exports.OpenTDBResponse = exports.OpenTDBError = exports.Category = void 0;
 var Category_1 = require("./src/Classes/Category");
 exports.Category = Category_1.default;
 var CustomErrors_1 = require("./src/Classes/CustomErrors");
-Object.defineProperty(exports, "EasyTriviaError", { enumerable: true, get: function () { return CustomErrors_1.EasyTriviaError; } });
+Object.defineProperty(exports, "OpenTDBError", { enumerable: true, get: function () { return CustomErrors_1.OpenTDBError; } });
 Object.defineProperty(exports, "OpenTDBResponse", { enumerable: true, get: function () { return CustomErrors_1.OpenTDBResponse; } });
-var EasyTriviaUtil_1 = require("./src/Classes/EasyTriviaUtil");
-exports.EasyTriviaUtil = EasyTriviaUtil_1.default;
+var OpenTDBUtil_1 = require("./src/Classes/OpenTDBUtil");
+exports.OpenTDBUtil = OpenTDBUtil_1.default;
 var Session_1 = require("./src/Classes/Session");
 exports.Session = Session_1.default;
 var Validator_1 = require("./src/Classes/Validator");

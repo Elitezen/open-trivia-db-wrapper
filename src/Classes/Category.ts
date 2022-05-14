@@ -5,7 +5,7 @@ import {
   CategoryResolvableType,
   NumberResolvable,
 } from "../Typings/types";
-import { EasyTriviaError } from "./CustomErrors";
+import { OpenTDBError } from "./CustomErrors";
 import { CategoryNamesStrict, CategoryNamesPretty } from "../Typings/enums";
 import getCategoryData from "../Functions/getCategoryData";
 import { CategoryData, Question } from "../Typings/interfaces";
@@ -47,9 +47,9 @@ export default class Category {
     } else if (Category.isNameResolvable(arg as CategoryNameResolvable)) {
       this.id = Category.nameToId(arg as CategoryName<"Pretty" | "Strict">)!;
     } else {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         "Given argument could not be resolved into a category",
-        EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG
+        OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG
       );
     }
 

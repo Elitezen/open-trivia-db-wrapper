@@ -5,7 +5,7 @@ import {
   RawQuestion,
 } from "../Typings/interfaces";
 import { QuestionEncodings } from "../Typings/enums";
-import EasyTriviaUtil from "../Classes/EasyTriviaUtil";
+import OpenTDBUtil from "../Classes/OpenTDBUtil";
 import { QuestionOptionsDefaults } from "../Typings/types";
 import Category from "../Classes/Category";
 import Session from "../Classes/Session";
@@ -30,7 +30,7 @@ import Session from "../Classes/Session";
 export default async function getQuestions(
   options?: QuestionOptions
 ): Promise<Question[]> {
-  const link = EasyTriviaUtil.links.base.GET_QUESTIONS;
+  const link = OpenTDBUtil.links.base.GET_QUESTIONS;
   const defaultOptions: QuestionOptionsDefaults = {
     amount: 10,
     encode: QuestionEncodings.none,
@@ -49,16 +49,16 @@ export default async function getQuestions(
   const filledOptions = Object.assign(defaultOptions, options);
   const targetEncode = filledOptions.encode;
 
-  const finalOptions = EasyTriviaUtil.finalizeOptions(filledOptions);
-  const finalLink = EasyTriviaUtil.generateQueryString(link, finalOptions);
-  const data = (await EasyTriviaUtil.openTDBRequest(
+  const finalOptions = OpenTDBUtil.finalizeOptions(filledOptions);
+  const finalLink = OpenTDBUtil.generateQueryString(link, finalOptions);
+  const data = (await OpenTDBUtil.openTDBRequest(
     finalLink
   )) as OpenTDBResponseDefault<RawQuestion>;
 
-  let questions: Question[] = EasyTriviaUtil.parseRawQuestions(data.results);
+  let questions: Question[] = OpenTDBUtil.parseRawQuestions(data.results);
   if (targetEncode == "none" && finalOptions.encode == "base64") {
     questions = questions.map((q) =>
-      EasyTriviaUtil.base64Decoder.decodeObjectValues(q)
+      OpenTDBUtil.base64Decoder.decodeObjectValues(q)
     );
   }
 

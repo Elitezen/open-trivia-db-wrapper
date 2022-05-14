@@ -6,7 +6,7 @@ import {
   QuestionType,
 } from "../Typings/types";
 import Category from "./Category";
-import { EasyTriviaError } from "./CustomErrors";
+import { OpenTDBError } from "./CustomErrors";
 
 export default class Validator {
   private readonly options: QuestionOptions;
@@ -38,38 +38,38 @@ export default class Validator {
 
     if (typeof amount == "number") {
       if (amount % 1 !== 0)
-        throw new EasyTriviaError(
+        throw new OpenTDBError(
           "'amount' option for QuestionOptions must be a whole integer",
-          EasyTriviaError.errors.headers.INVALID_OPT
+          OpenTDBError.errors.headers.INVALID_OPT
         );
       else if (
         amount < QuestionAmountRange.Min ||
         amount > QuestionAmountRange.Max
       )
-        throw new EasyTriviaError(
+        throw new OpenTDBError(
           `'amount' option for QuestionOptions must be from ${QuestionAmountRange.Min} to ${QuestionAmountRange.Max}`,
-          EasyTriviaError.errors.headers.INVALID_OPT
+          OpenTDBError.errors.headers.INVALID_OPT
         );
       else return amount;
     } else if (typeof amount == "string") {
       if (isNaN(+amount))
-        throw new EasyTriviaError(
+        throw new OpenTDBError(
           "'amount' option for QuestionOptions must be of type number or string number",
-          EasyTriviaError.errors.headers.INVALID_OPT
+          OpenTDBError.errors.headers.INVALID_OPT
         );
       else if (
         +amount < QuestionAmountRange.Min ||
         +amount > QuestionAmountRange.Max
       )
-        throw new EasyTriviaError(
+        throw new OpenTDBError(
           `'amount' option for QuestionOptions must from ${QuestionAmountRange.Min} to ${QuestionAmountRange.Max}`,
-          EasyTriviaError.errors.headers.INVALID_OPT
+          OpenTDBError.errors.headers.INVALID_OPT
         );
       else return parseInt(amount);
     } else {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'amount' option for QuestionOptions must be of type number or string number, received ${typeof amount}`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
   }
@@ -83,18 +83,18 @@ export default class Validator {
         const id = Category.nameToId(category as string);
 
         if (id === null) {
-          throw new EasyTriviaError(
+          throw new OpenTDBError(
             `'category' option (${category}) for QuestionOptions does not resolve into a trivia category name`,
-            EasyTriviaError.errors.headers.INVALID_OPT
+            OpenTDBError.errors.headers.INVALID_OPT
           );
         }
 
         return id;
       } else {
         if (!Category.isIdResolvable(+category)) {
-          throw new EasyTriviaError(
+          throw new OpenTDBError(
             `'category' option (${category}) for QuestionOptions does not resolve into a trivia category id`,
-            EasyTriviaError.errors.headers.INVALID_OPT
+            OpenTDBError.errors.headers.INVALID_OPT
           );
         }
 
@@ -102,17 +102,17 @@ export default class Validator {
       }
     } else if (typeof category == "number") {
       if (!Category.isIdResolvable(+category)) {
-        throw new EasyTriviaError(
+        throw new OpenTDBError(
           `'category' option (${category}) for QuestionOptions does not resolve into a trivia category id`,
-          EasyTriviaError.errors.headers.INVALID_OPT
+          OpenTDBError.errors.headers.INVALID_OPT
         );
       }
 
       return category;
     } else {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'category' option ("${category}") for QuestionOptions does not resolve into a trivia category name`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
   }
@@ -122,17 +122,17 @@ export default class Validator {
 
     if (difficulty === undefined || difficulty === null) return null;
     if (typeof difficulty != "string") {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'difficulty' option for QuestionOptions must be of type string, received ${typeof difficulty}`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
 
     const values: QuestionDifficulty[] = ["easy", "medium", "hard"];
     if (!values.includes(difficulty)) {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'difficulty' option ("${difficulty}") for QuestionOptions does not resolve into a question difficulty`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
 
@@ -144,9 +144,9 @@ export default class Validator {
 
     if (encode === undefined || encode === null) return null;
     if (typeof encode != "string") {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'encode' option for QuestionOptions must be of type string, received ${typeof encode}`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
 
@@ -157,9 +157,9 @@ export default class Validator {
       "urlLegacy",
     ];
     if (!values.includes(encode)) {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'encode' option ("${encode}") for QuestionOptions does not resolve into a question encode`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
 
@@ -171,14 +171,14 @@ export default class Validator {
     if (token === undefined || token === null) return null;
 
     if (typeof token != "string") {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'session' option for QuestionOptions must be of type string or session`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     } else if (!token.length) {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'session' option for QuestionOptions must not be an empty string`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
 
@@ -190,17 +190,17 @@ export default class Validator {
 
     if (type === undefined || type === null) return null;
     if (typeof type != "string") {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'type' option for QuestionOptions must be of type string, received ${typeof type}`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
 
     const values: QuestionType[] = ["boolean", "multiple"];
     if (!values.includes(type)) {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'type' option ("${type}") for QuestionOptions does not resolve into a question type`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
 
@@ -214,18 +214,18 @@ export default class Validator {
         const id = Category.nameToId(category as string);
 
         if (id === null) {
-          throw new EasyTriviaError(
+          throw new OpenTDBError(
             `'category' option (${category}) for QuestionOptions does not resolve into a trivia category name`,
-            EasyTriviaError.errors.headers.INVALID_OPT
+            OpenTDBError.errors.headers.INVALID_OPT
           );
         }
 
         return id;
       } else {
         if (!Category.isIdResolvable(+category)) {
-          throw new EasyTriviaError(
+          throw new OpenTDBError(
             `'category' option (${category}) for QuestionOptions does not resolve into a trivia category id`,
-            EasyTriviaError.errors.headers.INVALID_OPT
+            OpenTDBError.errors.headers.INVALID_OPT
           );
         }
 
@@ -233,17 +233,17 @@ export default class Validator {
       }
     } else if (typeof category == "number") {
       if (!Category.isIdResolvable(+category)) {
-        throw new EasyTriviaError(
+        throw new OpenTDBError(
           `'category' option (${category}) for QuestionOptions does not resolve into a trivia category id`,
-          EasyTriviaError.errors.headers.INVALID_OPT
+          OpenTDBError.errors.headers.INVALID_OPT
         );
       }
 
       return category;
     } else {
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'category' option ("${category}") for QuestionOptions does not resolve into a trivia category name`,
-        EasyTriviaError.errors.headers.INVALID_OPT
+        OpenTDBError.errors.headers.INVALID_OPT
       );
     }
   }

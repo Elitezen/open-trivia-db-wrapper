@@ -61,7 +61,7 @@ var Category = /** @class */ (function () {
             this.id = Category.nameToId(arg);
         }
         else {
-            throw new CustomErrors_1.EasyTriviaError("Given argument could not be resolved into a category", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_CONSTRUCTOR_ARG);
+            throw new CustomErrors_1.OpenTDBError("Given argument could not be resolved into a category", CustomErrors_1.OpenTDBError.errors.headers.INVALID_CONSTRUCTOR_ARG);
         }
         this.strictName = Category.idToStrictName(this.id);
         this.prettyName = Category.idToPrettyName(this.id);

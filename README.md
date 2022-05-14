@@ -1,23 +1,13 @@
-# Easy Trivia
 ![OpenTriviaDB](https://i.imgur.com/QBhF5aY.png)
 
-Easy Trivia is a small, simple and fast wrapper for [Open Trivia Database](https://opentdb.com/) - A Free to use, user-contributed trivia question database. Built with TypeScript, works with VanillaJS.
-
-Join the Discord for updates: https://discord.gg/wtwM4HhbAr
-
-🎉 `discord-trivia` is now live!: https://www.npmjs.com/package/discord-trivia
+**open-trivia-db** is a small, simple and fast wrapper for [Open Trivia Database](https://opentdb.com/) - A Free to use, user-contributed trivia question database. Built with TypeScript, works with VanillaJS.
 
 Support me: https://www.paypal.com/paypalme/alejandromuratalla
-
-# Changelog
-View the list of changes in Easy Trivia 2.1.6:
-
-https://github.com/Elitezen/easy-trivia/wiki/Changelog
 
 # Installation
 Ensure you are using Node version 14 or higher and that your enviroment contains the `https` module.
 ```sh-session
-npm i easy-trivia
+npm i open-trivia-db
 ```
 
 # Example Usage
@@ -26,7 +16,7 @@ The following examples make use of the [Async/Await](https://developer.mozilla.o
 ## Fetching Questions
 You can provide `QuestionOptions` to describe the type of questions you want to recieve.
 ```js
-import { Category, getQuestions } from 'easy-trivia';
+import { Category, getQuestions } from 'open-trivia-db';
 
 const questions = await getQuestions({
    amount: 50, // 1 - 50
@@ -128,7 +118,7 @@ getCategoryData('GENERAL_KNOWLEDGE');
 A session ensures you do not get duplicate questions.
 
 ```js
-import { Category, Session, getQuestions } from 'easy-trivia';
+import { Category, Session, getQuestions } from 'open-trivia-db';
 
 const session = new Session();
 await session.start();
@@ -158,7 +148,7 @@ session.end();
 # Documentation
 Documentation has been moved to a GitHub Wiki page:
 
-https://github.com/Elitezen/easy-trivia/wiki/Documentation
+https://github.com/Elitezen/open-trivia-database/wiki/Documentation
 
 # Support Me
 Any tip is greatly appreciated 😀

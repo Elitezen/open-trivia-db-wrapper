@@ -3,7 +3,7 @@ import { OpenTDBResponseCode } from "../Typings/types";
  * @class Error class for library errors.
  * @extends TypeError
  */
-declare class EasyTriviaError extends TypeError {
+declare class OpenTDBError extends TypeError {
     static readonly errors: {
         headers: {
             EMPTY_RESPONSE: string;
@@ -26,4 +26,4 @@ declare class EasyTriviaError extends TypeError {
 declare class OpenTDBResponse extends Error {
     constructor(errorCode: OpenTDBResponseCode);
 }
-export { EasyTriviaError, OpenTDBResponse };
+export { OpenTDBError, OpenTDBResponse };

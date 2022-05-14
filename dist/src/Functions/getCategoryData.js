@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var Category_1 = require("../Classes/Category");
 var CustomErrors_1 = require("../Classes/CustomErrors");
-var EasyTriviaUtil_1 = require("../Classes/EasyTriviaUtil");
+var OpenTDBUtil_1 = require("../Classes/OpenTDBUtil");
 /**
  * Fetches a trivia category's data.
  * @param {CategoryResolvable} arg An argument resolving to a trivia category.
@@ -53,10 +53,10 @@ function getCategoryData(arg) {
                 case 0:
                     categoryId = (_a = Category_1.default.resolve(arg)) === null || _a === void 0 ? void 0 : _a.id;
                     if (!categoryId) {
-                        throw new CustomErrors_1.EasyTriviaError("Given argument does not resolve into a trivia category", CustomErrors_1.EasyTriviaError.errors.headers.INVALID_ARG);
+                        throw new CustomErrors_1.OpenTDBError("Given argument does not resolve into a trivia category", CustomErrors_1.OpenTDBError.errors.headers.INVALID_ARG);
                     }
-                    baseLink = EasyTriviaUtil_1.default.links.base.CATEGORY_DATA;
-                    return [4 /*yield*/, EasyTriviaUtil_1.default.openTDBRequest(baseLink + categoryId)];
+                    baseLink = OpenTDBUtil_1.default.links.base.CATEGORY_DATA;
+                    return [4 /*yield*/, OpenTDBUtil_1.default.openTDBRequest(baseLink + categoryId)];
                 case 1:
                     data = (_c.sent());
                     id = data.category_id, _b = data.category_question_count, total = _b.total_question_count, forEasy = _b.total_easy_question_count, forMedium = _b.total_medium_question_count, forHard = _b.total_hard_question_count;

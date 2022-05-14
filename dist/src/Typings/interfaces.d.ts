@@ -74,8 +74,8 @@ export interface RawQuestion extends QuestionBase {
 export interface Question extends QuestionBase {
     value: string;
     correctAnswer: string;
-    incorrectAnswers: string[];
-    allAnswers: string[];
+    incorrectAnswers: string[] | [boolean];
+    allAnswers: string[] | [boolean, boolean];
     checkAnswer(arg: string): boolean;
 }
 /**

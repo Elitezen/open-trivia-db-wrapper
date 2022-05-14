@@ -1,10 +1,10 @@
 import { EventEmitter } from "stream";
 import { OpenTDBResponseSession } from "../Typings/interfaces";
-import { OpenTDBResponse } from "./CustomErrors";
-import EasyTriviaUtil from "./EasyTriviaUtil";
+import { OpenTDBError, OpenTDBResponse } from "./CustomErrors";
+import OpenTDBUtil from "./OpenTDBUtil";
 
 interface Session {
-  on(eventName: 'error', listener: (error:OpenTDBResponse) => unknown): this;
+  on(eventName: "error", listener: (error: OpenTDBResponse) => unknown): this;
 }
 
 /**
@@ -22,19 +22,18 @@ class Session extends EventEmitter implements Session {
    * @returns {Promise<string>} The session token.
    */
   public async start(): Promise<string> {
-    const url = EasyTriviaUtil.links.full.START_SESSION;
+    const url = OpenTDBUtil.links.full.START_SESSION;
     const oldToken = this.token;
 
     try {
-      const data = (await EasyTriviaUtil.openTDBRequest(
+      const data = (await OpenTDBUtil.openTDBRequest(
         url
       )) as OpenTDBResponseSession;
       const { token: newToken } = data;
       if (newToken === null || oldToken == newToken) {
-        const { EasyTriviaError } = require("../classes/Errors");
-        throw new EasyTriviaError(
+        throw new OpenTDBError(
           "This trivia's session token unexpectedly failed to update",
-          EasyTriviaError.errors.headers.FAILED_REQUEST
+          OpenTDBError.errors.headers.FAILED_REQUEST
         );
       } else {
         this.token = newToken;
@@ -51,10 +50,10 @@ class Session extends EventEmitter implements Session {
    * @returns {Promise<string>} The current session token.
    */
   async reset(): Promise<string | void> {
-    const url = EasyTriviaUtil.links.base.RESET_SESSION + this.token;
+    const url = OpenTDBUtil.links.base.RESET_SESSION + this.token;
 
     try {
-      const data = (await EasyTriviaUtil.openTDBRequest(
+      const data = (await OpenTDBUtil.openTDBRequest(
         url
       )) as OpenTDBResponseSession;
       return data.token;

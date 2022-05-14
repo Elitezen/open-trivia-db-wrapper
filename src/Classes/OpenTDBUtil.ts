@@ -6,10 +6,10 @@ import {
   QuestionEncoding,
   QuestionType,
 } from "../Typings/types";
-import { EasyTriviaError, OpenTDBResponse } from "./CustomErrors";
+import { OpenTDBError, OpenTDBResponse } from "./CustomErrors";
 import Validator from "./Validator";
 
-export default class EasyTriviaUtil {
+export default class OpenTDBUtil {
   public static apiResponses = [
     { name: "SUCCESS", message: "Successful response" },
     {
@@ -56,12 +56,12 @@ export default class EasyTriviaUtil {
 
   public static openTDBRequest(url: string) {
     if (url === undefined)
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         "'url' argument is required, received undefined",
         "missing_argument"
       );
     if (typeof url != "string")
-      throw new EasyTriviaError(
+      throw new OpenTDBError(
         `'url' argument must be of type string, received ${typeof url}`,
         "invalid_argument"
       );
@@ -86,9 +86,9 @@ export default class EasyTriviaUtil {
               reject(err);
             }
           } else {
-            throw new EasyTriviaError(
+            throw new OpenTDBError(
               "API responded with no data",
-              EasyTriviaError.errors.headers.EMPTY_RESPONSE
+              OpenTDBError.errors.headers.EMPTY_RESPONSE
             );
           }
         });
@@ -189,7 +189,7 @@ export default class EasyTriviaUtil {
         difficulty: q.difficulty,
         correctAnswer: q.correct_answer,
         incorrectAnswers: q.incorrect_answers,
-        allAnswers: EasyTriviaUtil.shuffleArray([
+        allAnswers: OpenTDBUtil.shuffleArray([
           q.correct_answer,
           ...q.incorrect_answers,
         ]),

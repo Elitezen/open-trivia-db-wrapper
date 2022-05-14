@@ -37,7 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var enums_1 = require("../Typings/enums");
-var EasyTriviaUtil_1 = require("../Classes/EasyTriviaUtil");
+var OpenTDBUtil_1 = require("../Classes/OpenTDBUtil");
 var Category_1 = require("../Classes/Category");
 var Session_1 = require("../Classes/Session");
 /**
@@ -63,7 +63,7 @@ function getQuestions(options) {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    link = EasyTriviaUtil_1.default.links.base.GET_QUESTIONS;
+                    link = OpenTDBUtil_1.default.links.base.GET_QUESTIONS;
                     defaultOptions = {
                         amount: 10,
                         encode: enums_1.QuestionEncodings.none,
@@ -77,15 +77,15 @@ function getQuestions(options) {
                     }
                     filledOptions = Object.assign(defaultOptions, options);
                     targetEncode = filledOptions.encode;
-                    finalOptions = EasyTriviaUtil_1.default.finalizeOptions(filledOptions);
-                    finalLink = EasyTriviaUtil_1.default.generateQueryString(link, finalOptions);
-                    return [4 /*yield*/, EasyTriviaUtil_1.default.openTDBRequest(finalLink)];
+                    finalOptions = OpenTDBUtil_1.default.finalizeOptions(filledOptions);
+                    finalLink = OpenTDBUtil_1.default.generateQueryString(link, finalOptions);
+                    return [4 /*yield*/, OpenTDBUtil_1.default.openTDBRequest(finalLink)];
                 case 1:
                     data = (_a.sent());
-                    questions = EasyTriviaUtil_1.default.parseRawQuestions(data.results);
+                    questions = OpenTDBUtil_1.default.parseRawQuestions(data.results);
                     if (targetEncode == "none" && finalOptions.encode == "base64") {
                         questions = questions.map(function (q) {
-                            return EasyTriviaUtil_1.default.base64Decoder.decodeObjectValues(q);
+                            return OpenTDBUtil_1.default.base64Decoder.decodeObjectValues(q);
                         });
                     }
                     return [2 /*return*/, questions];
