@@ -1,4 +1,3 @@
-import { get } from "https";
 import { Question, QuestionOptions, RawQuestion } from "../Typings/interfaces";
 import {
   OpenTDBResponseCode,
@@ -67,35 +66,17 @@ export default class OpenTDBUtil {
       );
 
     return new Promise((resolve, reject) => {
-      let data = "";
-      const req = get(url, (res) => {
-        res.on("data", (chunk) => (data += chunk));
-        res.on("error", reject);
-        res.on("end", () => {
-          if (data.length > 0) {
-            try {
-              const body = JSON.parse(data);
-              const responseCode = (body?.response_code?.toString?.() ||
-                null) as OpenTDBResponseCode | null;
-              if (responseCode) {
-                if (responseCode > 0) throw new OpenTDBResponse(responseCode);
-              }
-
-              resolve(body);
-            } catch (err) {
-              reject(err);
-            }
-          } else {
-            throw new OpenTDBError(
-              "API responded with no data",
-              OpenTDBError.errors.headers.EMPTY_RESPONSE
-            );
+      fetch(url)
+        .then(req => req.json())
+        .then(data => {
+          const responseCode = (data?.response_code?.toString?.() ||
+            null) as OpenTDBResponseCode | null;
+          if (responseCode) {
+            if (responseCode > 0) throw new OpenTDBResponse(responseCode);
           }
-        });
-      });
 
-      req.on("error", reject);
-      req.end();
+          resolve(data);
+        });
     });
   }
 

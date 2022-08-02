@@ -6,10 +6,16 @@ Documentation: https://github.com/Elitezen/open-trivia-db-wrapper/wiki/Documenta
 
 Support me: https://www.paypal.com/paypalme/alejandromuratalla
 
+## Updates
+### 1.0.2
+- Switched from https module to Node Fetch API (now requires Node 18)
+
 # Installation
 Ensure you are using Node version 14 or higher and that your enviroment contains the `https` module.
 ```sh-session
-npm i open-trivia-db
+npm i open-trivia-db // Requires NodeJS 18 or higher
+
+npm i open-trivia-db@1.0.1 // Below NodeJS 18
 ```
 
 # Example Usage
