@@ -1,3 +1,4 @@
+import { CategoryType } from "../Typings/enums";
 import {
   CategoryName,
   CategoryNameResolvable,
@@ -181,7 +182,7 @@ test("Test outputs of Category.strictToPrettyName()", () => {
   expect(
     Category.strictToPrettyName("General Knowledge" as CategoryName<"Strict">)
   ).toBe(null);
-  expect(Category.strictToPrettyName("GENERAL_KNOWLEDGE")).toBe(
+  expect(Category.strictToPrettyName("GeneralKnowledge")).toBe(
     "General Knowledge"
   );
   expect(
@@ -190,7 +191,7 @@ test("Test outputs of Category.strictToPrettyName()", () => {
     )
   ).toBe(null);
   expect(
-    Category.strictToPrettyName("ENTERTAINMENT_CARTOON_AND_ANIMATIONS")
+    Category.strictToPrettyName("EntertainmentCartoonAndAnimations")
   ).toBe("Entertainment: Cartoon and Animations");
 });
 
@@ -214,10 +215,10 @@ test("Tests outputs for Category.random()", () => {
     Category.random(true as unknown as CategoryResolvableType)
   ).toBeLessThanOrEqual(32);
 
-  expect(Category.random("ID")).toBeGreaterThanOrEqual(9);
-  expect(Category.random("ID")).toBeLessThanOrEqual(32);
+  expect(Category.random(CategoryType.Id)).toBeGreaterThanOrEqual(9);
+  expect(Category.random(CategoryType.Id)).toBeLessThanOrEqual(32);
 
-  expect(typeof Category.random("NAME")).toBe("string");
+  expect(typeof Category.random(CategoryType.Name)).toBe("string");
 });
 
 test("Tests outputs for Category.resolve()", () => {

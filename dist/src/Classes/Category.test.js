@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var enums_1 = require("../Typings/enums");
 var Category_1 = require("./Category");
 function createInstance(arg) {
     return new Category_1.default(arg);
@@ -94,9 +95,9 @@ test("Test outputs of Category.strictToPrettyName()", function () {
     expect(Category_1.default.strictToPrettyName("text")).toBe(null);
     expect(Category_1.default.strictToPrettyName(true)).toBe(null);
     expect(Category_1.default.strictToPrettyName("General Knowledge")).toBe(null);
-    expect(Category_1.default.strictToPrettyName("GENERAL_KNOWLEDGE")).toBe("General Knowledge");
+    expect(Category_1.default.strictToPrettyName("GeneralKnowledge")).toBe("General Knowledge");
     expect(Category_1.default.strictToPrettyName("Entertainment: Cartoon and Animations")).toBe(null);
-    expect(Category_1.default.strictToPrettyName("ENTERTAINMENT_CARTOON_AND_ANIMATIONS")).toBe("Entertainment: Cartoon and Animations");
+    expect(Category_1.default.strictToPrettyName("EntertainmentCartoonAndAnimations")).toBe("Entertainment: Cartoon and Animations");
 });
 test("Tests outputs for Category.random()", function () {
     expect(Category_1.default.random(1)).toBeGreaterThanOrEqual(9);
@@ -105,9 +106,9 @@ test("Tests outputs for Category.random()", function () {
     expect(Category_1.default.random({})).toBeLessThanOrEqual(32);
     expect(Category_1.default.random(true)).toBeGreaterThanOrEqual(9);
     expect(Category_1.default.random(true)).toBeLessThanOrEqual(32);
-    expect(Category_1.default.random("ID")).toBeGreaterThanOrEqual(9);
-    expect(Category_1.default.random("ID")).toBeLessThanOrEqual(32);
-    expect(typeof Category_1.default.random("NAME")).toBe("string");
+    expect(Category_1.default.random(enums_1.CategoryType.Id)).toBeGreaterThanOrEqual(9);
+    expect(Category_1.default.random(enums_1.CategoryType.Id)).toBeLessThanOrEqual(32);
+    expect(typeof Category_1.default.random(enums_1.CategoryType.Name)).toBe("string");
 });
 test("Tests outputs for Category.resolve()", function () {
     expect(Category_1.default.resolve(8)).toBe(null);

@@ -7,6 +7,7 @@ import {
   QuestionTypes,
   QuestionEncodings,
   QuestionVersions,
+  CategoryType,
 } from "./enums";
 import { QuestionOptions } from "./interfaces";
 import Category from "../Classes/Category";
@@ -18,11 +19,11 @@ export type CategoryName<T extends CategoryNameVersion = "Strict"> =
 export type CategoryNameVersion = keyof typeof CategoryNameVersions;
 export type CategoryNamePretty = keyof typeof CategoryNamesPretty;
 export type CategoryNameStrict = keyof typeof CategoryNamesStrict;
+export type CategoryResolvableType = CategoryType;
 export type CategoryResolvable =
   | CategoryNameResolvable
   | CategoryIdResolvable
   | Category;
-export type CategoryResolvableType = "ID" | "NAME";
 export type NumberResolvable = `${number}` | number;
 export type OpenTDBResponseCode = 0 | 1 | 2 | 3 | 4;
 export type Questions<T extends QuestionVersion = "Final"> = T extends "Raw"

@@ -66,7 +66,7 @@ function getQuestions(options) {
                     link = OpenTDBUtil_1.default.links.base.GET_QUESTIONS;
                     defaultOptions = {
                         amount: 10,
-                        encode: enums_1.QuestionEncodings.none,
+                        encode: enums_1.QuestionEncodings.None,
                     };
                     if ((options === null || options === void 0 ? void 0 : options.category) instanceof Category_1.default)
                         options.category = options.category.id;

@@ -1,4 +1,6 @@
+import Category from "../Classes/Category";
 import Session from "../Classes/Session";
+import { QuestionDifficulties, QuestionEncodings, QuestionTypes } from "./enums";
 import {
   CategoryName,
   CategoryResolvable,
@@ -101,8 +103,8 @@ export interface Question extends QuestionBase {
 export interface QuestionOptions {
   amount?: NumberResolvable | null;
   category?: CategoryResolvable | null;
-  difficulty?: QuestionDifficulty | null;
-  type?: QuestionType | null;
-  encode?: QuestionEncoding | null;
+  difficulty?: QuestionDifficulties | null;
+  type?: QuestionTypes | null;
+  encode?: QuestionEncodings | null;
   session?: Session | string | null;
 }

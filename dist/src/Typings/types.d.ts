@@ -1,5 +1,5 @@
 import { Question, RawQuestion } from "./interfaces";
-import { CategoryNamesStrict, CategoryNameVersions, CategoryNamesPretty, QuestionDifficulties, QuestionTypes, QuestionEncodings, QuestionVersions } from "./enums";
+import { CategoryNamesStrict, CategoryNameVersions, CategoryNamesPretty, QuestionDifficulties, QuestionTypes, QuestionEncodings, QuestionVersions, CategoryType } from "./enums";
 import { QuestionOptions } from "./interfaces";
 import Category from "../Classes/Category";
 export declare type CategoryIdResolvable = NumberResolvable;
@@ -8,8 +8,8 @@ export declare type CategoryName<T extends CategoryNameVersion = "Strict"> = T e
 export declare type CategoryNameVersion = keyof typeof CategoryNameVersions;
 export declare type CategoryNamePretty = keyof typeof CategoryNamesPretty;
 export declare type CategoryNameStrict = keyof typeof CategoryNamesStrict;
+export declare type CategoryResolvableType = CategoryType;
 export declare type CategoryResolvable = CategoryNameResolvable | CategoryIdResolvable | Category;
-export declare type CategoryResolvableType = "ID" | "NAME";
 export declare type NumberResolvable = `${number}` | number;
 export declare type OpenTDBResponseCode = 0 | 1 | 2 | 3 | 4;
 export declare type Questions<T extends QuestionVersion = "Final"> = T extends "Raw" ? RawQuestion : Question;

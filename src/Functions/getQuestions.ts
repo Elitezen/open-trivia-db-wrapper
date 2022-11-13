@@ -33,7 +33,7 @@ export default async function getQuestions(
   const link = OpenTDBUtil.links.base.GET_QUESTIONS;
   const defaultOptions: QuestionOptionsDefaults = {
     amount: 10,
-    encode: QuestionEncodings.none,
+    encode: QuestionEncodings.None,
   };
 
   if (options?.category instanceof Category)

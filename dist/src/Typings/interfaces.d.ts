@@ -1,5 +1,6 @@
 import Session from "../Classes/Session";
-import { CategoryName, CategoryResolvable, NumberResolvable, QuestionDifficulty, QuestionEncoding, QuestionType } from "./types";
+import { QuestionDifficulties, QuestionEncodings, QuestionTypes } from "./enums";
+import { CategoryName, CategoryResolvable, NumberResolvable, QuestionDifficulty, QuestionType } from "./types";
 /**
  * A basic response from OpenTDB with `results` being an array of T
  * @interface
@@ -85,8 +86,8 @@ export interface Question extends QuestionBase {
 export interface QuestionOptions {
     amount?: NumberResolvable | null;
     category?: CategoryResolvable | null;
-    difficulty?: QuestionDifficulty | null;
-    type?: QuestionType | null;
-    encode?: QuestionEncoding | null;
+    difficulty?: QuestionDifficulties | null;
+    type?: QuestionTypes | null;
+    encode?: QuestionEncodings | null;
     session?: Session | string | null;
 }

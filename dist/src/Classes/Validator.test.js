@@ -1,5 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+//@ts-nocheck
+var enums_1 = require("../Typings/enums");
 var Validator_1 = require("./Validator");
 function createInstance(options) {
     return new Validator_1.default(options);
@@ -105,8 +107,8 @@ test("tests output of Validator.checkDifficulty()", function () {
     expect(function () {
         validator.checkDifficulty();
     }).toThrow(TypeError);
-    validator = createInstance({ difficulty: "easy" });
-    expect(validator.checkDifficulty()).toEqual("easy");
+    validator = createInstance({ difficulty: enums_1.QuestionDifficulties.Easy });
+    expect(validator.checkDifficulty()).toEqual(enums_1.QuestionDifficulties.Easy);
     validator = createInstance({ difficulty: undefined });
     expect(validator.checkDifficulty()).toEqual(null);
     validator = createInstance({ difficulty: null });
@@ -141,8 +143,8 @@ test("tests output of Validator.checkEncoding()", function () {
     expect(function () {
         validator.checkEncode();
     }).toThrow(TypeError);
-    validator = createInstance({ encode: "base64" });
-    expect(validator.checkEncode()).toEqual("base64");
+    validator = createInstance({ encode: enums_1.QuestionEncodings.Base64 });
+    expect(validator.checkEncode()).toEqual(enums_1.QuestionEncodings.Base64);
     validator = createInstance({ encode: undefined });
     expect(validator.checkEncode()).toEqual(null);
     validator = createInstance({ encode: null });
@@ -201,8 +203,8 @@ test("tests output of Validator.checkType()", function () {
     expect(function () {
         validator.checkType();
     }).toThrow(TypeError);
-    validator = createInstance({ type: "boolean" });
-    expect(validator.checkType()).toEqual("boolean");
+    validator = createInstance({ type: enums_1.QuestionTypes.Boolean });
+    expect(validator.checkType()).toEqual(enums_1.QuestionTypes.Boolean);
     validator = createInstance({ type: undefined });
     expect(validator.checkType()).toEqual(null);
     validator = createInstance({ type: null });

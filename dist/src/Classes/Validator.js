@@ -83,7 +83,11 @@ var Validator = /** @class */ (function () {
         if (typeof difficulty != "string") {
             throw new CustomErrors_1.OpenTDBError("'difficulty' option for QuestionOptions must be of type string, received ".concat(typeof difficulty), CustomErrors_1.OpenTDBError.errors.headers.INVALID_OPT);
         }
-        var values = ["easy", "medium", "hard"];
+        var values = [
+            enums_1.QuestionDifficulties.Easy,
+            enums_1.QuestionDifficulties.Medium,
+            enums_1.QuestionDifficulties.Hard
+        ];
         if (!values.includes(difficulty)) {
             throw new CustomErrors_1.OpenTDBError("'difficulty' option (\"".concat(difficulty, "\") for QuestionOptions does not resolve into a question difficulty"), CustomErrors_1.OpenTDBError.errors.headers.INVALID_OPT);
         }
@@ -97,10 +101,10 @@ var Validator = /** @class */ (function () {
             throw new CustomErrors_1.OpenTDBError("'encode' option for QuestionOptions must be of type string, received ".concat(typeof encode), CustomErrors_1.OpenTDBError.errors.headers.INVALID_OPT);
         }
         var values = [
-            "base64",
-            "none",
-            "url3986",
-            "urlLegacy",
+            enums_1.QuestionEncodings.UrlLegacy,
+            enums_1.QuestionEncodings.Url3986,
+            enums_1.QuestionEncodings.Base64,
+            enums_1.QuestionEncodings.None
         ];
         if (!values.includes(encode)) {
             throw new CustomErrors_1.OpenTDBError("'encode' option (\"".concat(encode, "\") for QuestionOptions does not resolve into a question encode"), CustomErrors_1.OpenTDBError.errors.headers.INVALID_OPT);
@@ -126,7 +130,10 @@ var Validator = /** @class */ (function () {
         if (typeof type != "string") {
             throw new CustomErrors_1.OpenTDBError("'type' option for QuestionOptions must be of type string, received ".concat(typeof type), CustomErrors_1.OpenTDBError.errors.headers.INVALID_OPT);
         }
-        var values = ["boolean", "multiple"];
+        var values = [
+            enums_1.QuestionTypes.Boolean,
+            enums_1.QuestionTypes.Multiple
+        ];
         if (!values.includes(type)) {
             throw new CustomErrors_1.OpenTDBError("'type' option (\"".concat(type, "\") for QuestionOptions does not resolve into a question type"), CustomErrors_1.OpenTDBError.errors.headers.INVALID_OPT);
         }

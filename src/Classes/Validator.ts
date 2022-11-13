@@ -1,4 +1,4 @@
-import { QuestionAmountRange, QuestionDifficulties } from "../Typings/enums";
+import { QuestionAmountRange, QuestionDifficulties, QuestionEncodings, QuestionTypes } from "../Typings/enums";
 import { QuestionOptions } from "../Typings/interfaces";
 import {
   QuestionDifficulty,
@@ -117,7 +117,7 @@ export default class Validator {
     }
   }
 
-  checkDifficulty(): QuestionDifficulty | null {
+  checkDifficulty(): QuestionDifficulties | null {
     const { difficulty } = this.options;
 
     if (difficulty === undefined || difficulty === null) return null;
@@ -128,7 +128,12 @@ export default class Validator {
       );
     }
 
-    const values: QuestionDifficulty[] = ["easy", "medium", "hard"];
+    const values: QuestionDifficulties[] = [
+      QuestionDifficulties.Easy,
+      QuestionDifficulties.Medium,
+      QuestionDifficulties.Hard
+    ];
+
     if (!values.includes(difficulty)) {
       throw new OpenTDBError(
         `'difficulty' option ("${difficulty}") for QuestionOptions does not resolve into a question difficulty`,
@@ -150,12 +155,13 @@ export default class Validator {
       );
     }
 
-    const values: QuestionEncoding[] = [
-      "base64",
-      "none",
-      "url3986",
-      "urlLegacy",
+    const values: QuestionEncodings[] = [
+      QuestionEncodings.UrlLegacy,
+      QuestionEncodings.Url3986,
+      QuestionEncodings.Base64,
+      QuestionEncodings.None
     ];
+
     if (!values.includes(encode)) {
       throw new OpenTDBError(
         `'encode' option ("${encode}") for QuestionOptions does not resolve into a question encode`,
@@ -196,7 +202,10 @@ export default class Validator {
       );
     }
 
-    const values: QuestionType[] = ["boolean", "multiple"];
+    const values: QuestionTypes[] = [
+      QuestionTypes.Boolean,
+      QuestionTypes.Multiple
+    ];
     if (!values.includes(type)) {
       throw new OpenTDBError(
         `'type' option ("${type}") for QuestionOptions does not resolve into a question type`,
