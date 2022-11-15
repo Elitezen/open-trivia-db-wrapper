@@ -1,6 +1,6 @@
 {
   "name": "open-trivia-db",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "description": "A wrapper for the Open Trivia Database API. Built with TypeScript, works with VanillaJS.",
   "keywords": [
     "opentriviadatabase",
@@ -18,11 +18,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prettier": "npm run build && prettier -w src/",
-    "prepublish": "npm run prep",
-    "exec": "npm run build && node .",
-    "test": "npm run build && npx jest",
-    "prep": "npm run build && npm run test && npm run prettier"
+    "prettier": "yarn run build && prettier -w src/",
+    "prepublish": "yarn run prep",
+    "exec": "yarn run build && node .",
+    "test": "yarn run build && npx jest",
+    "prep": "yarn run build && yarn run test && yarn run prettier",
+    "dev": "yarn build && yarn test"
   },
   "files": [
     "typings",
@@ -33,7 +34,7 @@
     "url": "git+https://github.com/Elitezen/open-trivia-db-wrapper.git"
   },
   "author": "Elitezen",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Elitezen/open-trivia-db-wrapper/issues"
   },
@@ -43,7 +44,8 @@
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
-    "ts-jest": "^28.0.2"
+    "ts-jest": "^28.0.2",
+    "typescript": "^4.8.4"
   },
   "engines": {
     "node": ">=14.0.0"

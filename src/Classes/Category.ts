@@ -6,7 +6,7 @@ import {
   NumberResolvable,
 } from "../Typings/types";
 import { OpenTDBError } from "./CustomErrors";
-import { CategoryNamesStrict, CategoryNamesPretty } from "../Typings/enums";
+import { CategoryNamesStrict, CategoryNamesPretty, CategoryType } from "../Typings/enums";
 import getCategoryData from "../Functions/getCategoryData";
 import { CategoryData, Question } from "../Typings/interfaces";
 import { QuestionOptions } from "../Typings/interfaces";
@@ -167,7 +167,7 @@ export default class Category {
    * @static
    */
   public static random(
-    type: CategoryResolvableType = "ID"
+    type: CategoryResolvableType = CategoryType.Id
   ): number | CategoryName<"Pretty"> {
     const names = Object.keys(this.allPrettyNames).filter((val) =>
       isNaN(+val)

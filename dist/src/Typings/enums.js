@@ -1,36 +1,36 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.QuestionVersions = exports.QuestionEncodings = exports.QuestionTypes = exports.QuestionDifficulties = exports.QuestionAmountRange = exports.CategoryNameVersions = exports.CategoryNamesPretty = exports.CategoryNamesStrict = void 0;
+exports.CategoryType = exports.QuestionVersions = exports.QuestionEncodings = exports.QuestionTypes = exports.QuestionDifficulties = exports.QuestionAmountRange = exports.CategoryNameVersions = exports.CategoryNamesPretty = exports.CategoryNamesStrict = void 0;
 /**
  * All strict category names mapped to their API id
  * @enum
  */
 var CategoryNamesStrict;
 (function (CategoryNamesStrict) {
-    CategoryNamesStrict[CategoryNamesStrict["GENERAL_KNOWLEDGE"] = 9] = "GENERAL_KNOWLEDGE";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_BOOKS"] = 10] = "ENTERTAINMENT_BOOKS";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_FILM"] = 11] = "ENTERTAINMENT_FILM";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_MUSIC"] = 12] = "ENTERTAINMENT_MUSIC";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_MUSICALS_AND_THEATRES"] = 13] = "ENTERTAINMENT_MUSICALS_AND_THEATRES";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_TELEVISION"] = 14] = "ENTERTAINMENT_TELEVISION";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_VIDEO_GAMES"] = 15] = "ENTERTAINMENT_VIDEO_GAMES";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_BOARD_GAMES"] = 16] = "ENTERTAINMENT_BOARD_GAMES";
-    CategoryNamesStrict[CategoryNamesStrict["SCIENCE_AND_NATURE"] = 17] = "SCIENCE_AND_NATURE";
-    CategoryNamesStrict[CategoryNamesStrict["SCIENCE_COMPUTERS"] = 18] = "SCIENCE_COMPUTERS";
-    CategoryNamesStrict[CategoryNamesStrict["SCIENCE_MATHEMATICS"] = 19] = "SCIENCE_MATHEMATICS";
-    CategoryNamesStrict[CategoryNamesStrict["MYTHOLOGY"] = 20] = "MYTHOLOGY";
-    CategoryNamesStrict[CategoryNamesStrict["SPORTS"] = 21] = "SPORTS";
-    CategoryNamesStrict[CategoryNamesStrict["GEOGRAPHY"] = 22] = "GEOGRAPHY";
-    CategoryNamesStrict[CategoryNamesStrict["HISTORY"] = 23] = "HISTORY";
-    CategoryNamesStrict[CategoryNamesStrict["POLITICS"] = 24] = "POLITICS";
-    CategoryNamesStrict[CategoryNamesStrict["ART"] = 25] = "ART";
-    CategoryNamesStrict[CategoryNamesStrict["CELEBRITIES"] = 26] = "CELEBRITIES";
-    CategoryNamesStrict[CategoryNamesStrict["ANIMALS"] = 27] = "ANIMALS";
-    CategoryNamesStrict[CategoryNamesStrict["VEHICLES"] = 28] = "VEHICLES";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_COMICS"] = 29] = "ENTERTAINMENT_COMICS";
-    CategoryNamesStrict[CategoryNamesStrict["SCIENCE_GADGETS"] = 30] = "SCIENCE_GADGETS";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_JAPANESE_ANIME_AND_MANGA"] = 31] = "ENTERTAINMENT_JAPANESE_ANIME_AND_MANGA";
-    CategoryNamesStrict[CategoryNamesStrict["ENTERTAINMENT_CARTOON_AND_ANIMATIONS"] = 32] = "ENTERTAINMENT_CARTOON_AND_ANIMATIONS";
+    CategoryNamesStrict[CategoryNamesStrict["GeneralKnowledge"] = 9] = "GeneralKnowledge";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentBooks"] = 10] = "EntertainmentBooks";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentFilm"] = 11] = "EntertainmentFilm";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentMusic"] = 12] = "EntertainmentMusic";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentMusicalsAndTheatres"] = 13] = "EntertainmentMusicalsAndTheatres";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentJapaneseAnimeAndManga"] = 14] = "EntertainmentJapaneseAnimeAndManga";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentCartoonAndAnimations"] = 15] = "EntertainmentCartoonAndAnimations";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentTelevision"] = 16] = "EntertainmentTelevision";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentVideoGames"] = 17] = "EntertainmentVideoGames";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentBoardGames"] = 18] = "EntertainmentBoardGames";
+    CategoryNamesStrict[CategoryNamesStrict["EntertainmentComics"] = 19] = "EntertainmentComics";
+    CategoryNamesStrict[CategoryNamesStrict["ScienceAndNature"] = 20] = "ScienceAndNature";
+    CategoryNamesStrict[CategoryNamesStrict["ScienceComputers"] = 21] = "ScienceComputers";
+    CategoryNamesStrict[CategoryNamesStrict["ScienceMathmatics"] = 22] = "ScienceMathmatics";
+    CategoryNamesStrict[CategoryNamesStrict["ScienceGadgets"] = 23] = "ScienceGadgets";
+    CategoryNamesStrict[CategoryNamesStrict["Mythology"] = 24] = "Mythology";
+    CategoryNamesStrict[CategoryNamesStrict["Sports"] = 25] = "Sports";
+    CategoryNamesStrict[CategoryNamesStrict["Geography"] = 26] = "Geography";
+    CategoryNamesStrict[CategoryNamesStrict["History"] = 27] = "History";
+    CategoryNamesStrict[CategoryNamesStrict["Politics"] = 28] = "Politics";
+    CategoryNamesStrict[CategoryNamesStrict["Art"] = 29] = "Art";
+    CategoryNamesStrict[CategoryNamesStrict["Celebrities"] = 30] = "Celebrities";
+    CategoryNamesStrict[CategoryNamesStrict["Animals"] = 31] = "Animals";
+    CategoryNamesStrict[CategoryNamesStrict["Vehicles"] = 32] = "Vehicles";
 })(CategoryNamesStrict = exports.CategoryNamesStrict || (exports.CategoryNamesStrict = {}));
 /**
  * All pretty category names mapped to their API id
@@ -87,9 +87,9 @@ var QuestionAmountRange;
  */
 var QuestionDifficulties;
 (function (QuestionDifficulties) {
-    QuestionDifficulties["easy"] = "easy";
-    QuestionDifficulties["medium"] = "medium";
-    QuestionDifficulties["hard"] = "hard";
+    QuestionDifficulties["Easy"] = "easy";
+    QuestionDifficulties["Medium"] = "medium";
+    QuestionDifficulties["Hard"] = "hard";
 })(QuestionDifficulties = exports.QuestionDifficulties || (exports.QuestionDifficulties = {}));
 /**
  * The question types mapped to their API value
@@ -97,8 +97,8 @@ var QuestionDifficulties;
  */
 var QuestionTypes;
 (function (QuestionTypes) {
-    QuestionTypes["multiple"] = "multiple";
-    QuestionTypes["boolean"] = "boolean";
+    QuestionTypes["Multiple"] = "multiple";
+    QuestionTypes["Boolean"] = "boolean";
 })(QuestionTypes = exports.QuestionTypes || (exports.QuestionTypes = {}));
 /**
  * The question encodings mapped to their API value
@@ -106,10 +106,10 @@ var QuestionTypes;
  */
 var QuestionEncodings;
 (function (QuestionEncodings) {
-    QuestionEncodings["base64"] = "base64";
-    QuestionEncodings["none"] = "none";
-    QuestionEncodings["url3986"] = "url3986";
-    QuestionEncodings["urlLegacy"] = "urlLegacy";
+    QuestionEncodings["Base64"] = "base64";
+    QuestionEncodings["None"] = "none";
+    QuestionEncodings["Url3986"] = "url3986";
+    QuestionEncodings["UrlLegacy"] = "urlLegacy";
 })(QuestionEncodings = exports.QuestionEncodings || (exports.QuestionEncodings = {}));
 /**
  * The types of Category versions
@@ -120,3 +120,9 @@ var QuestionVersions;
     QuestionVersions[QuestionVersions["Raw"] = 0] = "Raw";
     QuestionVersions[QuestionVersions["Final"] = 1] = "Final";
 })(QuestionVersions = exports.QuestionVersions || (exports.QuestionVersions = {}));
+var CategoryType;
+(function (CategoryType) {
+    CategoryType["Id"] = "ID";
+    CategoryType["Name"] = "NAME";
+})(CategoryType = exports.CategoryType || (exports.CategoryType = {}));
+;

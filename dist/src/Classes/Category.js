@@ -117,10 +117,10 @@ var Category = /** @class */ (function () {
      * @static
      */
     Category.isNameResolvable = function (arg) {
-        var _a, _b;
+        var _a;
         var completeNameList = __spreadArray(__spreadArray([], Object.keys(this.allPrettyNames), true), Object.keys(this.allNames), true).filter(function (str) { return isNaN(str); })
             .map(function (str) { return str.toLowerCase(); });
-        return completeNameList.includes((_b = (_a = arg) === null || _a === void 0 ? void 0 : _a.toLowerCase) === null || _b === void 0 ? void 0 : _b.call(_a));
+        return completeNameList.includes((_a = arg === null || arg === void 0 ? void 0 : arg.toLowerCase) === null || _a === void 0 ? void 0 : _a.call(arg));
     };
     /**
      * Converts a category's pretty name into it's strict version
@@ -150,7 +150,7 @@ var Category = /** @class */ (function () {
      * @static
      */
     Category.random = function (type) {
-        if (type === void 0) { type = "ID"; }
+        if (type === void 0) { type = enums_1.CategoryType.Id; }
         var names = Object.keys(this.allPrettyNames).filter(function (val) {
             return isNaN(+val);
         });

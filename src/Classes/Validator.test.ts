@@ -1,3 +1,5 @@
+//@ts-nocheck
+import { QuestionDifficulties, QuestionEncodings, QuestionTypes } from "../Typings/enums";
 import { QuestionOptions } from "../Typings/interfaces";
 import {
   QuestionDifficulty,
@@ -165,9 +167,9 @@ test("tests output of Validator.checkDifficulty()", () => {
     validator.checkDifficulty();
   }).toThrow(TypeError);
 
-  validator = createInstance({ difficulty: "easy" });
+  validator = createInstance({ difficulty: QuestionDifficulties.Easy });
 
-  expect(validator.checkDifficulty()).toEqual("easy");
+  expect(validator.checkDifficulty()).toEqual(QuestionDifficulties.Easy);
 
   validator = createInstance({ difficulty: undefined });
 
@@ -217,9 +219,9 @@ test("tests output of Validator.checkEncoding()", () => {
     validator.checkEncode();
   }).toThrow(TypeError);
 
-  validator = createInstance({ encode: "base64" });
+  validator = createInstance({ encode: QuestionEncodings.Base64 });
 
-  expect(validator.checkEncode()).toEqual("base64");
+  expect(validator.checkEncode()).toEqual(QuestionEncodings.Base64);
 
   validator = createInstance({ encode: undefined });
 
@@ -305,9 +307,9 @@ test("tests output of Validator.checkType()", () => {
     validator.checkType();
   }).toThrow(TypeError);
 
-  validator = createInstance({ type: "boolean" });
+  validator = createInstance({ type: QuestionTypes.Boolean });
 
-  expect(validator.checkType()).toEqual("boolean");
+  expect(validator.checkType()).toEqual(QuestionTypes.Boolean);
 
   validator = createInstance({ type: undefined });
 

@@ -3,30 +3,30 @@
  * @enum
  */
 export enum CategoryNamesStrict {
-  GENERAL_KNOWLEDGE = 9,
-  ENTERTAINMENT_BOOKS,
-  ENTERTAINMENT_FILM,
-  ENTERTAINMENT_MUSIC,
-  ENTERTAINMENT_MUSICALS_AND_THEATRES,
-  ENTERTAINMENT_TELEVISION,
-  ENTERTAINMENT_VIDEO_GAMES,
-  ENTERTAINMENT_BOARD_GAMES,
-  SCIENCE_AND_NATURE,
-  SCIENCE_COMPUTERS,
-  SCIENCE_MATHEMATICS,
-  MYTHOLOGY,
-  SPORTS,
-  GEOGRAPHY,
-  HISTORY,
-  POLITICS,
-  ART,
-  CELEBRITIES,
-  ANIMALS,
-  VEHICLES,
-  ENTERTAINMENT_COMICS,
-  SCIENCE_GADGETS,
-  ENTERTAINMENT_JAPANESE_ANIME_AND_MANGA,
-  ENTERTAINMENT_CARTOON_AND_ANIMATIONS,
+  GeneralKnowledge = 9,
+  EntertainmentBooks,
+  EntertainmentFilm,
+  EntertainmentMusic,
+  EntertainmentMusicalsAndTheatres,
+  EntertainmentJapaneseAnimeAndManga,
+  EntertainmentCartoonAndAnimations,
+  EntertainmentTelevision,
+  EntertainmentVideoGames,
+  EntertainmentBoardGames,
+  EntertainmentComics,
+  ScienceAndNature,
+  ScienceComputers,
+  ScienceMathmatics,
+  ScienceGadgets,
+  Mythology,
+  Sports,
+  Geography,
+  History,
+  Politics,
+  Art,
+  Celebrities,
+  Animals,
+  Vehicles
 }
 
 /**
@@ -83,9 +83,9 @@ export enum QuestionAmountRange {
  * @enum
  */
 export enum QuestionDifficulties {
-  easy = "easy",
-  medium = "medium",
-  hard = "hard",
+  Easy = "easy",
+  Medium = "medium",
+  Hard = "hard",
 }
 
 /**
@@ -93,8 +93,8 @@ export enum QuestionDifficulties {
  * @enum
  */
 export enum QuestionTypes {
-  multiple = "multiple",
-  boolean = "boolean",
+  Multiple = "multiple",
+  Boolean = "boolean",
 }
 
 /**
@@ -102,10 +102,10 @@ export enum QuestionTypes {
  * @enum
  */
 export enum QuestionEncodings {
-  base64 = "base64",
-  none = "none",
-  url3986 = "url3986",
-  urlLegacy = "urlLegacy",
+  Base64 = "base64",
+  None = "none",
+  Url3986 = "url3986",
+  UrlLegacy = "urlLegacy",
 }
 
 /**
@@ -116,3 +116,8 @@ export enum QuestionVersions {
   Raw,
   Final,
 }
+
+export enum CategoryType {
+  Id = "ID",
+  Name = "NAME"
+};

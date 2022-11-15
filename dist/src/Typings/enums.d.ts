@@ -3,30 +3,30 @@
  * @enum
  */
 export declare enum CategoryNamesStrict {
-    GENERAL_KNOWLEDGE = 9,
-    ENTERTAINMENT_BOOKS = 10,
-    ENTERTAINMENT_FILM = 11,
-    ENTERTAINMENT_MUSIC = 12,
-    ENTERTAINMENT_MUSICALS_AND_THEATRES = 13,
-    ENTERTAINMENT_TELEVISION = 14,
-    ENTERTAINMENT_VIDEO_GAMES = 15,
-    ENTERTAINMENT_BOARD_GAMES = 16,
-    SCIENCE_AND_NATURE = 17,
-    SCIENCE_COMPUTERS = 18,
-    SCIENCE_MATHEMATICS = 19,
-    MYTHOLOGY = 20,
-    SPORTS = 21,
-    GEOGRAPHY = 22,
-    HISTORY = 23,
-    POLITICS = 24,
-    ART = 25,
-    CELEBRITIES = 26,
-    ANIMALS = 27,
-    VEHICLES = 28,
-    ENTERTAINMENT_COMICS = 29,
-    SCIENCE_GADGETS = 30,
-    ENTERTAINMENT_JAPANESE_ANIME_AND_MANGA = 31,
-    ENTERTAINMENT_CARTOON_AND_ANIMATIONS = 32
+    GeneralKnowledge = 9,
+    EntertainmentBooks = 10,
+    EntertainmentFilm = 11,
+    EntertainmentMusic = 12,
+    EntertainmentMusicalsAndTheatres = 13,
+    EntertainmentJapaneseAnimeAndManga = 14,
+    EntertainmentCartoonAndAnimations = 15,
+    EntertainmentTelevision = 16,
+    EntertainmentVideoGames = 17,
+    EntertainmentBoardGames = 18,
+    EntertainmentComics = 19,
+    ScienceAndNature = 20,
+    ScienceComputers = 21,
+    ScienceMathmatics = 22,
+    ScienceGadgets = 23,
+    Mythology = 24,
+    Sports = 25,
+    Geography = 26,
+    History = 27,
+    Politics = 28,
+    Art = 29,
+    Celebrities = 30,
+    Animals = 31,
+    Vehicles = 32
 }
 /**
  * All pretty category names mapped to their API id
@@ -79,27 +79,27 @@ export declare enum QuestionAmountRange {
  * @enum
  */
 export declare enum QuestionDifficulties {
-    easy = "easy",
-    medium = "medium",
-    hard = "hard"
+    Easy = "easy",
+    Medium = "medium",
+    Hard = "hard"
 }
 /**
  * The question types mapped to their API value
  * @enum
  */
 export declare enum QuestionTypes {
-    multiple = "multiple",
-    boolean = "boolean"
+    Multiple = "multiple",
+    Boolean = "boolean"
 }
 /**
  * The question encodings mapped to their API value
  * @enum
  */
 export declare enum QuestionEncodings {
-    base64 = "base64",
-    none = "none",
-    url3986 = "url3986",
-    urlLegacy = "urlLegacy"
+    Base64 = "base64",
+    None = "none",
+    Url3986 = "url3986",
+    UrlLegacy = "urlLegacy"
 }
 /**
  * The types of Category versions
@@ -108,4 +108,8 @@ export declare enum QuestionEncodings {
 export declare enum QuestionVersions {
     Raw = 0,
     Final = 1
+}
+export declare enum CategoryType {
+    Id = "ID",
+    Name = "NAME"
 }

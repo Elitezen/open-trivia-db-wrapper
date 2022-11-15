@@ -1,3 +1,4 @@
+import { QuestionDifficulties, QuestionEncodings, QuestionTypes } from "../Typings/enums";
 import { Question, QuestionOptions, RawQuestion } from "../Typings/interfaces";
 import {
   OpenTDBResponseCode,
@@ -40,18 +41,22 @@ export default class OpenTDBUtil {
     },
   };
 
-  public static questionDifficulties: QuestionDifficulty[] = [
-    "easy",
-    "medium",
-    "hard",
+  public static questionDifficulties: QuestionDifficulties[] = [
+    QuestionDifficulties.Easy,
+    QuestionDifficulties.Medium,
+    QuestionDifficulties.Hard,
   ];
-  public static questionEncodings: QuestionEncoding[] = [
-    "urlLegacy",
-    "url3986",
-    "base64",
-    "none",
+  public static questionEncodings: QuestionEncodings[] = [
+    QuestionEncodings.UrlLegacy,
+    QuestionEncodings.Url3986,
+    QuestionEncodings.Base64,
+    QuestionEncodings.None
   ];
-  public static questionTypes: QuestionType[] = ["multiple", "boolean"];
+
+  public static questionTypes: QuestionTypes[] = [
+    QuestionTypes.Boolean,
+    QuestionTypes.Multiple
+  ];
 
   public static openTDBRequest(url: string) {
     if (url === undefined)
@@ -114,12 +119,12 @@ export default class OpenTDBUtil {
         typeof value == "number"
         ? value
         : typeof value == "string"
-        ? this.decodeString(value)
-        : typeof value == "object" && !Array.isArray(value)
-        ? this.decodeObjectValues(value as object)
-        : Array.isArray(value)
-        ? this.decodeStringArray(value)
-        : value;
+          ? this.decodeString(value)
+          : typeof value == "object" && !Array.isArray(value)
+            ? this.decodeObjectValues(value as object)
+            : Array.isArray(value)
+              ? this.decodeStringArray(value)
+              : value;
     },
     decodeString(str: string) {
       return this.atob(str);
@@ -145,7 +150,7 @@ export default class OpenTDBUtil {
       type: validator.checkType(),
       category: validator.checkCategory(),
       session: validator.checkToken(),
-      encode: targetEncode == "none" ? "base64" : validator.checkEncode(),
+      encode: targetEncode == QuestionEncodings.None ? QuestionEncodings.Base64 : validator.checkEncode(),
     };
 
     return verifiedOptions;
@@ -177,7 +182,7 @@ export default class OpenTDBUtil {
         checkAnswer: (arg: string) => {
           return (
             arg?.toLowerCase?.() ==
-              this.base64Decoder.atob(q.correct_answer).toLowerCase() ||
+            this.base64Decoder.atob(q.correct_answer).toLowerCase() ||
             arg?.toLowerCase?.() == q.correct_answer
           );
         },
