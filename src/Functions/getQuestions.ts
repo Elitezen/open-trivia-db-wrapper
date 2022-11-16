@@ -1,66 +1,44 @@
-import {
-  OpenTDBResponseDefault,
-  Question,
-  QuestionOptions,
-  RawQuestion,
-} from "../Typings/interfaces";
-import { QuestionEncodings } from "../Typings/enums";
-import OpenTDBUtil from "../Classes/OpenTDBUtil";
-import { QuestionOptionsDefaults } from "../Typings/types";
-import Category from "../Classes/Category";
-import Session from "../Classes/Session";
+import Constructor from "../classes/Constructor";
+import OpenTDBError from "../classes/OpenTDBError";
+import Util from "../classes/Util";
+import { CategoryNames, QuestionDifficulties, QuestionEncodings, QuestionTypes, Routes } from "../typings/enums";
+import type { ErrorResponse, QuestionOptions, RawQuestion, RawQuestionResponse } from "../typings/interface";
 
-/**
- * Fetches an array of questions based on provided options.
- * @param {QuestionOptions} options - The metadeta describing target questions.
- * @param {string | number} options.amount The amount of questions to fetch (min. 1, max. 50)
- * @param {?CategoryResolvable} options.category The category of questions.
- * @param {?QuestionDifficulty} options.difficulty The difficulty of questions.
- * @param {?QuestionEncoding} [options.encode='none'] The encoding of question values.
- * @param {?string} options.session The Session instance or API session token.
- * @returns {Promise<Question[]>} An Array of questions.
- * @example
- * const questions = await getQuestions({
-    amount: 50,
-    difficulty: 'easy',
-    type: 'multiple',
-    category: Category.allNames.SCIENCE_COMPUTERS
-  });
- */
-export default async function getQuestions(
-  options?: QuestionOptions
-): Promise<Question[]> {
-  const link = OpenTDBUtil.links.base.GET_QUESTIONS;
-  const defaultOptions: QuestionOptionsDefaults = {
+export default async function getQuestions(options?:Partial<QuestionOptions>) {
+  let filledOptions:Partial<Pick<QuestionOptions, 'amount' | 'encode'>> = {};
+  const optionDefaults:Pick<QuestionOptions, 'amount' | 'encode'> = {
     amount: 10,
-    encode: QuestionEncodings.none,
-  };
-
-  if (options?.category instanceof Category)
-    options.category = options.category.id;
-  if (options?.session instanceof Session) {
-    if (options.session.token === null)
-      process.emitWarning(
-        "Provided Session has a null token. Use Session.start() to start an API session"
-      );
-    options.session = options.session.token;
+    encode: 'none'
   }
 
-  const filledOptions = Object.assign(defaultOptions, options);
-  const targetEncode = filledOptions.encode;
+  filledOptions = Util.assignDefaults(optionDefaults, options);
+  const noEncoding = options?.encode === undefined || options.encode === 'none'
 
-  const finalOptions = OpenTDBUtil.finalizeOptions(filledOptions);
-  const finalLink = OpenTDBUtil.generateQueryString(link, finalOptions);
-  const data = (await OpenTDBUtil.openTDBRequest(
-    finalLink
-  )) as OpenTDBResponseDefault<RawQuestion>;
+  if (noEncoding) filledOptions.encode = 'base64';
 
-  let questions: Question[] = OpenTDBUtil.parseRawQuestions(data.results);
-  if (targetEncode == "none" && finalOptions.encode == "base64") {
-    questions = questions.map((q) =>
-      OpenTDBUtil.base64Decoder.decodeObjectValues(q)
-    );
+  const url = Util.createQueriedLink(Routes.Questions, filledOptions);
+  
+  try {
+    const request = await Util.fetch<RawQuestionResponse>(url, true);
+    let rawQuestions = request.results;
+    let parsedQuestions:RawQuestion[] = []
+
+    if (noEncoding && filledOptions.encode === 'base64') {
+      parsedQuestions = Util.base64Decoder.decode<RawQuestion[]>(rawQuestions);
+    }
+
+    return Constructor.questions([...parsedQuestions]);
+  } catch (err) {
+    throw new OpenTDBError(err as ErrorResponse);
   }
-
-  return questions;
 }
+
+getQuestions({
+  amount: 1,
+  category: CategoryNames["General Knowledge"],
+  difficulty: QuestionDifficulties.Easy,
+  type: QuestionTypes.Multiple,
+  encode: QuestionEncodings.None
+}).then(console.log);
+
+// add session, Category data fetching

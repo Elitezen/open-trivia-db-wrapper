@@ -1,38 +1,11 @@
-import { Question, RawQuestion } from "./interfaces";
-import {
-  CategoryNamesStrict,
-  CategoryNameVersions,
-  CategoryNamesPretty,
-  QuestionDifficulties,
-  QuestionTypes,
-  QuestionEncodings,
-  QuestionVersions,
-} from "./enums";
-import { QuestionOptions } from "./interfaces";
-import Category from "../Classes/Category";
+import { CategoryNames } from "./enums";
 
-export type CategoryIdResolvable = NumberResolvable;
-export type CategoryNameResolvable = CategoryName<"Pretty" | "Strict"> | string;
-export type CategoryName<T extends CategoryNameVersion = "Strict"> =
-  T extends "Pretty" ? CategoryNamePretty : CategoryNameStrict;
-export type CategoryNameVersion = keyof typeof CategoryNameVersions;
-export type CategoryNamePretty = keyof typeof CategoryNamesPretty;
-export type CategoryNameStrict = keyof typeof CategoryNamesStrict;
-export type CategoryResolvable =
-  | CategoryNameResolvable
-  | CategoryIdResolvable
-  | Category;
-export type CategoryResolvableType = "ID" | "NAME";
-export type NumberResolvable = `${number}` | number;
-export type OpenTDBResponseCode = 0 | 1 | 2 | 3 | 4;
-export type Questions<T extends QuestionVersion = "Final"> = T extends "Raw"
-  ? RawQuestion
-  : Question;
-export type QuestionDifficulty = keyof typeof QuestionDifficulties;
-export type QuestionOptionsDefaults = Pick<
-  QuestionOptions,
-  "amount" | "encode"
->;
-export type QuestionType = keyof typeof QuestionTypes;
-export type QuestionEncoding = keyof typeof QuestionEncodings;
-export type QuestionVersion = keyof typeof QuestionVersions;
+export type CategoryNameType = keyof typeof CategoryNames;
+export type CategoryResolvable = CategoryNameType | CategoryNames | number;
+export type Dictionary<K extends string, V> = Record<K, V>;
+export type ErrorCode = 1 | 2 | 3 | 4;
+export type QuestionDifficultyType = 'easy' | 'medium' | 'hard';
+export type QuestionEncodingType = "none" | "base64" | "url3986" | "urlLegacy";
+export type QuestionTypeType = 'multiple' | 'boolean';
+export type ResponseCode = 0 | ErrorCode;
+export type SimpleDictionary = Dictionary<string, string | number>;

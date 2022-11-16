@@ -1,39 +1,4 @@
-/**
- * All strict category names mapped to their API id
- * @enum
- */
-export enum CategoryNamesStrict {
-  GENERAL_KNOWLEDGE = 9,
-  ENTERTAINMENT_BOOKS,
-  ENTERTAINMENT_FILM,
-  ENTERTAINMENT_MUSIC,
-  ENTERTAINMENT_MUSICALS_AND_THEATRES,
-  ENTERTAINMENT_TELEVISION,
-  ENTERTAINMENT_VIDEO_GAMES,
-  ENTERTAINMENT_BOARD_GAMES,
-  SCIENCE_AND_NATURE,
-  SCIENCE_COMPUTERS,
-  SCIENCE_MATHEMATICS,
-  MYTHOLOGY,
-  SPORTS,
-  GEOGRAPHY,
-  HISTORY,
-  POLITICS,
-  ART,
-  CELEBRITIES,
-  ANIMALS,
-  VEHICLES,
-  ENTERTAINMENT_COMICS,
-  SCIENCE_GADGETS,
-  ENTERTAINMENT_JAPANESE_ANIME_AND_MANGA,
-  ENTERTAINMENT_CARTOON_AND_ANIMATIONS,
-}
-
-/**
- * All pretty category names mapped to their API id
- * @enum
- */
-export enum CategoryNamesPretty {
+export enum CategoryNames {
   "General Knowledge" = 9,
   "Entertainment: Books",
   "Entertainment: Film",
@@ -60,59 +25,25 @@ export enum CategoryNamesPretty {
   "Entertainment: Cartoon and Animations",
 }
 
-/**
- * The types of Category names
- * @enum
- */
-export enum CategoryNameVersions {
-  Strict,
-  Pretty,
-}
-
-/**
- * The range of minimun to maximum questions allowed per API call
- * @enum
- */
-export enum QuestionAmountRange {
-  Min = 1,
-  Max = 50,
-}
-
-/**
- * The question difficulties mapped to their API value
- * @enum
- */
 export enum QuestionDifficulties {
-  easy = "easy",
-  medium = "medium",
-  hard = "hard",
+  Easy = 'easy',
+  Medium = 'medium',
+  Hard = 'hard'
 }
 
-/**
- * The question types mapped to their API value
- * @enum
- */
-export enum QuestionTypes {
-  multiple = "multiple",
-  boolean = "boolean",
-}
-
-/**
- * The question encodings mapped to their API value
- * @enum
- */
 export enum QuestionEncodings {
-  base64 = "base64",
-  none = "none",
-  url3986 = "url3986",
-  urlLegacy = "urlLegacy",
+  Base64 = "base64",
+  None = "none",
+  Url3986 = "url3986",
+  UrlLegacy = "urlLegacy",
 }
 
-/**
- * The types of Category versions
- * @enum
- */
-export enum QuestionVersions {
-  Raw,
-  Final,
+export enum QuestionTypes {
+  Multiple = 'multiple',
+  Boolean = 'boolean'
+}
+
+export enum Routes {
+  Questions = 'https://opentdb.com/api.php?',
+  Category = 'https://opentdb.com/api_count.php?'
 }
