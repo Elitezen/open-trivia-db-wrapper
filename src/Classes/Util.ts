@@ -1,14 +1,17 @@
 import type { ErrorResponse } from "../typings/interface";
-import type { ErrorCode, SimpleDictionary } from "../typings/types";
+import type {
+  ErrorCode,
+  ExtendedDictionary
+} from "../typings/types";
 
 export default class Util {
-  static assignDefaults<T extends object>(defaults:T, current?:T | {}) {
+  static assignDefaults<T extends object>(defaults: T, current?: T | {}) {
     if (current === undefined) return defaults;
 
     return Object.assign(defaults, current);
   }
 
-  public static base64Decoder = {
+  static base64Decoder = {
     atob(str: string) {
       return Buffer.from(str, "base64").toString();
     },
@@ -19,62 +22,81 @@ export default class Util {
         typeof value == "number"
         ? value
         : typeof value == "string"
-          ? this.decodeString(value)
-          : typeof value == "object" && !Array.isArray(value)
-            ? this.decodeObjectValues(value as object)
-            : Array.isArray(value)
-              ? this.decodeStringArray(value)
-              : value;
+        ? Util.base64Decoder.decodeString(value)
+        : typeof value == "object" && !Array.isArray(value)
+        ? Util.base64Decoder.decodeObjectValues(value as object)
+        : Array.isArray(value)
+        ? Util.base64Decoder.decodeStringArray(value)
+        : value;
     },
-    decodeString(str: string) {
-      return this.atob(str);
+    decodeString<T extends string>(str: string): T {
+      return Util.base64Decoder.atob(str) as T;
     },
     decodeStringArray(arr: string[]) {
-      return arr.map((v) => this.decode(v));
+      return arr.map((v) => Util.base64Decoder.decode(v));
     },
     decodeObjectValues(obj: object) {
       const o = new Object().constructor();
       Object.entries(obj).forEach(
-        ([key, value]) => (o[key] = this.decode(value))
+        ([key, value]) => (o[key] = Util.base64Decoder.decode(value))
       );
       return o;
     },
   };
 
-  static createQueriedLink(baseURL:string, options:SimpleDictionary, concatSymbol:string = "&") {
-    const optionsArr = Object.keys(options).map(key => `${key}=${options[key]}`);
-    return baseURL += optionsArr.join(concatSymbol);
+  static decodeBase64 = Util.base64Decoder.decodeString;
+
+  static decodeUrlLegacy<T extends string>(str: string): T {
+    return decodeURIComponent(str).replaceAll("+", " ") as T;
   }
 
-  static async fetch<T>(url:string, checkForResponseCode:boolean = false):Promise<T> {
+  static decodeUrl3968<T extends string>(str: string): T {
+    return decodeURIComponent(str) as T;
+  }
+
+  static createQueriedLink(
+    baseURL: string,
+    options: ExtendedDictionary<null>,
+    concatSymbol: string = "&"
+  ) {
+    const optionsArr = Object.keys(options).map(
+      (key) => `${key}=${options[key]}`
+    );
+    return (baseURL += optionsArr.join(concatSymbol));
+  }
+
+  static async fetch<T>(
+    url: string,
+    checkForResponseCode: boolean = false
+  ): Promise<T> {
     const request = await fetch(url);
     const data = await request.json();
 
     if (checkForResponseCode && data?.response_code !== 0) {
-      throw this.getErrorByCode(data.response_code as ErrorCode);
+      throw Util.getErrorByCode(data.response_code as ErrorCode);
     }
 
     return data;
   }
 
-  static getErrorByCode(code: ErrorCode):ErrorResponse {
-    const responses:ErrorResponse[] = [
+  static getErrorByCode(code: ErrorCode): ErrorResponse {
+    const responses: ErrorResponse[] = [
       {
-        header: 'No Results',
-        text: "Could not return results. The API doesn't have enough questions for your query. (Ex. Asking for 50 Questions in a Category that only has 20.)"
+        header: "No Results",
+        text: "Could not return results. The API doesn't have enough questions for your query. (Ex. Asking for 50 Questions in a Category that only has 20.)",
       },
       {
-        header: 'Invalid Parameter',
-        text: "Contains an invalid parameter. Arguements passed in aren't valid. (Ex. Amount = Five)"
+        header: "Invalid Parameter",
+        text: "Contains an invalid parameter. Arguements passed in aren't valid. (Ex. Amount = Five)",
       },
       {
-        header: 'Token Not Found',
-        text: "Session Token does not exist."
+        header: "Token Not Found",
+        text: "Session Token does not exist.",
       },
       {
-        header: 'Token Empty',
-        text: "Session Token has returned all possible questions for the specified query. Resetting the Token is necessary."
-      }
+        header: "Token Empty",
+        text: "Session Token has returned all possible questions for the specified query. Resetting the Token is necessary.",
+      },
     ];
 
     return responses[code - 1];

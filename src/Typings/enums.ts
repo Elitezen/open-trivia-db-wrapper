@@ -21,14 +21,14 @@ export enum CategoryNames {
   "Vehicles",
   "Entertainment: Comics",
   "Science: Gadgets",
-  "Entertainment: Japanese Anime and Manga",
-  "Entertainment: Cartoon and Animations",
+  "Entertainment: Japanese Anime & Manga",
+  "Entertainment: Cartoon & Animations",
 }
 
 export enum QuestionDifficulties {
-  Easy = 'easy',
-  Medium = 'medium',
-  Hard = 'hard'
+  Easy = "easy",
+  Medium = "medium",
+  Hard = "hard",
 }
 
 export enum QuestionEncodings {
@@ -37,13 +37,15 @@ export enum QuestionEncodings {
   Url3986 = "url3986",
   UrlLegacy = "urlLegacy",
 }
-
+QuestionEncodings.Url3986;
 export enum QuestionTypes {
-  Multiple = 'multiple',
-  Boolean = 'boolean'
+  Multiple = "multiple",
+  Boolean = "boolean",
 }
 
 export enum Routes {
-  Questions = 'https://opentdb.com/api.php?',
-  Category = 'https://opentdb.com/api_count.php?'
+  Category = "https://opentdb.com/api_count.php?",
+  Questions = "https://opentdb.com/api.php?",
+  SessionReset = "",
+  SessionStart = "https://opentdb.com/api_token.php?command=request",
 }
