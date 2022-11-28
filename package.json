@@ -1,7 +1,7 @@
 {
   "name": "open-trivia-db",
   "version": "2.0.0",
-  "description": "A wrapper for the Open Trivia Database API. Built with TypeScript, works with VanillaJS.",
+  "description": "A small and simple wrapper for the Open Trivia Database API.",
   "keywords": [
     "opentriviadatabase",
     "opentdb",
@@ -24,10 +24,7 @@
     "test": "npm run build && npx jest",
     "prep": "npm run build && npm run test && npm run prettier"
   },
-  "files": [
-    "typings",
-    "dist"
-  ],
+  "files": ["dist", "src", "typings"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Elitezen/open-trivia-db-wrapper.git"
