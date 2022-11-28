@@ -48,7 +48,7 @@ export default class Util {
   static decodeBase64 = Util.base64Decoder.decodeString;
 
   static decodeUrlLegacy<T extends string>(str: string): T {
-    return decodeURIComponent(str).replaceAll("+", " ") as T;
+    return decodeURIComponent(str).split("+").join(" ") as T;
   }
 
   static decodeUrl3968<T extends string>(str: string): T {

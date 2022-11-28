@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
+    "target": "es5",
     "module": "commonjs",
     "declaration": true,
     "outDir": "./dist",
@@ -8,7 +8,6 @@
   },
   "exclude": [
     "node_modules/",
-    "dist/",
-    "tests/"
+    "dist/"
   ]
 }
