@@ -3,11 +3,11 @@ export enum CategoryNames {
   "Entertainment: Books",
   "Entertainment: Film",
   "Entertainment: Music",
-  "Entertainment: Musicals and Theatres",
+  "Entertainment: Musicals & Theatres",
   "Entertainment: Television",
   "Entertainment: Video Games",
   "Entertainment: Board Games",
-  "Science and Nature",
+  "Science & Nature",
   "Science: Computers",
   "Science Mathematics",
   "Mythology",
@@ -37,7 +37,7 @@ export enum QuestionEncodings {
   Url3986 = "url3986",
   UrlLegacy = "urlLegacy",
 }
-QuestionEncodings.Url3986;
+
 export enum QuestionTypes {
   Multiple = "multiple",
   Boolean = "boolean",

@@ -1,12 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Routes = exports.QuestionTypes = exports.QuestionEncodings = exports.QuestionDifficulties = exports.CategoryNames = exports.getQuestions = exports.getCategory = exports.Util = exports.Session = exports.OpenTDBError = exports.Constructor = exports.Category = void 0;
 const Category_1 = require("./src/classes/Category");
-async function test() {
-    try {
-        await Category_1.default.getCategory(8);
-    }
-    catch (err) {
-        throw err;
-    }
-}
-test();
+exports.Category = Category_1.default;
+const Constructor_1 = require("./src/classes/Constructor");
+exports.Constructor = Constructor_1.default;
+const OpenTDBError_1 = require("./src/classes/OpenTDBError");
+exports.OpenTDBError = OpenTDBError_1.default;
+const Session_1 = require("./src/classes/Session");
+exports.Session = Session_1.default;
+const Util_1 = require("./src/classes/Util");
+exports.Util = Util_1.default;
+const getCategory_1 = require("./src/functions/getCategory");
+exports.getCategory = getCategory_1.default;
+const getQuestions_1 = require("./src/functions/getQuestions");
+exports.getQuestions = getQuestions_1.default;
+const enums_1 = require("./src/typings/enums");
+Object.defineProperty(exports, "CategoryNames", { enumerable: true, get: function () { return enums_1.CategoryNames; } });
+Object.defineProperty(exports, "QuestionDifficulties", { enumerable: true, get: function () { return enums_1.QuestionDifficulties; } });
+Object.defineProperty(exports, "QuestionEncodings", { enumerable: true, get: function () { return enums_1.QuestionEncodings; } });
+Object.defineProperty(exports, "QuestionTypes", { enumerable: true, get: function () { return enums_1.QuestionTypes; } });
+Object.defineProperty(exports, "Routes", { enumerable: true, get: function () { return enums_1.Routes; } });

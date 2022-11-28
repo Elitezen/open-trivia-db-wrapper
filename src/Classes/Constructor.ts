@@ -3,10 +3,14 @@ import type {
   Question,
   RawCategoryResponse,
   RawQuestion,
-} from "../typings/interface";
+} from "../typings/interfaces";
 import Category from "./Category";
 import Util from "./Util";
 
+/**
+ * @class Class for transforming raw API data to developer friendly data.
+ * @private
+ */
 export default class Constructor {
   static category(rawCategoryData: RawCategoryResponse): CategoryData {
     return {

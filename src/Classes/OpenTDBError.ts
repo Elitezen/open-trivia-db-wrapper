@@ -1,8 +1,11 @@
-import type { ErrorResponse } from "../typings/interface";
+import type { ErrorResponse } from "../typings/interfaces";
 
+/**
+ * @class OpenTDB error constructor
+ * @private
+ */
 export default class OpenTDBError extends TypeError {
   constructor(error: ErrorResponse) {
-    console.log(error);
     super(error.text);
     this.name = `OpenTDBError [${error.header}]`;
   }

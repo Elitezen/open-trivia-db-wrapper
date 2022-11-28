@@ -3,10 +3,21 @@ import Constructor from "../classes/Constructor";
 import OpenTDBError from "../classes/OpenTDBError";
 import Util from "../classes/Util";
 import { Routes } from "../typings/enums";
-import type { ErrorResponse, RawCategoryResponse } from "../typings/interface";
+import type {
+  CategoryData,
+  ErrorResponse,
+  RawCategoryResponse,
+} from "../typings/interfaces";
 import type { CategoryResolvable } from "../typings/types";
 
-export default async function getCategory(arg: CategoryResolvable) {
+/**
+ * Fetches a trivia category's data. Duplicate of `Category.getCategory()`.
+ * @param {CategoryResolvable} arg An argument resolving to a trivia category.
+ * @returns {Promise<CategoryData>} The data of the category.
+ */
+export default async function getCategory(
+  arg: CategoryResolvable
+): Promise<CategoryData> {
   let resolvable: CategoryResolvable | null = arg;
   if (typeof arg === "string") {
     resolvable = Category.idByName(arg);

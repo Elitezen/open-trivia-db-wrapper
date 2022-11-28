@@ -1,21 +1,28 @@
 import Constructor from "../classes/Constructor";
 import OpenTDBError from "../classes/OpenTDBError";
 import Util from "../classes/Util";
-import {
-  CategoryNames,
-  QuestionDifficulties,
-  QuestionEncodings,
-  QuestionTypes,
-  Routes,
-} from "../typings/enums";
+import { Routes } from "../typings/enums";
 import type {
   ErrorResponse,
+  Question,
   QuestionOptions,
   RawQuestion,
   RawQuestionResponse,
-} from "../typings/interface";
+} from "../typings/interfaces";
 
-export default async function getQuestions(options?: Partial<QuestionOptions>) {
+/**
+ *
+ * @param {Partial<QuestionOptions>} options
+ * @param {?number} options.amount The amount of questions to fetch (min. 1, max. 50)
+ * @param {?CategoryResolvable} options.category The category of questions.
+ * @param {?QuestionDifficultyType | QuestionDifficulties} options.difficulty The difficulty of questions.
+ * @param {?QuestionEncodingType | QuestionEncodings} [options.encode='none'] The encoding of question values.
+ * @param {?Session | string | null} options.session The Session instance or API session token.
+ * @returns {Promise<Question[]>} An Array of questions.
+ */
+export default async function getQuestions(
+  options?: Partial<QuestionOptions>
+): Promise<Question[]> {
   let filledOptions: Partial<
     Pick<QuestionOptions, "amount" | "encode"> & { token?: string | null }
   > = {};
@@ -57,15 +64,3 @@ export default async function getQuestions(options?: Partial<QuestionOptions>) {
     throw new OpenTDBError(err as ErrorResponse);
   }
 }
-
-(async () => {
-  const data = await getQuestions({
-    amount: 1,
-    category: CategoryNames["Entertainment: Cartoon & Animations"],
-    difficulty: QuestionDifficulties.Easy,
-    type: QuestionTypes.Multiple,
-    encode: QuestionEncodings.None,
-  });
-
-  console.log(await data[0].category.getData());
-})();

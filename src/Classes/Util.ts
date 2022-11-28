@@ -1,9 +1,10 @@
-import type { ErrorResponse } from "../typings/interface";
-import type {
-  ErrorCode,
-  ExtendedDictionary
-} from "../typings/types";
+import type { ErrorResponse } from "../typings/interfaces";
+import type { ErrorCode, ExtendedDictionary } from "../typings/types";
 
+/**
+ * @class Class for utility functions.
+ * @private
+ */
 export default class Util {
   static assignDefaults<T extends object>(defaults: T, current?: T | {}) {
     if (current === undefined) return defaults;

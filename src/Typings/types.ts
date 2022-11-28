@@ -1,4 +1,4 @@
-import { CategoryNames } from "./enums";
+import type { CategoryNames } from "./enums";
 
 export type CategoryNameType = keyof typeof CategoryNames;
 export type CategoryResolvable = CategoryNameType | CategoryNames | number;

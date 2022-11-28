@@ -1,12 +1,13 @@
-import Session from "../classes/Session";
+import type Session from "../classes/Session";
+
 import {
-  CategoryNames,
   QuestionDifficulties,
   QuestionEncodings,
   QuestionTypes,
 } from "./enums";
 import type {
   CategoryNameType,
+  CategoryResolvable,
   ExtendedDictionary,
   QuestionDifficultyType,
   QuestionEncodingType,
@@ -49,7 +50,7 @@ export interface Question {
 
 export interface QuestionOptions extends ExtendedDictionary<Session | null> {
   amount: number;
-  category: CategoryNames;
+  category: CategoryResolvable;
   difficulty: QuestionDifficultyType | QuestionDifficulties;
   type: QuestionTypeType | QuestionTypes;
   encode: QuestionEncodingType | QuestionEncodings;
