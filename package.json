@@ -24,7 +24,10 @@
     "test": "npm run build && npx jest",
     "prep": "npm run build && npm run test && npm run prettier"
   },
-  "files": ["dist", "typings"],
+  "files": [
+    "dist", 
+    "typings"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Elitezen/open-trivia-db-wrapper.git"
