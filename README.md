@@ -9,6 +9,8 @@
 
 Live Demo: https://replit.com/@Elitezenv/open-trivia-db-DEMO?v=1
 
+**Documentation**: https://github.com/Elitezen/open-trivia-db-wrapper/wiki/Documentation
+
 ## Updates (2.0.0)
 - The library received a massive rework through many quality of life changes. 
 
@@ -145,3 +147,5 @@ await mySession.reset();
 ```
 
 <hr>
+
+**Documentation**: https://github.com/Elitezen/open-trivia-db-wrapper/wiki/Documentation
