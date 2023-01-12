@@ -8,6 +8,7 @@
 `open-trivia-db` is a small and simple library for interacting with the [OpenTDB](https://opentdb.com/) API.
 
 **Live Demo**: https://replit.com/@Elitezenv/open-trivia-db-DEMO?v=1
+
 **Documentation**: https://github.com/Elitezen/open-trivia-db-wrapper/wiki/Documentation
 
 ## Discord.JS Add On
@@ -15,15 +16,14 @@
 Planning a trivia command for your Discord bot?
 Checkout `discord-trivia`! https://www.npmjs.com/package/discord-trivia
 
-## Updates (2.0.0)
-- The library received a massive rework through many quality of life changes. 
+# 2.1.0
+- Boolean questions now return their incorrect answer as a BooleanString and not a string[]
 
-- 'Static' and 'Pretty' category names are no more, developers will no longer have to worry about converting through these formats. 
+- Question type now takes a generic of type QuestionTypes | unknown. Default is unknown
 
-- All QuestionOption option types now have respective enums to work with.
+- Created typings for correct and incorrect values.
 
-- `Category` is now just a class with various static methods for working with categories.
-
+- Included URL for Session.reset() as it was missing.
 
 ## Example Code
 ```js
