@@ -7,7 +7,8 @@
 
 `open-trivia-db` is a small and simple library for interacting with the [OpenTDB](https://opentdb.com/) API.
 
-Live Demo: https://replit.com/@Elitezenv/open-trivia-db-DEMO?v=1
+**Live Demo**: https://replit.com/@Elitezenv/open-trivia-db-DEMO?v=1
+**Documentation**: https://github.com/Elitezen/open-trivia-db-wrapper/wiki/Documentation
 
 ## Discord.JS Add On
 
@@ -150,3 +151,5 @@ await mySession.reset();
 ```
 
 <hr>
+
+**Documentation**: https://github.com/Elitezen/open-trivia-db-wrapper/wiki/Documentation
