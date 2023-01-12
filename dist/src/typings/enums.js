@@ -50,6 +50,6 @@ var Routes;
 (function (Routes) {
     Routes["Category"] = "https://opentdb.com/api_count.php?";
     Routes["Questions"] = "https://opentdb.com/api.php?";
-    Routes["SessionReset"] = "";
+    Routes["SessionReset"] = "https://opentdb.com/api_token.php?command=reset";
     Routes["SessionStart"] = "https://opentdb.com/api_token.php?command=request";
 })(Routes = exports.Routes || (exports.Routes = {}));

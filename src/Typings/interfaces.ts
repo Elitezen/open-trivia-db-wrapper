@@ -6,9 +6,12 @@ import {
   QuestionTypes,
 } from "./enums";
 import type {
+  AllAnswers,
+  BooleanString,
   CategoryNameType,
   CategoryResolvable,
   ExtendedDictionary,
+  IncorrectAnswers,
   QuestionDifficultyType,
   QuestionEncodingType,
   QuestionTypeType,
@@ -37,14 +40,26 @@ export interface MinifiedCategoryData {
   getData: () => Promise<CategoryData>;
 }
 
-export interface Question {
+export interface Question<
+  QuestionType extends unknown | QuestionTypes = unknown
+> {
   category: MinifiedCategoryData;
-  type: QuestionTypeType;
+  type: QuestionType extends unknown ? QuestionTypeType : QuestionType;
   difficulty: QuestionDifficultyType;
   value: string;
-  correctAnswer: string;
-  incorrectAnswers: string[];
-  allAnswers: string[];
+  correctAnswer: QuestionType extends unknown | "multiple"
+    ? string
+    : BooleanString;
+  incorrectAnswers: QuestionType extends unknown
+    ? IncorrectAnswers | BooleanString
+    : QuestionType extends "multiple"
+    ? IncorrectAnswers
+    : BooleanString;
+  allAnswers: QuestionType extends unknown
+    ? AllAnswers<QuestionTypes.Multiple> | AllAnswers<QuestionTypes.Boolean>
+    : QuestionType extends "multiple"
+    ? AllAnswers<QuestionTypes.Multiple>
+    : AllAnswers<QuestionTypes.Boolean>;
   checkAnswer: (str: string, caseSensitive?: boolean) => boolean;
 }
 

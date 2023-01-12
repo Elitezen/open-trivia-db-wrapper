@@ -108,3 +108,7 @@ function getQuestions(options) {
     });
 }
 exports.default = getQuestions;
+getQuestions({
+    type: 'boolean',
+    amount: 1
+}).then(console.log);

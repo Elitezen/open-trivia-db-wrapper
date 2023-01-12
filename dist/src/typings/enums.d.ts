@@ -42,6 +42,6 @@ export declare enum QuestionTypes {
 export declare enum Routes {
     Category = "https://opentdb.com/api_count.php?",
     Questions = "https://opentdb.com/api.php?",
-    SessionReset = "",
+    SessionReset = "https://opentdb.com/api_token.php?command=reset",
     SessionStart = "https://opentdb.com/api_token.php?command=request"
 }

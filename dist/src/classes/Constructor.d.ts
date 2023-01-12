@@ -5,5 +5,5 @@ import type { CategoryData, Question, RawCategoryResponse, RawQuestion } from ".
  */
 export default class Constructor {
     static category(rawCategoryData: RawCategoryResponse): CategoryData;
-    static questions(rawQuestions: RawQuestion[]): Question[];
+    static questions(rawQuestions: RawQuestion[]): Question<unknown>[];
 }

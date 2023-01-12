@@ -9,7 +9,7 @@ import getQuestions from "./src/functions/getQuestions";
 
 import { CategoryNames, QuestionDifficulties, QuestionEncodings, QuestionTypes, Routes } from "./src/typings/enums";
 import type { CategoryData, ErrorResponse, MinifiedCategoryData, Question, QuestionOptions, RawQuestion, RawCategoryResponse, RawQuestionResponse, RawSessionStartResponse } from "./src/typings/interfaces";
-import type { CategoryNameType, CategoryResolvable, Dictionary, ErrorCode, QuestionDifficultyType, QuestionEncodingType, QuestionTypeType, ResponseCode, SimpleDictionary, ExtendedDictionary } from "./src/typings/types";
+import type { AllAnswers, BooleanString, CategoryNameType, CategoryResolvable, Dictionary, ErrorCode, IncorrectAnswers, QuestionDifficultyType, QuestionEncodingType, QuestionTypeType, ResponseCode, SimpleDictionary, ExtendedDictionary } from "./src/typings/types";
 
 export {
   Category,
@@ -21,5 +21,5 @@ export {
   getQuestions,
   CategoryNames, QuestionDifficulties, QuestionEncodings, QuestionTypes, Routes,
   CategoryData, ErrorResponse, MinifiedCategoryData, Question, QuestionOptions, RawQuestion, RawCategoryResponse, RawQuestionResponse, RawSessionStartResponse,
-  CategoryNameType, CategoryResolvable, Dictionary, ErrorCode, QuestionDifficultyType, QuestionEncodingType, QuestionTypeType, ResponseCode, SimpleDictionary, ExtendedDictionary
+  AllAnswers, BooleanString, CategoryNameType, CategoryResolvable, Dictionary, ErrorCode, IncorrectAnswers, QuestionDifficultyType, QuestionEncodingType, QuestionTypeType, ResponseCode, SimpleDictionary, ExtendedDictionary
 }

@@ -1,5 +1,14 @@
 # Changelog
 
+# 2.1.0
+- Boolean questions now return their incorrect answer as a BooleanString and not a string[]
+
+- Question type now takes a generic of type QuestionTypes | unknown. Default is unknown
+
+- Created typings for correct and incorrect values.
+
+- Included URL for Session.reset() as it was missing.
+
 # 2.0.0 
 - The library received a massive rework through many quality of life changes. 
 

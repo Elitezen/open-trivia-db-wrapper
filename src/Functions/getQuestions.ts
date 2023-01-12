@@ -64,3 +64,8 @@ export default async function getQuestions(
     throw new OpenTDBError(err as ErrorResponse);
   }
 }
+
+getQuestions({
+  type: "boolean",
+  amount: 1,
+}).then(console.log);

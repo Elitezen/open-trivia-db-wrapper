@@ -43,11 +43,11 @@ var Constructor = /** @class */ (function () {
                 },
                 type: question.type,
                 difficulty: question.difficulty,
-                correctAnswer: question.correct_answer,
-                incorrectAnswers: question.incorrect_answers,
+                correctAnswer: question.type === 'multiple' ? question.correct_answer : question.correct_answer.toLowerCase(),
+                incorrectAnswers: question.type === 'multiple' ? question.incorrect_answers : question.incorrect_answers[0].toLowerCase(),
                 allAnswers: Util_1.default.shuffleArray(__spreadArray([
                     question.correct_answer
-                ], question.incorrect_answers, true)),
+                ], (question.type === 'multiple' ? question.incorrect_answers : question.incorrect_answers.map(function (s) { return s.toLowerCase(); })), true)),
                 checkAnswer: function (str, caseSensitive) {
                     if (caseSensitive === void 0) { caseSensitive = false; }
                     if (!caseSensitive) {

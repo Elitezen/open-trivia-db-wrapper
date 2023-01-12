@@ -9,6 +9,11 @@
 
 Live Demo: https://replit.com/@Elitezenv/open-trivia-db-DEMO?v=1
 
+## Discord.JS Add On
+
+Planning a trivia command for your Discord bot?
+Checkout `discord-trivia`! https://www.npmjs.com/package/discord-trivia
+
 ## Updates (2.0.0)
 - The library received a massive rework through many quality of life changes. 
 

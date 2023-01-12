@@ -1,9 +1,11 @@
+import { QuestionTypes } from "../typings/enums";
 import type {
   CategoryData,
   Question,
   RawCategoryResponse,
   RawQuestion,
 } from "../typings/interfaces";
+import { AllAnswers, IncorrectAnswers } from "../typings/types";
 import Category from "./Category";
 import Util from "./Util";
 
@@ -26,7 +28,7 @@ export default class Constructor {
     };
   }
 
-  static questions(rawQuestions: RawQuestion[]): Question[] {
+  static questions(rawQuestions: RawQuestion[]): Question<unknown>[] {
     return rawQuestions.map((question) => {
       return {
         value: question.question,
@@ -41,12 +43,20 @@ export default class Constructor {
         },
         type: question.type,
         difficulty: question.difficulty,
-        correctAnswer: question.correct_answer,
-        incorrectAnswers: question.incorrect_answers,
+        correctAnswer:
+          question.type === "multiple"
+            ? question.correct_answer
+            : question.correct_answer.toLowerCase(),
+        incorrectAnswers:
+          question.type === "multiple"
+            ? (question.incorrect_answers as IncorrectAnswers)
+            : (question.incorrect_answers[0].toLowerCase() as `${boolean}`),
         allAnswers: Util.shuffleArray([
           question.correct_answer,
-          ...question.incorrect_answers,
-        ]),
+          ...(question.type === "multiple"
+            ? question.incorrect_answers
+            : question.incorrect_answers.map((s) => s.toLowerCase())),
+        ]) as AllAnswers<QuestionTypes.Boolean | QuestionTypes.Multiple>,
         checkAnswer: function (str, caseSensitive = false) {
           if (!caseSensitive) {
             return str.toLowerCase() === this.correctAnswer.toLowerCase();
