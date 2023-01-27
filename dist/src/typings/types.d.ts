@@ -1,0 +1,14 @@
+import type { CategoryNames, QuestionTypes } from "./enums";
+export declare type AllAnswers<T extends QuestionTypes> = T extends QuestionTypes.Boolean ? [BooleanString, BooleanString] : [string, string, string, string];
+export declare type BooleanString = `${boolean}`;
+export declare type CategoryNameType = keyof typeof CategoryNames;
+export declare type CategoryResolvable = CategoryNameType | CategoryNames | number;
+export declare type Dictionary<K extends string, V> = Record<K, V>;
+export declare type ErrorCode = 1 | 2 | 3 | 4;
+export declare type IncorrectAnswers = [string, string, string];
+export declare type QuestionDifficultyType = "easy" | "medium" | "hard";
+export declare type QuestionEncodingType = "none" | "base64" | "url3986" | "urlLegacy";
+export declare type QuestionTypeType = "multiple" | "boolean";
+export declare type ResponseCode = 0 | ErrorCode;
+export declare type SimpleDictionary = Dictionary<string, string | number>;
+export declare type ExtendedDictionary<V extends unknown> = Dictionary<string, string | number | V>;
