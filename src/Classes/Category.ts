@@ -1,6 +1,6 @@
-import { CategoryNames } from "../typings/enums";
-import type { CategoryNameType } from "../typings/types";
-import getCategory from "../functions/getCategory";
+import { CategoryNames } from "../Typings/enums";
+import type { CategoryNameType } from "../Typings/types";
+import getCategory from "../Functions/getCategory";
 import Util from "./Util";
 
 /**

@@ -1,4 +1,4 @@
-import type Session from "../classes/Session";
+import type Session from "../Classes/Session";
 
 import {
   QuestionDifficulties,

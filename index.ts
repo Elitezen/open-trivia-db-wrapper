@@ -1,15 +1,15 @@
-import Category from "./src/classes/Category";
-import Constructor from "./src/classes/Constructor";
-import OpenTDBError from "./src/classes/OpenTDBError";
-import Session from "./src/classes/Session";
-import Util from "./src/classes/Util";
+import Category from "./src/Classes/Category";
+import Constructor from "./src/Classes/Constructor";
+import OpenTDBError from "./src/Classes/OpenTDBError";
+import Session from "./src/Classes/Session";
+import Util from "./src/Classes/Util";
 
-import getCategory from "./src/functions/getCategory";
-import getQuestions from "./src/functions/getQuestions";
+import getCategory from "./src/Functions/getCategory";
+import getQuestions from "./src/Functions/getQuestions";
 
-import { CategoryNames, QuestionDifficulties, QuestionEncodings, QuestionTypes, Routes } from "./src/typings/enums";
-import type { CategoryData, ErrorResponse, MinifiedCategoryData, Question, QuestionOptions, RawQuestion, RawCategoryResponse, RawQuestionResponse, RawSessionStartResponse } from "./src/typings/interfaces";
-import type { AllAnswers, BooleanString, CategoryNameType, CategoryResolvable, Dictionary, ErrorCode, IncorrectAnswers, QuestionDifficultyType, QuestionEncodingType, QuestionTypeType, ResponseCode, SimpleDictionary, ExtendedDictionary } from "./src/typings/types";
+import { CategoryNames, QuestionDifficulties, QuestionEncodings, QuestionTypes, Routes } from "./src/Typings/enums";
+import type { CategoryData, ErrorResponse, MinifiedCategoryData, Question, QuestionOptions, RawQuestion, RawCategoryResponse, RawQuestionResponse, RawSessionStartResponse } from "./src/Typings/interfaces";
+import type { AllAnswers, BooleanString, CategoryNameType, CategoryResolvable, Dictionary, ErrorCode, IncorrectAnswers, QuestionDifficultyType, QuestionEncodingType, QuestionTypeType, ResponseCode, SimpleDictionary, ExtendedDictionary } from "./src/Typings/types";
 
 export {
   Category,
