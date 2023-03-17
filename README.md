@@ -14,16 +14,10 @@
 ## Discord.JS Add On
 
 Planning a trivia command for your Discord bot?
-Checkout `discord-trivia`! https://www.npmjs.com/package/discord-trivia
+`discord-trivia` v2 is coming!: https://github.com/Elitezen/discord-trivia
 
-# 2.1.0
-- Boolean questions now return their incorrect answer as a BooleanString and not a string[]
-
-- Question type now takes a generic of type QuestionTypes | unknown. Default is unknown
-
-- Created typings for correct and incorrect values.
-
-- Included URL for Session.reset() as it was missing.
+# 2.1.3
+- Inconsistency fixes and other minor bug fixes
 
 ## Example Code
 ```js

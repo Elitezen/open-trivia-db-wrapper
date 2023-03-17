@@ -1,5 +1,8 @@
 # Changelog
 
+# 2.1.1 - 2.1.3
+- Inconsistency fixes and other minor bug fixes
+
 # 2.1.0
 - Boolean questions now return their incorrect answer as a BooleanString and not a string[]
 
