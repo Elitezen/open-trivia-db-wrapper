@@ -1,11 +1,11 @@
-import { QuestionTypes } from "../typings/enums";
+import { QuestionTypes } from "../Typings/enums";
 import type {
   CategoryData,
   Question,
   RawCategoryResponse,
   RawQuestion,
-} from "../typings/interfaces";
-import { AllAnswers, IncorrectAnswers } from "../typings/types";
+} from "../Typings/interfaces";
+import { AllAnswers, IncorrectAnswers } from "../Typings/types";
 import Category from "./Category";
 import Util from "./Util";
 

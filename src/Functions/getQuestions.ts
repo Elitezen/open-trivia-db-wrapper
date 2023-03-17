@@ -1,14 +1,14 @@
-import Constructor from "../classes/Constructor";
-import OpenTDBError from "../classes/OpenTDBError";
-import Util from "../classes/Util";
-import { Routes } from "../typings/enums";
+import Constructor from "../Classes/Constructor";
+import OpenTDBError from "../Classes/OpenTDBError";
+import Util from "../Classes/Util";
+import { Routes } from "../Typings/enums";
 import type {
   ErrorResponse,
   Question,
   QuestionOptions,
   RawQuestion,
   RawQuestionResponse,
-} from "../typings/interfaces";
+} from "../Typings/interfaces";
 
 /**
  *

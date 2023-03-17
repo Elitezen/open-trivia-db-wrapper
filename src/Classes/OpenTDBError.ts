@@ -1,4 +1,4 @@
-import type { ErrorResponse } from "../typings/interfaces";
+import type { ErrorResponse } from "../Typings/interfaces";
 
 /**
  * @class OpenTDB error constructor

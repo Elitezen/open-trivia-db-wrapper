@@ -1,5 +1,5 @@
-import type { ErrorResponse } from "../typings/interfaces";
-import type { ErrorCode, ExtendedDictionary } from "../typings/types";
+import type { ErrorResponse } from "../Typings/interfaces";
+import type { ErrorCode, ExtendedDictionary } from "../Typings/types";
 
 /**
  * @class Class for utility functions.

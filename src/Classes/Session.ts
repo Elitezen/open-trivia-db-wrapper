@@ -1,8 +1,8 @@
-import { Routes } from "../typings/enums";
+import { Routes } from "../Typings/enums";
 import type {
   ErrorResponse,
   RawSessionStartResponse,
-} from "../typings/interfaces";
+} from "../Typings/interfaces";
 import OpenTDBError from "./OpenTDBError";
 import Util from "./Util";
 

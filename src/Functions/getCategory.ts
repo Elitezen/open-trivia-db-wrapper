@@ -1,14 +1,14 @@
-import Category from "../classes/Category";
-import Constructor from "../classes/Constructor";
-import OpenTDBError from "../classes/OpenTDBError";
-import Util from "../classes/Util";
-import { Routes } from "../typings/enums";
+import Category from "../Classes/Category";
+import Constructor from "../Classes/Constructor";
+import OpenTDBError from "../Classes/OpenTDBError";
+import Util from "../Classes/Util";
+import { Routes } from "../Typings/enums";
 import type {
   CategoryData,
   ErrorResponse,
   RawCategoryResponse,
-} from "../typings/interfaces";
-import type { CategoryResolvable } from "../typings/types";
+} from "../Typings/interfaces";
+import type { CategoryResolvable } from "../Typings/types";
 
 /**
  * Fetches a trivia category's data. Duplicate of `Category.getCategory()`.
