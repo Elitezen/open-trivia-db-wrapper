@@ -72,7 +72,7 @@ export default class Util {
     checkForResponseCode: boolean = false
   ): Promise<T> {
     const request = await fetch(url);
-    const data = await request.json();
+    const data: any = await request.json();
 
     if (checkForResponseCode && data?.response_code !== 0) {
       throw Util.getErrorByCode(data.response_code as ErrorCode);

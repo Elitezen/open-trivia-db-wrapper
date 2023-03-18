@@ -1,4 +1,3 @@
-
 export enum CategoryNames {
   "General Knowledge" = 9,
   "Entertainment: Books",
@@ -43,7 +42,6 @@ export enum QuestionTypes {
   Multiple = "multiple",
   Boolean = "boolean",
 }
-
 
 export enum Routes {
   Category = "https://opentdb.com/api_count.php?",
