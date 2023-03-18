@@ -1,5 +1,6 @@
 import type { ErrorResponse } from "../Typings/interfaces";
 import type { ErrorCode, ExtendedDictionary } from "../Typings/types";
+import fetch from "node-fetch";
 
 /**
  * @class Class for utility functions.
