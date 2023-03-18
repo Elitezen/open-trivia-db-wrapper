@@ -6,7 +6,7 @@
     "outDir": "./dist",
     "strict": true,
   },
-  "include": ["src/", "index.ts"],
+  "include": ["src/", "tests/", "index.ts"],
   "exclude": [
     "node_modules/",
     "dist/"
