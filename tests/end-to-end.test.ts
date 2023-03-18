@@ -1,7 +1,7 @@
-import Category from "../src/classes/Category";
-import { CategoryData, Question } from "../src/typings/interfaces";
-import getQuestions from "../src/functions/getQuestions";
-import { QuestionDifficulties, QuestionEncodings } from "../src/typings/enums";
+import Category from "../src/Classes/Category";
+import { CategoryData, Question } from "../src/Typings/interfaces";
+import getQuestions from "../src/Functions/getQuestions";
+import { QuestionDifficulties, QuestionEncodings } from "../src/Typings/enums";
 
 test('Tests Category.getCategory() with other members', async() => {
   const exampleCategoryData:CategoryData = {
