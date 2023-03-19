@@ -1,5 +1,8 @@
 # Changelog
 
+# 2.1.4
+- Reverted to `node-fetch` for Node versions < 18
+
 # 2.1.1 - 2.1.3
 - Inconsistency fixes and other minor bug fixes
 

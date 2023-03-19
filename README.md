@@ -16,8 +16,8 @@
 Planning a trivia command for your Discord bot?
 `discord-trivia` v2 is coming!: https://github.com/Elitezen/discord-trivia
 
-# 2.1.3
-- Inconsistency fixes and other minor bug fixes
+# 2.1.4
+- Reverted to `node-fetch` for Node versions < 18
 
 ## Example Code
 ```js
