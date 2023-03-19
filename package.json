@@ -19,7 +19,7 @@
   "scripts": {
     "build": "tsc",
     "prettier": "npm run build && prettier -w .",
-    "prepublish": "npm run prep",
+    "prepublishOnly": "npm run prep",
     "exec": "npm run build && node .",
     "test": "npm run build && npx jest",
     "prep": "npm run build && npm run test && npm run prettier",
