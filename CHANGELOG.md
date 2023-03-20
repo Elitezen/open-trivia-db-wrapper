@@ -1,5 +1,8 @@
 # Changelog
 
+# 2.1.5
+- Fixed the issue of the dist/ folder not being included.
+
 # 2.1.4
 - Reverted to `node-fetch` for Node versions < 18
 
