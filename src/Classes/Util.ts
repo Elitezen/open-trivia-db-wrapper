@@ -7,16 +7,36 @@ import fetch from "node-fetch";
  * @private
  */
 export default class Util {
-  static assignDefaults<T extends object>(defaults: T, current?: T | {}) {
+  /**
+   * Applies default values to missing keys.
+   * @param {T} defaults The default shape of the type.
+   * @param {T} current The current object
+   * @returns
+   */
+  static assignDefaults<T extends object>(defaults: T, current?: T | {}): T {
     if (current === undefined) return defaults;
 
     return Object.assign(defaults, current);
   }
 
+  /**
+   * Contains functions for converting Base64 to ASCII
+   */
   static base64Decoder = {
-    atob(str: string) {
+    /**
+     * Converts a Base64 string to ASCII
+     * @param {string} str
+     * @returns {string}
+     */
+    atob(str: string): string {
       return Buffer.from(str, "base64").toString();
     },
+
+    /**
+     * Dynamically decodes a variable based on it's type.
+     * @param {unknown} value any variable.
+     * @returns {T}
+     */
     decode<T>(value: unknown): T {
       return value == null ||
         value == undefined ||
@@ -31,13 +51,31 @@ export default class Util {
         ? Util.base64Decoder.decodeStringArray(value)
         : value;
     },
+
+    /**
+     * Converts a Base64 string to ASCII.
+     * @param {string} str
+     * @returns {T}
+     */
     decodeString<T extends string>(str: string): T {
       return Util.base64Decoder.atob(str) as T;
     },
-    decodeStringArray(arr: string[]) {
+
+    /**
+     * Converts the values of an array based on type.
+     * @param {string[]} arr
+     * @returns {unknown[]}
+     */
+    decodeStringArray(arr: string[]): unknown[] {
       return arr.map((v) => Util.base64Decoder.decode(v));
     },
-    decodeObjectValues(obj: object) {
+
+    /**
+     * Converts the values of an object from Base64 to ASCII.
+     * @param {object} obj
+     * @returns {any}
+     */
+    decodeObjectValues(obj: object): any {
       const o = new Object().constructor();
       Object.entries(obj).forEach(
         ([key, value]) => (o[key] = Util.base64Decoder.decode(value))
@@ -46,27 +84,53 @@ export default class Util {
     },
   };
 
+  /**
+   * Copy of `Util.base64Decoder.decodeString`.
+   */
   static decodeBase64 = Util.base64Decoder.decodeString;
 
+  /**
+   * Converts a urlLegacy string to ASCII.
+   * @param {string} str
+   * @returns {T}
+   */
   static decodeUrlLegacy<T extends string>(str: string): T {
     return decodeURIComponent(str).split("+").join(" ") as T;
   }
 
+  /**
+   * Converts a url3968 string to ASCII.
+   * @param {string} str
+   * @returns {T}
+   */
   static decodeUrl3968<T extends string>(str: string): T {
     return decodeURIComponent(str) as T;
   }
 
+  /**
+   * Builds a URL with queries.
+   * @param {string} baseURL The starting URL.
+   * @param {ExtendedDictionary<null>} options The request key and values.
+   * @param {string} concatSymbol The string symbol that joins each key-value pair.
+   * @returns {string}
+   */
   static createQueriedLink(
     baseURL: string,
     options: ExtendedDictionary<null>,
     concatSymbol: string = "&"
-  ) {
+  ): string {
     const optionsArr = Object.keys(options).map(
       (key) => `${key}=${options[key]}`
     );
     return (baseURL += optionsArr.join(concatSymbol));
   }
 
+  /**
+   * Fetches data from an OpenTDB URL.
+   * @param {string} url
+   * @param {boolean} checkForResponseCode Whether to throw an error if a `responseCode` property with a value of `0` is found.
+   * @returns {Promise<T>}
+   */
   static async fetch<T>(
     url: string,
     checkForResponseCode: boolean = false
@@ -81,6 +145,11 @@ export default class Util {
     return data;
   }
 
+  /**
+   * Returns the corresponding error data.
+   * @param {ErrorCode} code The error code.
+   * @returns {ErrorResponse} The error response data.
+   */
   static getErrorByCode(code: ErrorCode): ErrorResponse {
     const responses: ErrorResponse[] = [
       {
@@ -104,6 +173,11 @@ export default class Util {
     return responses[code - 1];
   }
 
+  /**
+   * Shuffles an array. See https://bost.ocks.org/mike/shuffle/.
+   * @param {T[]} arg
+   * @returns {T[]}
+   */
   static shuffleArray<T>(arg: T[]): T[] {
     if (!Array.isArray(arg)) throw new TypeError("Argument must be an array");
     // Fisher–Yates shuffle: https://bost.ocks.org/mike/shuffle/

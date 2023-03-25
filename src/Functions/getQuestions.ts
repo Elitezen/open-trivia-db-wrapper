@@ -11,7 +11,7 @@ import type {
 } from "../Typings/interfaces";
 
 /**
- *
+ * Fetches questions from OpenTDB.
  * @param {Partial<QuestionOptions>} options
  * @param {?number} options.amount The amount of questions to fetch (min. 1, max. 50)
  * @param {?CategoryResolvable} options.category The category of questions.

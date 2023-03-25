@@ -15,6 +15,9 @@ export default class Session {
    */
   token: string | null;
 
+  /**
+   * @param {string} token An existing session's token.
+   */
   constructor(token?: string) {
     this.token = token || null;
   }

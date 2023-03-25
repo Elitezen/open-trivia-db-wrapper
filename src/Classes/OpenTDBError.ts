@@ -5,6 +5,9 @@ import type { ErrorResponse } from "../Typings/interfaces";
  * @private
  */
 export default class OpenTDBError extends TypeError {
+  /**
+   * @param {ErrorResponse} error A basic header-text error object.
+   */
   constructor(error: ErrorResponse) {
     super(error.text);
     this.name = `OpenTDBError [${error.header}]`;

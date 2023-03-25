@@ -14,6 +14,11 @@ import Util from "./Util";
  * @private
  */
 export default class Constructor {
+  /**
+   * Parses a raw category to be more JavaScript friendly and less verbose.
+   * @param {RawCategoryResponse} rawCategoryData The raw category.
+   * @returns {CategoryData}
+   */
   static category(rawCategoryData: RawCategoryResponse): CategoryData {
     return {
       id: rawCategoryData.category_id,
@@ -28,6 +33,11 @@ export default class Constructor {
     };
   }
 
+  /**
+   * Parses each object in a raw question array to be more JavaScript friendly.
+   * @param {RawQuestion[]} rawQuestions An array of raw questions.
+   * @returns {Question<unknown>[]}
+   */
   static questions(rawQuestions: RawQuestion[]): Question<unknown>[] {
     return rawQuestions.map((question) => {
       return {
