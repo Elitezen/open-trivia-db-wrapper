@@ -21,12 +21,11 @@ export default async function getCategory(
   let resolvable: CategoryResolvable | null = arg;
   if (typeof arg === "string") {
     resolvable = Category.idByName(arg);
-  }
-
-  if (resolvable === null || arg < 9 || arg > 32)
+  } else if (resolvable === null || arg < 9 || arg > 32)
     throw new TypeError(
       `Argument (${arg}) does not resolve into a valid OpenTDB category`
     );
+
   const url = Util.createQueriedLink(Routes.Category, {
     category: resolvable,
   });

@@ -42,7 +42,7 @@ export default class Category {
    * @returns {number | null} The id if resolvable.
    */
   static idByName(name: CategoryNameType): number | null {
-    const id = Category.allNames.indexOf(name);
+    const id = Category.allNames.indexOf(name as CategoryNameType);
     return id > -1 ? id + 9 : null;
   }
 

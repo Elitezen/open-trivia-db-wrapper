@@ -8,8 +8,8 @@ export default class OpenTDBError extends TypeError {
   /**
    * @param {ErrorResponse} error A basic header-text error object.
    */
-  constructor(error: ErrorResponse) {
-    super(error.text);
-    this.name = `OpenTDBError [${error.header}]`;
+  constructor(error?: ErrorResponse) {
+    super(error?.text || "An unhandled error occured");
+    this.name = `OpenTDBError [${error?.header || "UNKNOWN_EXCEPTION_THROWN"}]`;
   }
 }

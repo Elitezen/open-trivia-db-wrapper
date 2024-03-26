@@ -1,6 +1,11 @@
 import type { ErrorResponse } from "../Typings/interfaces";
-import type { ErrorCode, ExtendedDictionary } from "../Typings/types";
+import type {
+  CategoryNameType,
+  ErrorCode,
+  ExtendedDictionary,
+} from "../Typings/types";
 import fetch from "node-fetch";
+import Category from "./Category";
 
 /**
  * @class Class for utility functions.
@@ -119,9 +124,13 @@ export default class Util {
     options: ExtendedDictionary<null>,
     concatSymbol: string = "&"
   ): string {
-    const optionsArr = Object.keys(options).map(
-      (key) => `${key}=${options[key]}`
-    );
+    const optionsArr = Object.keys(options).map((key) => {
+      let value = options[key];
+      if (key == "category" && typeof value == "string")
+        value = Category.idByName(value as CategoryNameType);
+
+      return `${key}=${value}`;
+    });
     return (baseURL += optionsArr.join(concatSymbol));
   }
 

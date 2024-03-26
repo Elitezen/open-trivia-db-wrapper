@@ -1,5 +1,10 @@
 # Changelog
 
+# 2.1.6
+- Added typescript as a developer depencency.
+- Added safegaurd for unknown thrown exceptions from `OpenTDBError`.
+- Included /dist in repo.
+
 # 2.1.5
 - Fixed the issue of the dist/ folder not being included.
 
