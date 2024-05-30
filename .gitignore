@@ -1,5 +1,5 @@
 /node_modules
 /bin
-/dist
+dist/
 .DS_Store
 *.tgz

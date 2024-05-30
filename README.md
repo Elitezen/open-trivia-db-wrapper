@@ -14,10 +14,11 @@
 ## Discord.JS Add On
 
 Planning a trivia command for your Discord bot?
-`discord-trivia` v2 is coming!: https://github.com/Elitezen/discord-trivia
+Checkout `discord-trivia`!: https://github.com/Elitezen/discord-trivia
 
-# 2.1.5
-- Fixed the issue of the dist/ folder not being included.
+# 2.1.6
+- Added typescript as a developer depencency.
+- Added safegaurd for unknown thrown exceptions from `OpenTDBError`.
 
 ## Example Code
 ```js
