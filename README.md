@@ -7,14 +7,11 @@
 
 `open-trivia-db` is a small and simple library for interacting with the [OpenTDB](https://opentdb.com/) API.
 
-**Live Demo**: https://replit.com/@Elitezenv/open-trivia-db-DEMO?v=1
-
 **Documentation**: https://github.com/Elitezen/open-trivia-db-wrapper/wiki/Documentation
 
 ## Discord.JS Add On
 
-Planning a trivia command for your Discord bot?
-Checkout `discord-trivia`!: https://github.com/Elitezen/discord-trivia
+Checkout the powerful module `discord-trivia`: https://github.com/Elitezen/discord-trivia
 
 # 2.1.6
 - Added typescript as a developer depencency.
@@ -22,7 +19,7 @@ Checkout `discord-trivia`!: https://github.com/Elitezen/discord-trivia
 
 ## Example Code
 ```js
-import { getQuestions, CategoryNames } from "open-trivia-db";
+import { getQuestions, CategoryNames, QuestionDifficulties } from "open-trivia-db";
 
 const questions = await getQuestions({
   amount: 10,
@@ -90,18 +87,20 @@ To jump between resolvables, use `Category.idByName()` and `Category.nameById()`
 ```js
 import { Category, CategoryNames } from "open-trivia-db";
 
-Category.idByName('Art'); // 25
-Category.nameById(25); // 'Art'
+Category.idByName('Art');              // 25
+Category.idByName(CategoryNames.Art);  // 25
+
+Category.nameById(25);                 // 'Art'
 ```
 
 ### Getting a Category's Data
 Use `Category.getCategory()` to get a category's data such as name, id, and question counts.
 
 ```js
-import { Category, CategoryNames } from "open-trivia-db"
+import { Category, CategoryNames } from "open-trivia-db";
 
 Category.getCategory(CategoryNames.Geography)
-  .then(console.log)
+  .then(console.log);
 ```
 
 ```js
@@ -118,10 +117,10 @@ Category.getCategory(CategoryNames.Geography)
 You can also complete a category's data through a question via `Question.category.getData()`
 
 ```js
-const targetQuestion = questions[0] // from getQuestions()
+const targetQuestion = questions[0]; // from getQuestions()
 
 targetQuestion.category.getData()
-  .then(console.log)
+  .then(console.log);
 ```
 
 ## Sessions
@@ -129,7 +128,7 @@ A session ensures you are not supplied a question more than once throughout it's
 
 Initialize a session and supply the instance into `getQuestions()`. Make sure to await or resolve `Session.start()`.
 ```js
-import { Session } from "open-trivia-db"
+import { Session } from "open-trivia-db";
 
 const mySession = new Session();
 await mySession.start();
@@ -139,7 +138,7 @@ getQuestions({
 })
 ```
 
-`getQuestions()` will return an error once your session has served every single question in OpenTDB. Don't worry, theres thousands of questions! You will likely never come accross a session's end. However, if you wish to reset your session, use `Session.reset()`.
+`getQuestions()` will return an error once your session has served every single question in OpenTDB. Don't worry, there are thousands of questions! You will likely never come accross a session's end. However, if you wish to reset your session, use `Session.reset()`.
 
 ```js
 await mySession.reset();
